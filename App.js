@@ -1,18 +1,14 @@
-import React, { Component } from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import React from 'react';
+import { Provider } from 'mobx-react/native';
 
-import Router from './src/components/Router';
+import Router from './components/Router';
 
-import {Provider} from 'mobx-react/native';
+import stores from './stores';
 
-import stores from './src/stores';
+const App = () => (
+  <Provider {...stores}>
+    <Router />
+  </Provider>
+);
 
-export default class App extends Component {
-  render() {
-    return (
-      <Provider {...stores}>
-        <Router />
-      </Provider>
-    );
-  }
-}
+export default App;
