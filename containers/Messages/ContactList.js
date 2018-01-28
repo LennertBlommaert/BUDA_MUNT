@@ -1,31 +1,21 @@
 import React from 'react';
-import { Text, View } from 'react-native';
-import { inject, observer } from 'mobx-react/native';
+import { FlatList, Text } from 'react-native';
+import { inject, observer, PropTypes } from 'mobx-react/native';
 
-const ContactList = () => {
+const ContactList = ({ contacts }) => (
+  <FlatList
+    data={contacts}
+    keyExtractor={item => item.id}
+    renderItem={({ item }) => <Text key={item.id}>{item.firstName} {item.lastName}</Text>}
+  />
+);
 
-  return (
-    <ScrollView>
-        {
-          contacts.sort(
-              (a, b) => isoToTimeStamp(b.created) - isoToTimeStamp(a.created)
-            ).map(
-              c => (
-                <Text>{c.firstName}</Text>
-              )
-            )
-        }
-    </ScrollView>
-  );
-
+ContactList.propTypes = {
+  contacts: PropTypes.observableArray.isRequired,
 };
 
-ContactList.propTypes = {};
-
 export default inject(
-  ({store}) => {
-    return {contacts: store.contacts};
-  }
+  ({ store }) => ({ contacts: store.contacts }),
 )(
-  observer(ContactList)
+  observer(ContactList),
 );

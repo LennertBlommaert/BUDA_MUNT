@@ -1,31 +1,21 @@
 import React from 'react';
-import { Text, ScrollView } from 'react-native';
+import { Text, FlatList } from 'react-native';
 import { inject, observer } from 'mobx-react/native';
+import styles from '../../objects/styles';
 
-const DemandList = () => {
-
-  return (
-    <ScrollView>
-        {
-          demands.sort(
-              (a, b) => isoToTimeStamp(b.created) - isoToTimeStamp(a.created)
-            ).map(
-              d => (
-                <Text>{d.firstName}</Text>
-              )
-            )
-        }
-    </ScrollView>
-  );
-
-};
+const DemandList = ({ demands }) => (
+  <FlatList
+    style={styles.container}
+    data={demands}
+    keyExtractor={item => item.id}
+    renderItem={({ item }) => <Text key={item.id}>{item.firstName}</Text>}
+  />
+);
 
 DemandList.propTypes = {};
 
 export default inject(
-  ({store}) => {
-    return {demands: store.demands};
-  }
+  ({ store }) => ({ demands: store.demands }),
 )(
-  observer(DemandList)
+  observer(DemandList),
 );

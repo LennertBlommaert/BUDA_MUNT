@@ -1,21 +1,22 @@
 export default class User {
-  _id = ``
-  firstName = ``
-  lastName = ``
-  coins = 0
-  isActive = true
+  id = ''
+  displayName = ''
+  email = ''
+  photoURL = ''
 
-  constructor({
-    _id,
-    firstName,
-    lastName,
-    coins,
-    isActive
-  }) {
-    this._id = _id;
-    this.firstName = firstName;
-    this.lastName = lastName;
-    this.coins = coins;
-    this.isActive = isActive;
+  constructor(user) {
+    this.setProps(user);
   }
-};
+
+  setProps({
+    uid,
+    displayName,
+    email,
+    photoURL,
+  }) {
+    this.uid = uid;
+    this.displayName = displayName;
+    this.email = email;
+    this.photoURL = photoURL;
+  }
+}

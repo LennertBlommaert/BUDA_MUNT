@@ -1,33 +1,19 @@
 import React from 'react';
-import { Text, ScrollView } from 'react-native';
-import { inject, observer, PropTypes } from 'mobx-react/native';
+import { Text, FlatList } from 'react-native';
+import { inject, observer } from 'mobx-react/native';
 
-const ProjectList = ({projects}) => {
+const ProjectList = ({ projects }) => (
+  <FlatList
+    data={projects}
+    keyExtractor={item => item.id}
+    renderItem={({ item }) => <Text key={item.id}>{item.title}</Text>}
+  />
+);
 
-  return (
-    <ScrollView>
-        {
-          projects.sort(
-              (a, b) => a.title - b.title
-            ).map(
-              p => (
-                <Text key={p.key}>{p.title}</Text>
-              )
-            )
-        }
-    </ScrollView>
-  );
-
-};
-
-ProjectList.propTypes = {
-  projects: PropTypes.observableArray.isRequired
-};
+ProjectList.propTypes = {};
 
 export default inject(
-  ({store}) => {
-    return {projects: store.projects};
-  }
+  ({ store }) => ({ projects: store.projects }),
 )(
-  observer(ProjectList)
+  observer(ProjectList),
 );
