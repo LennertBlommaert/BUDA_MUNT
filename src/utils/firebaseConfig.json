@@ -1,0 +1,12 @@
+{
+  "HOW_TO": {
+    "STEP1": "go to https://console.firebase.google.com",
+    "STEP2": "add a new project",
+    "STEP3":
+      "click on add firebase for your webapp to find out below properties"
+  },
+  "apiKey": "AIzaSyAAQxmafgRwNcfLEk2x2iZHLB7e7aj7svk",
+  "authDomain": "buda-munt.firebaseapp.com",
+  "databaseURL": "https://buda-munt.firebaseio.com",
+  "storageBucket": "buda-munt.appspot.com"
+}
