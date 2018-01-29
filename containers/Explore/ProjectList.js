@@ -6,8 +6,8 @@ import ProjectTile from './ProjectTile';
 const ProjectList = ({ projects }) => (
   <FlatList
     data={projects}
-    keyExtractor={item => item.name}
-    renderItem={({ item }) => <ProjectTile key={item.name} {...item} />}
+    keyExtractor={item => item.uid}
+    renderItem={({ item }) => <ProjectTile key={item.uid} {...item} />}
   />
 );
 

@@ -6,8 +6,8 @@ import DemandTile from './DemandTile';
 const DemandList = ({ demands }) => (
   <FlatList
     data={demands}
-    keyExtractor={item => item.name}
-    renderItem={({ item }) => <DemandTile key={item.name} {...item} />}
+    keyExtractor={item => item.uid}
+    renderItem={({ item }) => <DemandTile key={item.uid} {...item} />}
   />
 );
 

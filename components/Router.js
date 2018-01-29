@@ -15,6 +15,9 @@ const ExploreStack = StackNavigator({
   PostDemand: {
     screen: PostDemand,
   },
+}, {
+  mode: 'modal',
+  headerMode: 'none',
 });
 
 const TabBar = TabNavigator({

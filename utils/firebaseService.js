@@ -84,4 +84,17 @@ export default class FirebaseService {
     if (user) return user;
     return {};
   }
+
+  postData(data, ...updateRefs) {
+    // Get a key for a new Post.
+    const newDemandKey = this.demandsRef.push().key;
+
+    // Write the new post's data simultaneously to multiple refs
+    const updates = {};
+    updateRefs.forEach((ref) => {
+      updates[`/${ref}/${newDemandKey}`] = data;
+    });
+
+    return this.rootRef.update(updates);
+  }
 }

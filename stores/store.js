@@ -5,6 +5,8 @@ import {
 } from 'mobx';
 
 import User from '../models/User';
+import Project from '../models/Project';
+import Demand from '../models/Demand';
 
 // import AsyncStorage from 'react-native';
 
@@ -47,15 +49,54 @@ class Store {
 
   init() {
     this.signIn();
+  }
+
+  updateData() {
+    this.postDemands();
     this.updateProjects();
     this.updateContacts();
     this.updateDemands();
   }
 
-  @action
   updateProjects() {
     this.fb.projectsRef.on('value', (snapshot) => {
-      if (snapshot.val() !== null) this.projects = snapshot.val();
+      if (snapshot.val() !== null) this._addProjects(snapshot.val());
+    });
+  }
+
+  @action
+  _addProjects(projects) {
+    Object.keys(projects).forEach((key) => {
+      this.projects.push(
+        new Project(projects[key], key),
+      );
+      console.log(this.projects);
+    });
+  }
+
+  updateDemands() {
+    this.fb.demandsRef.on('value', (snapshot) => {
+      if (snapshot.val() !== null) this._addDemands(snapshot.val());
+    });
+  }
+
+  postDemands() {
+    // Get a key for a new Post.
+    const postData = {
+      name: 'Test tes',
+      desc: 'Tienduizend regenbogen kleuren de horizon',
+      userId: `${this.user.uid}`,
+    };
+
+    this.fb.postData(postData, 'demands');
+  }
+
+  @action
+  _addDemands(demands) {
+    Object.keys(demands).forEach((key) => {
+      this.demands.push(
+        new Demand(demands[key], key),
+      );
     });
   }
 
@@ -66,19 +107,12 @@ class Store {
     });
   }
 
-  @action
-  updateDemands() {
-    this.fb.demandsRef.on('value', (snapshot) => {
-      if (snapshot.val() !== null) this.demands = snapshot.val();
-      console.log(this.demands);
-    });
-  }
-
   signIn = () => {
     this.fb.singIn({ email: this.email, password: this.password })
       .then((user) => {
         this._setUserProps(user);
         this._signIn(user);
+        this.updateData();
       })
       .catch(err => console.warn(err));
   }
