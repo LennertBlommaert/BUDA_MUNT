@@ -40,6 +40,12 @@ class Store {
   @observable
   desc = ''
 
+  @observable
+  reward = 0
+
+  minReward = 0
+  maxReward = 200
+
   constructor() {
     this.fb = new FirebaseService();
     this.init();
@@ -79,9 +85,7 @@ class Store {
 
   postDemand = () => {
     // Get a key for a new Post
-    console.warn(this.user);
-
-    const postData = { name: this.title, desc: this.desc, userId: `${this.user.uid}` };
+    const postData = { name: this.title, desc: this.desc, userId: `${this.user.uid}`, reward: this.reward };
 
     this.fb.postData(postData, 'demands');
   }
@@ -105,7 +109,6 @@ class Store {
   signIn = () => {
     this.fb.singIn({ email: this.email, password: this.password })
       .then((user) => {
-        console.warn(user);
         this.user.setProps(user);
         this._signIn(user);
         this.updateData();
@@ -140,10 +143,14 @@ class Store {
     this.title = title;
   }
 
-  // Post demands
   @action
   setDesc = (desc) => {
     this.desc = desc;
+  }
+
+  @action
+  setReward = (reward) => {
+    this.reward = reward;
   }
 
   //  LogIn

@@ -3,7 +3,7 @@ export default class Project {
   desc = ''
   uid = ''
 
-  constructor({ name, desc }, uid) {
+  constructor({ name, desc }, uid = '') {
     this.name = name;
     this.desc = desc;
     this.uid = uid;

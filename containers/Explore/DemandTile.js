@@ -1,12 +1,13 @@
 import React from 'react';
 import { Text, View } from 'react-native';
-import { string } from 'prop-types';
+import { string, number } from 'prop-types';
 import AcceptDemandButton from './AcceptDemandButton';
 
-const DemandTile = ({ name, desc }) => (
+const DemandTile = ({ name, desc, reward }) => (
   <View>
     <Text>{name}</Text>
     <Text>{desc}</Text>
+    <Text>{reward} bunten</Text>
     <AcceptDemandButton />
   </View>
 );
@@ -14,6 +15,7 @@ const DemandTile = ({ name, desc }) => (
 DemandTile.propTypes = {
   name: string.isRequired,
   desc: string.isRequired,
+  reward: number.isRequired,
 };
 
 export default DemandTile;
