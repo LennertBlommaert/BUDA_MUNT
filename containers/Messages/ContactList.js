@@ -5,8 +5,8 @@ import { inject, observer, PropTypes } from 'mobx-react/native';
 const ContactList = ({ contacts }) => (
   <FlatList
     data={contacts}
-    keyExtractor={item => item.id}
-    renderItem={({ item }) => <Text key={item.id}>{item.firstName} {item.lastName}</Text>}
+    keyExtractor={item => item.name}
+    renderItem={({ item }) => <Text key={item.name}>{item.firstName} {item.lastName}</Text>}
   />
 );
 

@@ -1,12 +1,13 @@
 import React from 'react';
-import { Text, FlatList } from 'react-native';
+import { FlatList } from 'react-native';
 import { inject, observer } from 'mobx-react/native';
+import ProjectTile from './ProjectTile';
 
 const ProjectList = ({ projects }) => (
   <FlatList
     data={projects}
-    keyExtractor={item => item.id}
-    renderItem={({ item }) => <Text key={item.id}>{item.title}</Text>}
+    keyExtractor={item => item.name}
+    renderItem={({ item }) => <ProjectTile key={item.name} {...item} />}
   />
 );
 

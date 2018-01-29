@@ -4,7 +4,7 @@ import { inject, observer, PropTypes } from 'mobx-react/native';
 
 const Info = ({ user }) => (
   <View>
-    <Text>{user.displayName}</Text>
+    <Text>{user.firstName} {user.name}</Text>
     <Text>{user.email}</Text>
     <Text>{user.uid}</Text>
   </View>

@@ -1,13 +1,32 @@
+import {
+  observable,
+  action,
+} from 'mobx';
+
 export default class User {
-  id = ''
-  displayName = ''
+  @observable
+  uid = ''
+
+  @observable
+  firstName = ''
+
+  @observable
+  lastName = ''
+
+  @observable
   email = ''
+
+  @observable
   photoURL = ''
+
+  @observable
+  capacities = []
 
   constructor(user) {
     this.setProps(user);
   }
 
+  @action
   setProps({
     uid,
     displayName,
@@ -18,5 +37,10 @@ export default class User {
     this.displayName = displayName;
     this.email = email;
     this.photoURL = photoURL;
+  }
+
+  @action
+  addCapacity(capacity) {
+    this.capacities.push(capacity);
   }
 }
