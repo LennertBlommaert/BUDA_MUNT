@@ -29,14 +29,16 @@ export default class User {
   @action
   setProps({
     uid,
-    displayName,
     email,
+    name,
+    firstName,
     photoURL,
   }) {
-    this.uid = uid;
-    this.displayName = displayName;
-    this.email = email;
-    this.photoURL = photoURL;
+    if (uid !== undefined) this.uid = uid;
+    if (name !== undefined) this.name = name;
+    if (firstName !== undefined) this.firstName = firstName;
+    if (email !== undefined) this.email = email;
+    if (photoURL !== undefined) this.photoURL = photoURL;
   }
 
   @action

@@ -28,13 +28,13 @@ const TabBar = TabNavigator({
       tabBarIcon: ({ tintColor }) => <Icon name={'list'} size={35} color={tintColor} />,
     },
   },
-  // Neighbourhood: {
-  //   screen: Neighbourhood,
-  //   navigationOptions: {
-  //     tabBarLabel: 'Buurt',
-  //     tabBarIcon: ({ tintColor }) => <Icon name={'list'} size={35} color={tintColor} />,
-  //   },
-  // },
+  Neighbourhood: {
+    screen: PostDemand,
+    navigationOptions: {
+      tabBarLabel: 'Buurt',
+      tabBarIcon: ({ tintColor }) => <Icon name={'list'} size={35} color={tintColor} />,
+    },
+  },
   Messages: {
     screen: Messages,
     navigationOptions: {

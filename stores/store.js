@@ -16,15 +16,6 @@ class Store {
   @observable
   user = new User({});
 
-  // @observable
-  // user = {
-  //   uid: '',
-  //   name: '',
-  //   email: '',
-  //   firstName: '',
-  //   photoURL: '',
-  // };
-
   @observable
   projects = []
 
@@ -42,57 +33,61 @@ class Store {
   @observable
   password = 'testtest'
 
+  // Post demand
+  @observable
+  title = ''
+
+  @observable
+  desc = ''
+
   constructor() {
     this.fb = new FirebaseService();
     this.init();
   }
 
-  init() {
+  init = () => {
     this.signIn();
   }
 
-  updateData() {
-    this.postDemands();
+  updateData = () => {
     this.updateProjects();
     this.updateContacts();
     this.updateDemands();
   }
 
-  updateProjects() {
+  updateProjects = () => {
     this.fb.projectsRef.on('value', (snapshot) => {
       if (snapshot.val() !== null) this._addProjects(snapshot.val());
     });
   }
 
   @action
-  _addProjects(projects) {
+  _addProjects = (projects) => {
+    // Firebase db works with objects
     Object.keys(projects).forEach((key) => {
       this.projects.push(
         new Project(projects[key], key),
       );
-      console.log(this.projects);
     });
   }
 
-  updateDemands() {
+  updateDemands = () => {
     this.fb.demandsRef.on('value', (snapshot) => {
       if (snapshot.val() !== null) this._addDemands(snapshot.val());
     });
   }
 
-  postDemands() {
-    // Get a key for a new Post.
-    const postData = {
-      name: 'Test tes',
-      desc: 'Tienduizend regenbogen kleuren de horizon',
-      userId: `${this.user.uid}`,
-    };
+  postDemand = () => {
+    // Get a key for a new Post
+    console.warn(this.user);
+
+    const postData = { name: this.title, desc: this.desc, userId: `${this.user.uid}` };
 
     this.fb.postData(postData, 'demands');
   }
 
   @action
-  _addDemands(demands) {
+  _addDemands = (demands) => {
     Object.keys(demands).forEach((key) => {
       this.demands.push(
         new Demand(demands[key], key),
@@ -101,7 +96,7 @@ class Store {
   }
 
   @action
-  updateContacts() {
+  updateContacts = () => {
     this.fb.contactsRef.on('value', (snapshot) => {
       if (snapshot.val() !== null) this.contacts = snapshot.val();
     });
@@ -110,7 +105,8 @@ class Store {
   signIn = () => {
     this.fb.singIn({ email: this.email, password: this.password })
       .then((user) => {
-        this._setUserProps(user);
+        console.warn(user);
+        this.user.setProps(user);
         this._signIn(user);
         this.updateData();
       })
@@ -120,7 +116,7 @@ class Store {
   createUser = () => {
     this.fb.createUser({ email: this.email, password: this.password })
       .then((user) => {
-        this._setUserProps(user);
+        this.user.setProps(user);
         this._signIn(user);
       })
       .catch(err => console.warn(err));
@@ -130,7 +126,7 @@ class Store {
   _signIn = ({ uid }) => {
     this.fb.usersRef.child(uid)
       .on('value', (snap) => {
-        if (snap.val() !== null) this._setUserProps(snap.val());
+        if (snap.val() !== null) this.user.setProps(snap.val());
       });
 
     this.fb.userCapacitiesRef.child(uid).on('child_added', (snap) => {
@@ -138,30 +134,32 @@ class Store {
     });
   }
 
-  //  In an observableObject only the properties are observed
+  // Post demands
   @action
-  _setUserProps = ({ uid, email, name, firstName, photoURL, capacity }) => {
-    this.user.uid = uid;
-    this.user.name = name;
-    this.user.email = email;
-    this.user.firstName = firstName;
-    this.user.photoURL = photoURL;
+  setTitle = (title) => {
+    this.title = title;
+  }
+
+  // Post demands
+  @action
+  setDesc = (desc) => {
+    this.desc = desc;
   }
 
   //  LogIn
   @action
-  setEmail(email) {
+  setEmail = (email) => {
     this.email = email;
   }
 
   @action
-  setPassword(password) {
+  setPassword = (password) => {
     this.password = password;
   }
 
   @computed
   get userIsSignedIn() {
-    return this.user.uid !== '';
+    return true;
   }
 
   // NOTE: Check if user is already logged in

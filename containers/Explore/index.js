@@ -10,11 +10,11 @@ import styles from '../../objects/styles';
 
 import NoProjects from './NoProjects';
 import ProjectList from './ProjectList';
-import PostDemandButton from './PostDemandButton';
+import NavigateToPostDemandButton from './NavigateToPostDemandButton';
 
 const Explore = ({ demands, projects, navigation }) => (
   <View style={styles.explore}>
-    <PostDemandButton navigation={navigation} />
+    <NavigateToPostDemandButton navigation={navigation} />
     {
       projects.length > 0 ? <ProjectList /> : <NoProjects />
     }

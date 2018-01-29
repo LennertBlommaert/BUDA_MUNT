@@ -1,10 +1,15 @@
 import React from 'react';
 import { Text, View } from 'react-native';
-import styles from '../../objects/styles';
+import TitleInput from './TitleInput';
+import DescInput from './DescInput';
+import PostDemandButton from './PostDemandButton';
 
 const PostDemand = () => (
-  <View style={styles.explore}>
+  <View>
     <Text>PostDemand</Text>
+    <TitleInput />
+    <DescInput />
+    <PostDemandButton />
   </View>
 );
 

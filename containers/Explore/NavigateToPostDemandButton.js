@@ -1,20 +1,20 @@
 import React from 'react';
 import { Button } from 'react-native';
 
-const PostDemandButton = ({ navigation }) => {
-  const onPressPostDemand = () => {
+const NavigateToPostDemandButton = ({ navigation }) => {
+  const onPressNavigateToPostDemand = () => {
     navigation.navigate('PostDemand');
     // navigation.navigate('Profile', { name: 'Jane' });
   };
 
   return (
     <Button
-      onPress={onPressPostDemand}
+      onPress={onPressNavigateToPostDemand}
       title="plaats een zoekertje"
     />
   );
 };
 
-PostDemandButton.propTypes = {};
+NavigateToPostDemandButton.propTypes = {};
 
-export default PostDemandButton;
+export default NavigateToPostDemandButton;
