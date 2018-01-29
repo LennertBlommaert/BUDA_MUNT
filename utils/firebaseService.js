@@ -32,11 +32,14 @@ export default class FirebaseService {
     }
     firebase.initializeApp(firebaseConfig);
 
+    // const db = firebase.firestore();
+    // firebase.firestore().enablePersistence();
+
     this._setupRefs();
   }
 
   _setupRefs() {
-    this.rootRef = firebase.database().ref();
+    this.rootRef = firebase.firestore().ref();
 
     this.usersRef = this.rootRef.child('users');
     this.projectsRef = this.rootRef.child('projects');
