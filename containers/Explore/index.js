@@ -3,12 +3,21 @@
 import React from 'react';
 import { View } from 'react-native';
 import { inject, observer, PropTypes } from 'mobx-react/native';
+
 import NoDemands from './NoDemands';
 import DemandList from './DemandList';
 import styles from '../../objects/styles';
 
-const Explore = ({ demands }) => (
-  <View style={styles.container}>
+import NoProjects from './NoProjects';
+import ProjectList from './ProjectList';
+import PostDemandButton from './PostDemandButton';
+
+const Explore = ({ demands, projects, navigation }) => (
+  <View style={styles.explore}>
+    <PostDemandButton navigation={navigation} />
+    {
+      projects.length > 0 ? <ProjectList /> : <NoProjects />
+    }
     {
       demands.length > 0 ? <DemandList /> : <NoDemands />
     }
@@ -17,10 +26,14 @@ const Explore = ({ demands }) => (
 
 Explore.propTypes = {
   demands: PropTypes.observableArray.isRequired,
+  projects: PropTypes.observableArray.isRequired,
 };
 
 export default inject(
-  ({ store }) => ({ demands: store.demands }),
+  ({ store }) => ({
+    demands: store.demands,
+    projects: store.projects,
+  }),
 )(
   observer(Explore),
 );

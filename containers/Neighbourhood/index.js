@@ -1,29 +1,23 @@
 /* eslint-disable react/jsx-filename-extension */
 
+// NOTE: NOT IN USE
+
 import React from 'react';
-import { View, Button } from 'react-native';
+import { View } from 'react-native';
 import { inject, observer, PropTypes } from 'mobx-react/native';
 import NoProjects from './NoProjects';
 import ProjectList from './ProjectList';
+import PostDemandButton from './PostDemandButton';
 import styles from '../../objects/styles';
 
-const Neighbourhood = ({ projects }) => {
-  const onPressPostDemand = () => {
-    console.log('Post demand');
-  };
-
-  return (
-    <View style={styles.container}>
-      <Button
-        onPress={onPressPostDemand}
-        title="plaats een zoekertje"
-      />
-      {
-        projects.length > 0 ? <ProjectList /> : <NoProjects />
-      }
-    </View>
-  );
-};
+const Neighbourhood = ({ projects, navigation }) => (
+  <View style={styles.container}>
+    <PostDemandButton navigation={navigation} />
+    {
+      projects.length > 0 ? <ProjectList /> : <NoProjects />
+    }
+  </View>
+);
 
 Neighbourhood.propTypes = {
   projects: PropTypes.observableArray.isRequired,

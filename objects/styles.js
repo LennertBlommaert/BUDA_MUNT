@@ -1,7 +1,7 @@
 import { StyleSheet } from 'react-native';
 
 const colors = {
-  white: '#fff',
+  card: '#f9f9f9',
   gray: '#eee',
 };
 
@@ -9,7 +9,13 @@ const styles = StyleSheet.create({
   container: {
     marginTop: 60,
     flex: 1,
-    backgroundColor: colors.white,
+    backgroundColor: colors.background,
+    alignItems: 'center',
+    justifyContent: 'space-between',
+  },
+  explore: {
+    flex: 1,
+    backgroundColor: colors.background,
     alignItems: 'center',
     justifyContent: 'space-between',
   },
@@ -19,7 +25,7 @@ const styles = StyleSheet.create({
   textInput: {
     height: 40,
     width: 300,
-    borderColor: colors.gray,
+    borderColor: colors.card,
     borderWidth: 1,
     marginTop: 5,
   },

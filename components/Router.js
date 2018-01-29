@@ -1,27 +1,37 @@
 import React from 'react';
-import { TabNavigator } from 'react-navigation';
+import { TabNavigator, StackNavigator } from 'react-navigation';
 import { Icon } from 'react-native-elements';
 
 import Explore from '../containers/Explore/';
 import Messages from '../containers/Messages/';
-import Neighbourhood from '../containers/Neighbourhood/';
+// import Neighbourhood from '../containers/Neighbourhood/';
 import Profile from '../containers/Profile/';
+import PostDemand from '../containers/PostDemand/';
 
-const Router = TabNavigator({
-  Neighbourhood: {
-    screen: Neighbourhood,
-    navigationOptions: {
-      tabBarLabel: 'Buurt',
-      tabBarIcon: ({ tintColor }) => <Icon name={'list'} size={35} color={tintColor} />,
-    },
-  },
+const ExploreStack = StackNavigator({
   Explore: {
     screen: Explore,
+  },
+  PostDemand: {
+    screen: PostDemand,
+  },
+});
+
+const TabBar = TabNavigator({
+  Explore: {
+    screen: ExploreStack,
     navigationOptions: {
       tabBarLabel: 'Buren',
       tabBarIcon: ({ tintColor }) => <Icon name={'list'} size={35} color={tintColor} />,
     },
   },
+  // Neighbourhood: {
+  //   screen: Neighbourhood,
+  //   navigationOptions: {
+  //     tabBarLabel: 'Buurt',
+  //     tabBarIcon: ({ tintColor }) => <Icon name={'list'} size={35} color={tintColor} />,
+  //   },
+  // },
   Messages: {
     screen: Messages,
     navigationOptions: {
@@ -38,4 +48,4 @@ const Router = TabNavigator({
   },
 });
 
-export default Router;
+export default TabBar;
