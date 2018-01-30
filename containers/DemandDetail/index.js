@@ -1,15 +1,18 @@
 import React from 'react';
-import { Text, View } from 'react-native';
+import { View } from 'react-native';
 import { inject, observer } from 'mobx-react/native';
 import { object } from 'prop-types';
+
+import HeaderText from '../../components/HeaderText';
+import BodyText from '../../components/BodyText';
 
 import AcceptDemandButton from '../../components/AcceptDemandButton';
 
 const DemandDetail = ({ currentDemandDetail }) => (
   <View>
-    <Text>{currentDemandDetail.name}</Text>
-    <Text>{currentDemandDetail.desc}</Text>
-    <Text>{currentDemandDetail.reward} bunten</Text>
+    <HeaderText>{currentDemandDetail.name}</HeaderText>
+    <BodyText>{currentDemandDetail.desc}</BodyText>
+    <BodyText italic>{currentDemandDetail.reward} bunten</BodyText>
     <AcceptDemandButton />
   </View>
 );

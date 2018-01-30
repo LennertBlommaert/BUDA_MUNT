@@ -1,9 +1,11 @@
 import React from 'react';
-import { Text, View } from 'react-native';
+import { View } from 'react-native';
+
+import BodyText from '../../components/BodyText';
 
 const NoDemands = () => (
   <View>
-    <Text>Geen hulpvragen</Text>
+    <BodyText italic>Geen hulpvragen</BodyText>
   </View>
 );
 

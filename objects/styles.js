@@ -1,9 +1,5 @@
 import { StyleSheet } from 'react-native';
-
-const colors = {
-  card: '#f9f9f9',
-  gray: '#eee',
-};
+import colors from './colors';
 
 const styles = StyleSheet.create({
   container: {

@@ -1,7 +1,10 @@
 import React from 'react';
-import { Text, View, TouchableOpacity } from 'react-native';
+import { View, TouchableOpacity } from 'react-native';
 import { string, number, object, func } from 'prop-types';
 import { inject, observer } from 'mobx-react/native';
+
+import HeaderText from '../../components/HeaderText';
+import BodyText from '../../components/BodyText';
 
 import AcceptDemandButton from '../../components/AcceptDemandButton';
 
@@ -14,9 +17,9 @@ const DemandTile = ({ uid, name, desc, reward, userId, navigation, setCurrentDem
   return (
     <View>
       <TouchableOpacity onPress={onPressDemandTileTextContainer}>
-        <Text>{name}</Text>
-        <Text>{desc}</Text>
-        <Text>{reward} bunten</Text>
+        <HeaderText>{name}</HeaderText>
+        <BodyText>{desc}</BodyText>
+        <BodyText italic>{reward} bunten</BodyText>
       </TouchableOpacity>
       <AcceptDemandButton />
     </View>
