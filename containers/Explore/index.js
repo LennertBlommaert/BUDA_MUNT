@@ -19,7 +19,7 @@ const Explore = ({ demands, projects, navigation }) => (
       projects.length > 0 ? <ProjectList /> : <NoProjects />
     }
     {
-      demands.length > 0 ? <DemandList /> : <NoDemands />
+      demands.length > 0 ? <DemandList navigation={navigation} /> : <NoDemands />
     }
   </View>
 );

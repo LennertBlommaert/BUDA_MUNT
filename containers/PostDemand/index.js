@@ -4,6 +4,7 @@ import TitleInput from './TitleInput';
 import DescInput from './DescInput';
 import PostDemandButton from './PostDemandButton';
 import Reward from './Reward/';
+import CategoriesSelection from './CategoriesSelection/';
 
 const PostDemand = () => (
   <View>
@@ -11,6 +12,7 @@ const PostDemand = () => (
     <TitleInput />
     <DescInput />
     <Reward />
+    <CategoriesSelection />
     <PostDemandButton />
   </View>
 );

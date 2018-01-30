@@ -7,6 +7,8 @@ import Messages from '../containers/Messages/';
 // import Neighbourhood from '../containers/Neighbourhood/';
 import Profile from '../containers/Profile/';
 import PostDemand from '../containers/PostDemand/';
+import DemandDetail from '../containers/DemandDetail/';
+import More from '../containers/More/';
 
 const ExploreStack = StackNavigator({
   Explore: {
@@ -14,6 +16,9 @@ const ExploreStack = StackNavigator({
   },
   PostDemand: {
     screen: PostDemand,
+  },
+  DemandDetail: {
+    screen: DemandDetail,
   },
 }, {
   mode: 'modal',
@@ -40,6 +45,13 @@ const TabBar = TabNavigator({
     navigationOptions: {
       tabBarLabel: 'Profiel',
       tabBarIcon: ({ tintColor }) => <Icon name={'account-circle'} size={35} color={tintColor} />,
+    },
+  },
+  More: {
+    screen: More,
+    navigationOptions: {
+      tabBarLabel: 'Meer',
+      tabBarIcon: ({ tintColor }) => <Icon name={'more'} size={35} color={tintColor} />,
     },
   },
 });

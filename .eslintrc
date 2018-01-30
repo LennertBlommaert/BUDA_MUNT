@@ -47,6 +47,7 @@
     "react/jsx-filename-extension": ["warn", { "extensions": [".js", ".jsx"] }],
     "react/jsx-first-prop-new-line": "warn",
     "react/prop-types": "off",
+    "react/forbid-prop-types": "off",
 
     // React Native
     "react-native/no-unused-styles": "warn",

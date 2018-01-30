@@ -46,6 +46,9 @@ class Store {
   minReward = 0
   maxReward = 200
 
+  // Demand Demand
+  currentDemandDetailUID = '';
+
   constructor() {
     this.fb = new FirebaseService();
     this.init();
@@ -151,6 +154,17 @@ class Store {
   @action
   setReward = (reward) => {
     this.reward = reward;
+  }
+
+  // DemandDetail
+  @computed
+  get currentDemandDetail() {
+    return this.demands.find(demand => this.currentDemandDetailUID === demand.uid);
+  }
+
+  @action
+  setCurrentDemandDetailUID = (uid) => {
+    this.currentDemandDetailUID = uid;
   }
 
   //  LogIn

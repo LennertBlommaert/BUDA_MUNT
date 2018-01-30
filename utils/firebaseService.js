@@ -39,7 +39,7 @@ export default class FirebaseService {
   }
 
   _setupRefs() {
-    this.rootRef = firebase.firestore().ref();
+    this.rootRef = firebase.database().ref();
 
     this.usersRef = this.rootRef.child('users');
     this.projectsRef = this.rootRef.child('projects');
