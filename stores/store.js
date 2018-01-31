@@ -167,6 +167,12 @@ class Store {
     this.currentDemandDetailUID = uid;
   }
 
+  // Explore
+  @computed
+  get feedItems() {
+    return [...this.demands, ...this.projects].sort((a, b) => a.name - b.name);
+  }
+
   //  LogIn
   @action
   setEmail = (email) => {
