@@ -1,10 +1,13 @@
 import React from 'react';
 import { Button } from 'react-native';
-import { func } from 'prop-types';
+import { func, object } from 'prop-types';
 import { inject, observer } from 'mobx-react/native';
 
-const PostDemandButton = ({ postDemand }) => {
-  const onPressPostDemand = () => postDemand();
+const PostDemandButton = ({ postDemand, navigation }) => {
+  const onPressPostDemand = () => {
+    navigation.navigate('Explore');
+    postDemand();
+  };
 
   return (
     <Button
@@ -16,6 +19,7 @@ const PostDemandButton = ({ postDemand }) => {
 
 PostDemandButton.propTypes = {
   postDemand: func.isRequired,
+  navigation: object.isRequired,
 };
 
 export default inject(
