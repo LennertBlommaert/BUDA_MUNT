@@ -3,27 +3,28 @@
 
 import React from 'react';
 import { Text, StyleSheet } from 'react-native';
-import { bool } from 'prop-types';
+import { any, bool } from 'prop-types';
 import colors from '../objects/colors';
 
-const BodyText = ({ children, italic }) => {
+const HeaderText = ({ children, italic }) => {
   const styles = StyleSheet.create({
     bodyText: {
       color: colors.text,
-      // fontFamily: `calibre-regular${italic ? '-italic' : ''}`,
-      fontSize: 18,
+      fontFamily: `calibre-regular${italic ? '-italic' : ''}`,
+      fontSize: 17,
     },
   });
 
   return <Text style={styles.bodyText}>{children}</Text>;
 };
 
-BodyText.propTypes = {
+HeaderText.propTypes = {
+  children: any.isRequired,
   italic: bool,
 };
 
-BodyText.defaultProps = {
+HeaderText.defaultProps = {
   italic: false,
 };
 
-export default BodyText;
+export default HeaderText;

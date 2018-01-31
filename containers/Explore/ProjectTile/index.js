@@ -1,11 +1,13 @@
 import React from 'react';
-import { Text, View } from 'react-native';
+import { View } from 'react-native';
 import { string } from 'prop-types';
+import BodyText from '../../../components/BodyText';
+import HeaderText from '../../../components/HeaderText';
 
 const ProjectTile = ({ name, desc }) => (
   <View>
-    <Text>{name}</Text>
-    <Text>{desc}</Text>
+    <HeaderText>{name}</HeaderText>
+    <BodyText>{desc}</BodyText>
   </View>
 );
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import { FlatList } from 'react-native';
 import { inject, observer } from 'mobx-react/native';
-import ProjectTile from './ProjectTile';
+import ProjectTile from './ProjectTile/';
 
 const ProjectList = ({ projects }) => (
   <FlatList

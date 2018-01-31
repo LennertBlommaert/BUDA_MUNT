@@ -1,16 +1,12 @@
 import React from 'react';
-import {Text, View} from 'react-native';
-import styles from '../../objects/styles';
+import { View } from 'react-native';
+import BodyText from '../../components/BodyText';
 
-const NoContacts = () => {
-
-  return (
-    <View>
-      <Text>Geen contacten</Text>
-    </View>
-  );
-
-};
+const NoContacts = () => (
+  <View>
+    <BodyText>Geen contacten</BodyText>
+  </View>
+);
 
 NoContacts.propTypes = {};
 

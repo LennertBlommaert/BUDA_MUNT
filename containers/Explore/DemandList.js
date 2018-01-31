@@ -2,7 +2,7 @@ import React from 'react';
 import { FlatList } from 'react-native';
 import { inject, observer, PropTypes } from 'mobx-react/native';
 import { object } from 'prop-types';
-import DemandTile from './DemandTile';
+import DemandTile from './DemandTile/';
 
 const DemandList = ({ demands, navigation }) => (
   <FlatList

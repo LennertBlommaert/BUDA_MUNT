@@ -3,10 +3,11 @@ import { View, TouchableOpacity } from 'react-native';
 import { string, number, object, func } from 'prop-types';
 import { inject, observer } from 'mobx-react/native';
 
-import HeaderText from '../../components/HeaderText';
-import BodyText from '../../components/BodyText';
+import HeaderText from '../../../components/HeaderText';
+import BodyText from '../../../components/BodyText';
+import PriceText from '../../../components/PriceText';
 
-import AcceptDemandButton from '../../components/AcceptDemandButton';
+import AcceptDemandButton from './AcceptDemandButton';
 
 const DemandTile = ({ uid, name, desc, reward, userId, navigation, setCurrentDemandDetailUID }) => {
   const onPressDemandTileTextContainer = () => {
@@ -19,9 +20,9 @@ const DemandTile = ({ uid, name, desc, reward, userId, navigation, setCurrentDem
       <TouchableOpacity onPress={onPressDemandTileTextContainer}>
         <HeaderText>{name}</HeaderText>
         <BodyText>{desc}</BodyText>
-        <BodyText italic>{reward} bunten</BodyText>
+        <PriceText>{reward}</PriceText>
       </TouchableOpacity>
-      <AcceptDemandButton />
+      <AcceptDemandButton navigation={navigation} />
     </View>
   );
 };

@@ -1,5 +1,6 @@
 /* eslint-disable global-require */
 /* eslint-disable react/self-closing-comp */
+/* eslint-disable react/no-did-mount-set-state */
 
 import React, { Component } from 'react';
 import { View } from 'react-native';
@@ -16,6 +17,7 @@ class App extends Component {
   };
 
   async componentDidMount() {
+    // NOTE: font loading in create react native needs the use of requires
     await Font.loadAsync({
       'calibre-bold': require('./assets/fonts/Calibre_Bold.otf'),
       'calibre-medium': require('./assets/fonts/Calibre_Medium.otf'),
@@ -24,13 +26,16 @@ class App extends Component {
       'calibre-regular-italic': require('./assets/fonts/Calibre_Regular_Italic.otf'),
     });
 
-    this.setState({ fontLoaded: true }); // eslint-disable-line react/no-did-mount-set-state
+    this.setState({ fontLoaded: true });
   }
 
   render() {
     return (
       <Provider {...stores}>
-        { this.state.fontLoaded ? <Router /> : <View></View> }
+        {
+          // When font gets loaded (happens async) render the Router, else render an empty view
+          this.state.fontLoaded ? <Router /> : <View></View>
+        }
       </Provider>
     );
   }

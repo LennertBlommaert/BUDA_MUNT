@@ -5,6 +5,7 @@ import { object } from 'prop-types';
 
 import HeaderText from '../../components/HeaderText';
 import BodyText from '../../components/BodyText';
+import PriceText from '../../components/PriceText';
 
 import AcceptDemandButton from '../../components/AcceptDemandButton';
 
@@ -12,7 +13,7 @@ const DemandDetail = ({ currentDemandDetail }) => (
   <View>
     <HeaderText>{currentDemandDetail.name}</HeaderText>
     <BodyText>{currentDemandDetail.desc}</BodyText>
-    <BodyText italic>{currentDemandDetail.reward} bunten</BodyText>
+    <PriceText>{currentDemandDetail.reward}</PriceText>
     <AcceptDemandButton />
   </View>
 );

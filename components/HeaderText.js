@@ -3,14 +3,14 @@
 
 import React from 'react';
 import { Text, StyleSheet } from 'react-native';
-import { string, bool } from 'prop-types';
+import { any, bool } from 'prop-types';
 import colors from '../objects/colors';
 
 const HeaderText = ({ children, italic }) => {
   const styles = StyleSheet.create({
     bodyText: {
       color: colors.text,
-      // fontFamily: `calibre-medium${italic ? '-italic' : ''}`,
+      fontFamily: `calibre-medium${italic ? '-italic' : ''}`,
       fontSize: 24,
     },
   });
@@ -19,7 +19,7 @@ const HeaderText = ({ children, italic }) => {
 };
 
 HeaderText.propTypes = {
-  children: string.isRequired,
+  children: any.isRequired,
   italic: bool,
 };
 

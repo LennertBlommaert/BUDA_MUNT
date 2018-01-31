@@ -1,9 +1,11 @@
 import React from 'react';
-import { Text, View } from 'react-native';
+import { View } from 'react-native';
+
+import BodyText from '../../components/BodyText';
 
 const NoContacts = () => (
   <View>
-    <Text>Geen buurtprojecten</Text>
+    <BodyText italic>Geen hulpvragen</BodyText>
   </View>
 );
 
