@@ -6,10 +6,10 @@ import { Text, StyleSheet } from 'react-native';
 import { any, bool } from 'prop-types';
 import colors from '../objects/colors';
 
-const HeaderText = ({ children, italic }) => {
+const BodyText = ({ children, italic, invertedColor, size }) => {
   const styles = StyleSheet.create({
     bodyText: {
-      color: colors.text,
+      color: invertedColor ? colors.textInverted : colors.text,
       fontFamily: `calibre-regular${italic ? '-italic' : ''}`,
       fontSize: 17,
     },
@@ -18,13 +18,15 @@ const HeaderText = ({ children, italic }) => {
   return <Text style={styles.bodyText}>{children}</Text>;
 };
 
-HeaderText.propTypes = {
+BodyText.propTypes = {
   children: any.isRequired,
   italic: bool,
+  invertedColor: bool,
 };
 
-HeaderText.defaultProps = {
+BodyText.defaultProps = {
   italic: false,
+  invertedColor: false,
 };
 
-export default HeaderText;
+export default BodyText;

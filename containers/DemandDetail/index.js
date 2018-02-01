@@ -7,14 +7,16 @@ import HeaderText from '../../components/HeaderText';
 import BodyText from '../../components/BodyText';
 import PriceText from '../../components/PriceText';
 
-import AcceptDemandButton from '../../components/AcceptDemandButton';
+import Button from '../../components/Button';
 
 const DemandDetail = ({ currentDemandDetail }) => (
   <View>
     <HeaderText>{currentDemandDetail.name}</HeaderText>
     <BodyText>{currentDemandDetail.desc}</BodyText>
     <PriceText>{currentDemandDetail.reward}</PriceText>
-    <AcceptDemandButton />
+    <Button>
+      ik wil helpen
+    </Button>
   </View>
 );
 

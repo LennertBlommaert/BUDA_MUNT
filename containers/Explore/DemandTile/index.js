@@ -1,5 +1,5 @@
 import React from 'react';
-import { TouchableOpacity } from 'react-native';
+import { TouchableOpacity, StyleSheet } from 'react-native';
 import { string, number, object, func } from 'prop-types';
 import { inject, observer } from 'mobx-react/native';
 
@@ -8,7 +8,15 @@ import BodyText from '../../../components/BodyText';
 import PriceText from '../../../components/PriceText';
 import Tile from '../../../components/Tile';
 
-import AcceptDemandButton from './AcceptDemandButton';
+import Button from '../../../components/Button';
+
+const styles = StyleSheet.create({
+  textContainer: {
+    paddingLeft: 20,
+    paddingRight: 20,
+    marginBottom: 5,
+  },
+});
 
 const DemandTile = ({ uid, name, desc, reward, userId, navigation, setCurrentDemandDetailUID }) => {
   const onPressDemandTileTextContainer = () => {
@@ -16,14 +24,18 @@ const DemandTile = ({ uid, name, desc, reward, userId, navigation, setCurrentDem
     navigation.navigate('DemandDetail');
   };
 
+  const onPressAcceptDemandButton = () => {
+    console.warn('Accpeted demand');
+  };
+
   return (
     <Tile>
-      <TouchableOpacity onPress={onPressDemandTileTextContainer}>
+      <TouchableOpacity style={styles.textContainer} onPress={onPressDemandTileTextContainer}>
         <HeaderText>{name}</HeaderText>
         <BodyText>{desc}</BodyText>
         <PriceText>{reward}</PriceText>
       </TouchableOpacity>
-      <AcceptDemandButton navigation={navigation} />
+      <Button onPress={onPressAcceptDemandButton} tileButton>ik wil helpen</Button>
     </Tile>
   );
 };

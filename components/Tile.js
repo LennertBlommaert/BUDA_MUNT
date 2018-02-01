@@ -8,7 +8,7 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: colors.tile,
     width: 335,
-    padding: 20,
+    paddingTop: 20,
     marginBottom: 50,
     borderRadius: 5,
     shadowColor: colors.shadowColor,

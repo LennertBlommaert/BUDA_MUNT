@@ -9,15 +9,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-between',
   },
-  explore: {
-    flex: 1,
-    backgroundColor: colors.background,
-    alignItems: 'center',
-    justifyContent: 'space-between',
-  },
-  bold: {
-    fontWeight: 'bold',
-  },
   textInput: {
     height: 40,
     width: 300,
