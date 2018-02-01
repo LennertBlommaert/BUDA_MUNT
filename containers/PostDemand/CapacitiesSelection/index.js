@@ -1,16 +1,12 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { View } from 'react-native';
 import { inject, observer, PropTypes } from 'mobx-react/native';
+import Tag from '../../../components/Tag';
 
 const CapacitiesSelection = ({ capacities }) => (
   <View>
     {
-      console.warn(capacities)
-    }
-    {
-
-      capacities.map(c => <Text>{c.name}</Text>)
-
+      capacities.map(c => <Tag key={c.uid}>{c.name}</Tag>)
     }
   </View>
 );

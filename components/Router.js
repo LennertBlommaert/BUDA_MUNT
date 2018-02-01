@@ -11,11 +11,11 @@ import DemandDetail from '../containers/DemandDetail/';
 import More from '../containers/More/';
 
 const ExploreStack = StackNavigator({
-  Explore: {
-    screen: Explore,
-  },
   PostDemand: {
     screen: PostDemand,
+  },
+  Explore: {
+    screen: Explore,
   },
   DemandDetail: {
     screen: DemandDetail,

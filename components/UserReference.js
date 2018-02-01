@@ -18,12 +18,12 @@ const styles = StyleSheet.create({
   },
 });
 
-const UserReference = ({ name, firstName }) => {
+const UserReference = ({ name, firstName, photoURL }) => {
   return (
     <TouchableOpacity style={styles.container}>
       <Image
         style={styles.image}
-        source={defaultUser}
+        source={photoURL ? '' : defaultUser}
       />
       <BodyText>
         {firstName} {name}
@@ -35,6 +35,7 @@ const UserReference = ({ name, firstName }) => {
 UserReference.propTypes = {
   name: string.isRequired,
   firstName: string.isRequired,
+  photoURL: string.isRequired,
 };
 
 export default UserReference;
