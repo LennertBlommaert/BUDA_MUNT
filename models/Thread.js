@@ -17,11 +17,12 @@ export default class Thread {
   @observable
   demand = ''
 
-  constructor({ uid, demandId = '', projectId = '', lastMessageId = '', members }) {
+  constructor({ uid, demandId = '', projectId = '', lastMessageId = '', members, otherUser, demand }) {
     this.uid = uid;
     this.demandId = demandId;
     this.projectId = projectId;
     this.lastMessageId = lastMessageId;
-    this.members = members;
+    this.otherUser = otherUser;
+    this.demand = demand;
   }
 }

@@ -6,7 +6,7 @@ const Inbox = ({ userThreads }) => (
   <FlatList
     data={userThreads}
     keyExtractor={item => item.uid}
-    renderItem={({ item }) => <Text key={item.uid}>{item.otherUser.name} {item.uid}</Text>}
+    renderItem={({ item }) => <Text key={item.uid}>{item.otherUser.firstName} {item.otherUser.name}</Text>}
   />
 );
 

@@ -55,40 +55,6 @@ class Store {
   @observable
   userThreads = []
 
-  // // Chat
-  // @observable
-  // threads = {
-  //   0: { // thread id
-  //     members: {
-  //       pCrAaLwnX3a5Fbx5liQnjz2PQSW2: 'Annette', // user id
-  //       s7CVMe57o2QsHZDRv1gZNOyqdLD2: 'Test',
-  //     },
-  //     demandId: 'azerazerazer',
-  //     // projectId: 'aezulfhsfqze',
-  //     projectId: '',
-  //     lastMessageSent: 0, // messageUID
-  //   },
-  // }
-
-  // @observable
-  // messages = {
-  //   0: { // thread id
-  //     0: { // messageUID
-  //       senderId: 's7CVMe57o2QsHZDRv1gZNOyqdLD2',
-  //       payLoad: 'Hallo ik ben test',
-  //       messageTime: '22:11',
-  //       messageDate: '22/12/2017',
-  //     },
-  //   },
-  // }
-
-  // @observable
-  // userThreads = {
-  //   s7CVMe57o2QsHZDRv1gZNOyqdLD2: {
-  //     0: 'computer',
-  //   },
-  // }
-
   // Demand Demand
   currentDemandDetailUID = '';
 
@@ -106,51 +72,37 @@ class Store {
     this.updateDemands();
     this.updateCapacities();
     this.updateUserThreads();
+    this.updateThreadMessages();
   }
 
-  // Threads
   updateUserThreads = () => {
-    this.fb.userThreadsRef.child(this.user.uid).on('value', (snapshot) => {
-      if (snapshot.val() !== null) this._addUserThreads(snapshot.val());
-    });
-  }
-
-  @action
-  _addUserThreads = (threads) => {
-    // Firebase db works with objects
-    Object.keys(threads).forEach((key) => {
+    Object.keys(this.user.threads).forEach((key) => {
       this.fb.threadsRef.child(key).on('value', (snapshot) => {
-        const thread = snapshot.val();
-        thread.uid = key;
+        const threadData = snapshot.val();
+        threadData.uid = key;
 
-        this.userThreads.push(
-          new Thread(thread),
-        );
+        threadData.demand = this.demands.find(d => d.uid === threadData.uid);
 
-        this._addOtherUserToThreads();
-        this._addDemandToThreads();
+        const otherUserId = Object.keys(threadData.members).find(k => k !== this.user.uid);
+
+        this.fb.usersRef.child(otherUserId).once('value', (snap) => {
+          const user = snap.val();
+          threadData.otherUser = new User(user);
+
+          this._addUserThread(threadData);
+        });
       });
     });
   }
 
   @action
-  _addDemandToThreads = () => {
-    this.userThreads.forEach((t) => {
-      this.fb.demandsRef.child(t.demandId).on('value', (snap) => {
-        t.demand = new Demand(snap.val(), snap.key);
-      });
-    });
+  _addUserThread = (thread) => {
+    this.userThreads.push(new Thread(thread));
   }
 
-  @action
-  _addOtherUserToThreads= () => {
-    this.userThreads.forEach((t) => {
-      const otherUserId = Object.keys(t.members).find(key => key !== this.user.uid);
-
-      this.fb.usersRef.child(otherUserId).once('value', (snapshot) => {
-        const user = snapshot.val();
-        t.otherUser = new User({ user })
-      });
+  updateProjects = () => {
+    this.fb.threadMessagesRef.on('value', (snapshot) => {
+      if (snapshot.val() !== null) this._addProjects(snapshot.val());
     });
   }
 
@@ -264,9 +216,7 @@ class Store {
   signIn = () => {
     this.fb.singIn({ email: this.email, password: this.password })
       .then((user) => {
-        this.user.setProps(user);
         this._signIn(user);
-        this.updateData();
       })
       .catch(err => console.warn(err));
   }
@@ -274,7 +224,6 @@ class Store {
   createUser = () => {
     this.fb.createUser({ email: this.email, password: this.password })
       .then((user) => {
-        this.user.setProps(user);
         this._signIn(user);
       })
       .catch(err => console.warn(err));
@@ -283,8 +232,9 @@ class Store {
   @action
   _signIn = ({ uid }) => {
     this.fb.usersRef.child(uid)
-      .on('value', (snap) => {
+      .on('value', (snap) => { //eslint-disable-line
         if (snap.val() !== null) this.user.setProps(snap.val());
+        this.updateData();
       });
 
     this.fb.userCapacitiesRef.child(uid).on('child_added', (snap) => {
