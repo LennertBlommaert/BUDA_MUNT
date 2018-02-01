@@ -122,9 +122,34 @@ class Store {
       this.fb.threadsRef.child(key).on('value', (snapshot) => {
         const thread = snapshot.val();
         thread.uid = key;
+
         this.userThreads.push(
           new Thread(thread),
         );
+
+        this._addOtherUserToThreads();
+        this._addDemandToThreads();
+      });
+    });
+  }
+
+  @action
+  _addDemandToThreads = () => {
+    this.userThreads.forEach((t) => {
+      this.fb.demandsRef.child(t.demandId).on('value', (snap) => {
+        t.demand = new Demand(snap.val(), snap.key);
+      });
+    });
+  }
+
+  @action
+  _addOtherUserToThreads= () => {
+    this.userThreads.forEach((t) => {
+      const otherUserId = Object.keys(t.members).find(key => key !== this.user.uid);
+
+      this.fb.usersRef.child(otherUserId).once('value', (snapshot) => {
+        const user = snapshot.val();
+        t.otherUser = new User({ user })
       });
     });
   }
