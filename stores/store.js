@@ -8,6 +8,7 @@ import User from '../models/User';
 import Project from '../models/Project';
 import Demand from '../models/Demand';
 import Capacity from '../models/Capacity';
+import Thread from '../models/Thread';
 
 // import AsyncStorage from 'react-native';
 
@@ -19,9 +20,6 @@ class Store {
 
   @observable
   projects = []
-
-  @observable
-  contacts = []
 
   @observable
   demands = []
@@ -50,6 +48,47 @@ class Store {
   minReward = 0
   maxReward = 200
 
+  // Chat
+  @observable
+  threadMessages = []
+
+  @observable
+  userThreads = []
+
+  // // Chat
+  // @observable
+  // threads = {
+  //   0: { // thread id
+  //     members: {
+  //       pCrAaLwnX3a5Fbx5liQnjz2PQSW2: 'Annette', // user id
+  //       s7CVMe57o2QsHZDRv1gZNOyqdLD2: 'Test',
+  //     },
+  //     demandId: 'azerazerazer',
+  //     // projectId: 'aezulfhsfqze',
+  //     projectId: '',
+  //     lastMessageSent: 0, // messageUID
+  //   },
+  // }
+
+  // @observable
+  // messages = {
+  //   0: { // thread id
+  //     0: { // messageUID
+  //       senderId: 's7CVMe57o2QsHZDRv1gZNOyqdLD2',
+  //       payLoad: 'Hallo ik ben test',
+  //       messageTime: '22:11',
+  //       messageDate: '22/12/2017',
+  //     },
+  //   },
+  // }
+
+  // @observable
+  // userThreads = {
+  //   s7CVMe57o2QsHZDRv1gZNOyqdLD2: {
+  //     0: 'computer',
+  //   },
+  // }
+
   // Demand Demand
   currentDemandDetailUID = '';
 
@@ -64,11 +103,33 @@ class Store {
 
   updateData = () => {
     this.updateProjects();
-    this.updateContacts();
     this.updateDemands();
     this.updateCapacities();
+    this.updateUserThreads();
   }
 
+  // Threads
+  updateUserThreads = () => {
+    this.fb.userThreadsRef.child(this.user.uid).on('value', (snapshot) => {
+      if (snapshot.val() !== null) this._addUserThreads(snapshot.val());
+    });
+  }
+
+  @action
+  _addUserThreads = (threads) => {
+    // Firebase db works with objects
+    Object.keys(threads).forEach((key) => {
+      this.fb.threadsRef.child(key).on('value', (snapshot) => {
+        const thread = snapshot.val();
+        thread.uid = key;
+        this.userThreads.push(
+          new Thread(thread),
+        );
+      });
+    });
+  }
+
+  // Projects
   updateProjects = () => {
     this.fb.projectsRef.on('value', (snapshot) => {
       if (snapshot.val() !== null) this._addProjects(snapshot.val());
@@ -85,6 +146,7 @@ class Store {
     });
   }
 
+  // Capacities
   updateCapacities = () => {
     this.fb.capacitiesRef.on('value', (snapshot) => {
       if (snapshot.val() !== null) this._addCapacities(snapshot.val());
@@ -116,29 +178,63 @@ class Store {
   @action
   _addDemands = (demands) => {
     Object.keys(demands).forEach((key) => {
-      // wait for user data before pushing to demands
-      // QUESTION: better to retrieve all users first? and preform a .find?
-      this.fb.usersRef.child(demands[key].userId).once('value', (snapshot) => {
-        this.demands.push(
-          new Demand({
-            name: demands[key].name,
-            desc: demands[key].desc,
-            userId: demands[key].userId,
-            reward: demands[key].reward,
-            uid: key,
-            user: snapshot.val(),
-          }),
-        );
+      this.demands.push(
+        new Demand({
+          name: demands[key].name,
+          desc: demands[key].desc,
+          userId: demands[key].userId,
+          reward: demands[key].reward,
+          uid: key,
+        }),
+      );
+    });
+
+    this._addCapacitiesToDemands();
+    this._addUserToDemands();
+  }
+
+  @action
+  _addCapacitiesToDemands = () => {
+    this.demands.forEach((d) => {
+      this.fb.demandCapacitiesRef.child(d.uid).on('child_added', (snap) => {
+        this.fb.capacitiesRef.child(snap.key).once('value', snapshot => d.addCapacity(snapshot.val(), snap.key));
       });
     });
   }
 
   @action
-  updateContacts = () => {
-    this.fb.contactsRef.on('value', (snapshot) => {
-      if (snapshot.val() !== null) this.contacts = snapshot.val();
+  _addUserToDemands = () => {
+    this.demands.forEach((d) => {
+      this.fb.usersRef.child(d.userId).once('value', (snapshot) => {
+        d.user.setProps(snapshot.val());
+      });
     });
   }
+
+  // @action
+  // _addDemands = (demands) => {
+  //   Object.keys(demands).forEach((key) => {
+  //     // wait for user data before pushing to demands
+  //     // QUESTION: better to retrieve all users first? and preform a .find?
+  //
+  //     this.fb.demandCapacitiesRef.child(uid).on('child_added', (snap) => {
+  //       this.fb.capacitiesRef.child(snap.key).once('value', snapshot => this.user.addCapacity(snapshot.val(), snap.key));
+  //     });
+  //
+  //     this.fb.usersRef.child(demands[key].userId).once('value', (snapshot) => {
+  //       this.demands.push(
+  //         new Demand({
+  //           name: demands[key].name,
+  //           desc: demands[key].desc,
+  //           userId: demands[key].userId,
+  //           reward: demands[key].reward,
+  //           uid: key,
+  //           user: snapshot.val(),
+  //         }),
+  //       );
+  //     });
+  //   });
+  // }
 
   signIn = () => {
     this.fb.singIn({ email: this.email, password: this.password })
@@ -167,7 +263,7 @@ class Store {
       });
 
     this.fb.userCapacitiesRef.child(uid).on('child_added', (snap) => {
-      this.fb.capacitiesRef.child(snap.key).once('value', snapshot => this.user.addCapacity(snapshot.val()));
+      this.fb.capacitiesRef.child(snap.key).once('value', snapshot => this.user.addCapacity(snapshot.val(), snap.key));
     });
   }
 

@@ -3,6 +3,8 @@ import {
   action,
 } from 'mobx';
 
+import Capacity from './Capacity';
+
 export default class User {
   @observable
   uid = ''
@@ -42,7 +44,7 @@ export default class User {
   }
 
   @action
-  addCapacity(capacity) {
-    this.capacities.push(capacity);
+  addCapacity(capacity, uid) {
+    this.capacities.push(new Capacity({ name: capacity.name, uid }));
   }
 }

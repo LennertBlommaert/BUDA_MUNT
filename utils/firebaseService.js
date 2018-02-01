@@ -43,10 +43,13 @@ export default class FirebaseService {
 
     this.usersRef = this.rootRef.child('users');
     this.projectsRef = this.rootRef.child('projects');
-    this.contactsRef = this.rootRef.child('contacts');
+    this.threadsRef = this.rootRef.child('threads');
+    this.threadMessagesRef = this.rootRef.child('threadMessages');
+    this.userThreadsRef = this.rootRef.child('userThreads');
     this.capacitiesRef = this.rootRef.child('capacaties');
     this.demandsRef = this.rootRef.child('demands');
     this.userCapacitiesRef = this.rootRef.child('userCapacities');
+    this.demandCapacitiesRef = this.rootRef.child('demandCapacities');
   }
 
   /* NOTE: NOT IN USE

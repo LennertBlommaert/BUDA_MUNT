@@ -1,4 +1,4 @@
-export default class Category {
+export default class Capacity {
   name = ''
   uid = ''
 

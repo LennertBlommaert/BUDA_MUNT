@@ -1,26 +1,26 @@
 /* eslint-disable react/jsx-filename-extension */
 
 import React from 'react';
-import { View } from 'react-native';
 import { inject, observer, PropTypes } from 'mobx-react/native';
 import NoContacts from './NoContacts';
-import ContactList from './ContactList';
+import Inbox from './Inbox';
+import Screen from '../../components/Screen';
 import styles from '../../objects/styles';
 
-const Messages = ({ contacts }) => (
-  <View style={styles.container}>
+const Messages = ({ userThreads }) => (
+  <Screen style={styles.container}>
     {
-      contacts.length > 0 ? <ContactList /> : <NoContacts />
+      userThreads.length > 0 ? <Inbox /> : <NoContacts />
     }
-  </View>
+  </Screen>
 );
 
 Messages.propTypes = {
-  contacts: PropTypes.observableArray.isRequired,
+  userThreads: PropTypes.observableArray.isRequired,
 };
 
 export default inject(
-  ({ store }) => ({ contacts: store.contacts }),
+  ({ store }) => ({ userThreads: store.userThreads }),
 )(
   observer(Messages),
 );

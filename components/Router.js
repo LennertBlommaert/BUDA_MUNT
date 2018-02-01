@@ -11,11 +11,11 @@ import DemandDetail from '../containers/DemandDetail/';
 import More from '../containers/More/';
 
 const ExploreStack = StackNavigator({
-  PostDemand: {
-    screen: PostDemand,
-  },
   Explore: {
     screen: Explore,
+  },
+  PostDemand: {
+    screen: PostDemand,
   },
   DemandDetail: {
     screen: DemandDetail,
@@ -26,18 +26,18 @@ const ExploreStack = StackNavigator({
 });
 
 const TabBar = TabNavigator({
-  Explore: {
-    screen: ExploreStack,
-    navigationOptions: {
-      tabBarLabel: 'Buren',
-      tabBarIcon: ({ tintColor }) => <Icon name={'list'} size={35} color={tintColor} />,
-    },
-  },
   Messages: {
     screen: Messages,
     navigationOptions: {
       tabBarLabel: 'Berichten',
       tabBarIcon: ({ tintColor }) => <Icon name={'inbox'} size={35} color={tintColor} />,
+    },
+  },
+  Explore: {
+    screen: ExploreStack,
+    navigationOptions: {
+      tabBarLabel: 'Buren',
+      tabBarIcon: ({ tintColor }) => <Icon name={'list'} size={35} color={tintColor} />,
     },
   },
   Profile: {
