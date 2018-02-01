@@ -1,21 +1,22 @@
 import React from 'react';
 import { TouchableOpacity, StyleSheet, Image } from 'react-native';
-import { any, bool } from 'prop-types';
+import { any, bool, func } from 'prop-types';
 
 import heart from '../assets/img/heart.png';
 
 import colors from '../objects/colors';
 import ButtonText from './ButtonText';
 
-const Button = ({ children, tileButton }) => {
+const Button = ({ children, tileButton, onPress }) => {
   const styles = StyleSheet.create({
     button: {
-      flex: 1,
       flexDirection: 'row',
       backgroundColor: colors.buttonGreen,
       justifyContent: 'center',
       alignItems: 'center',
       padding: 15,
+      height: 50,
+      width: 335,
       borderBottomLeftRadius: 5,
       borderBottomRightRadius: 5,
       borderTopLeftRadius: tileButton ? 0 : 5,
@@ -28,7 +29,7 @@ const Button = ({ children, tileButton }) => {
   });
 
   return (
-    <TouchableOpacity style={styles.button}>
+    <TouchableOpacity onPress={onPress} style={styles.button}>
       <Image
         style={styles.image}
         source={heart}
@@ -40,6 +41,7 @@ const Button = ({ children, tileButton }) => {
 
 Button.propTypes = {
   children: any.isRequired,
+  onPress: func.isRequired,
   tileButton: bool,
 };
 

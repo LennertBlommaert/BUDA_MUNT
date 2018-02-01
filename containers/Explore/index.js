@@ -8,7 +8,6 @@ import Screen from '../../components/Screen';
 import Button from '../../components/Button';
 
 const Explore = ({ navigation }) => {
-
   const onPressNavigateToPostDemand = () => {
     navigation.navigate('PostDemand');
     // navigation.navigate('Profile', { name: 'Jane' });

@@ -7,6 +7,7 @@ import {
 import User from '../models/User';
 import Project from '../models/Project';
 import Demand from '../models/Demand';
+import Capacity from '../models/Capacity';
 
 // import AsyncStorage from 'react-native';
 
@@ -24,6 +25,9 @@ class Store {
 
   @observable
   demands = []
+
+  @observable
+  capacities = []
 
   // LogIn
   // NOTE: currently bypassing loginflow, strings should be empty
@@ -62,6 +66,7 @@ class Store {
     this.updateProjects();
     this.updateContacts();
     this.updateDemands();
+    this.updateCapacities();
   }
 
   updateProjects = () => {
@@ -80,6 +85,22 @@ class Store {
     });
   }
 
+  updateCapacities = () => {
+    this.fb.capacitiesRef.on('value', (snapshot) => {
+      if (snapshot.val() !== null) this._addCapacities(snapshot.val());
+    });
+  }
+
+  @action
+  _addCapacities = (capacities) => {
+    // Firebase db works with objects
+    Object.keys(capacities).forEach((key) => {
+      this.capacities.push(
+        new Capacity({ name: capacities[key].name, uid: key }),
+      );
+    });
+  }
+
   updateDemands = () => {
     this.fb.demandsRef.on('value', (snapshot) => {
       if (snapshot.val() !== null) this._addDemands(snapshot.val());
@@ -89,16 +110,26 @@ class Store {
   postDemand = () => {
     // Get a key for a new Post
     const postData = { name: this.title, desc: this.desc, userId: `${this.user.uid}`, reward: this.reward };
-
     this.fb.postData(postData, 'demands');
   }
 
   @action
   _addDemands = (demands) => {
     Object.keys(demands).forEach((key) => {
-      this.demands.push(
-        new Demand(demands[key], key),
-      );
+      // wait for user data before pushing to demands
+      // QUESTION: better to retrieve all users first? and preform a .find?
+      this.fb.usersRef.child(demands[key].userId).once('value', (snapshot) => {
+        this.demands.push(
+          new Demand({
+            name: demands[key].name,
+            desc: demands[key].desc,
+            userId: demands[key].userId,
+            reward: demands[key].reward,
+            uid: key,
+            user: snapshot.val(),
+          }),
+        );
+      });
     });
   }
 

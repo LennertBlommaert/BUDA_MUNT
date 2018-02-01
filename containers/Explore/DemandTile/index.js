@@ -9,6 +9,7 @@ import PriceText from '../../../components/PriceText';
 import Tile from '../../../components/Tile';
 
 import Button from '../../../components/Button';
+import UserReference from '../../../components/UserReference';
 
 const styles = StyleSheet.create({
   textContainer: {
@@ -18,7 +19,7 @@ const styles = StyleSheet.create({
   },
 });
 
-const DemandTile = ({ uid, name, desc, reward, userId, navigation, setCurrentDemandDetailUID }) => {
+const DemandTile = ({ uid, name, desc, reward, userId, user, navigation, setCurrentDemandDetailUID }) => {
   const onPressDemandTileTextContainer = () => {
     setCurrentDemandDetailUID(uid);
     navigation.navigate('DemandDetail');
@@ -35,6 +36,7 @@ const DemandTile = ({ uid, name, desc, reward, userId, navigation, setCurrentDem
         <BodyText>{desc}</BodyText>
         <PriceText>{reward}</PriceText>
       </TouchableOpacity>
+      <UserReference {...user} />
       <Button onPress={onPressAcceptDemandButton} tileButton>ik wil helpen</Button>
     </Tile>
   );
@@ -45,6 +47,7 @@ DemandTile.propTypes = {
   desc: string.isRequired,
   reward: number.isRequired,
   navigation: object.isRequired,
+  user: object.isRequired,
   setCurrentDemandDetailUID: func.isRequired,
 };
 

@@ -1,21 +1,22 @@
 import React from 'react';
-import { Text, View } from 'react-native';
+import { Text } from 'react-native';
 import { object } from 'prop-types';
 import TitleInput from './TitleInput';
 import DescInput from './DescInput';
 import PostDemandButton from './PostDemandButton';
 import Reward from './Reward/';
-import CategoriesSelection from './CategoriesSelection/';
+import CapacitiesSelection from './CapacitiesSelection/';
+import Screen from '../../components/Screen';
 
 const PostDemand = ({ navigation }) => (
-  <View>
+  <Screen>
     <Text>PostDemand</Text>
     <TitleInput />
     <DescInput />
     <Reward />
-    <CategoriesSelection />
+    <CapacitiesSelection />
     <PostDemandButton navigation={navigation} />
-  </View>
+  </Screen>
 );
 
 PostDemand.propTypes = {

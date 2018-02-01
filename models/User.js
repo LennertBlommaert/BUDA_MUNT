@@ -11,7 +11,7 @@ export default class User {
   firstName = ''
 
   @observable
-  lastName = ''
+  name = ''
 
   @observable
   email = ''
