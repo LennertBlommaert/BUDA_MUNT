@@ -72,7 +72,7 @@ class Store {
     this.updateDemands();
     this.updateCapacities();
     this.updateUserThreads();
-    this.updateThreadMessages();
+    // this.updateThreadMessages();
   }
 
   updateUserThreads = () => {
@@ -84,13 +84,9 @@ class Store {
         threadData.demand = this.demands.find(d => d.uid === threadData.uid);
 
         const otherUserId = Object.keys(threadData.members).find(k => k !== this.user.uid);
+        threadData.otherUser = threadData.members[otherUserId];
 
-        this.fb.usersRef.child(otherUserId).once('value', (snap) => {
-          const user = snap.val();
-          threadData.otherUser = new User(user);
-
-          this._addUserThread(threadData);
-        });
+        this._addUserThread(threadData);
       });
     });
   }
@@ -140,29 +136,25 @@ class Store {
     });
   }
 
+  postDemand = () => {
+    const postData = { name: this.title, desc: this.desc, userId: `${this.user.uid}`, reward: this.reward };
+    this.fb.postData(postData, 'demands');
+  }
+
   updateDemands = () => {
     this.fb.demandsRef.on('value', (snapshot) => {
       if (snapshot.val() !== null) this._addDemands(snapshot.val());
     });
   }
 
-  postDemand = () => {
-    // Get a key for a new Post
-    const postData = { name: this.title, desc: this.desc, userId: `${this.user.uid}`, reward: this.reward };
-    this.fb.postData(postData, 'demands');
-  }
-
   @action
   _addDemands = (demands) => {
     Object.keys(demands).forEach((key) => {
+      const demand = new Demand(demands[key]);
+      demand.uid = key;
+
       this.demands.push(
-        new Demand({
-          name: demands[key].name,
-          desc: demands[key].desc,
-          userId: demands[key].userId,
-          reward: demands[key].reward,
-          uid: key,
-        }),
+        demand,
       );
     });
 
@@ -187,31 +179,6 @@ class Store {
       });
     });
   }
-
-  // @action
-  // _addDemands = (demands) => {
-  //   Object.keys(demands).forEach((key) => {
-  //     // wait for user data before pushing to demands
-  //     // QUESTION: better to retrieve all users first? and preform a .find?
-  //
-  //     this.fb.demandCapacitiesRef.child(uid).on('child_added', (snap) => {
-  //       this.fb.capacitiesRef.child(snap.key).once('value', snapshot => this.user.addCapacity(snapshot.val(), snap.key));
-  //     });
-  //
-  //     this.fb.usersRef.child(demands[key].userId).once('value', (snapshot) => {
-  //       this.demands.push(
-  //         new Demand({
-  //           name: demands[key].name,
-  //           desc: demands[key].desc,
-  //           userId: demands[key].userId,
-  //           reward: demands[key].reward,
-  //           uid: key,
-  //           user: snapshot.val(),
-  //         }),
-  //       );
-  //     });
-  //   });
-  // }
 
   signIn = () => {
     this.fb.singIn({ email: this.email, password: this.password })
