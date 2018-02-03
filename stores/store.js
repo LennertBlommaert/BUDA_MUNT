@@ -55,8 +55,11 @@ class Store {
   @observable
   userThreads = []
 
-  // Demand Demand
+  // Demand Detail
   currentDemandDetailUID = '';
+
+  // Project Detail
+  currentDemandProjectDetailUID = '';
 
   constructor() {
     this.fb = new FirebaseService();
@@ -234,6 +237,17 @@ class Store {
   @action
   setCurrentDemandDetailUID = (uid) => {
     this.currentDemandDetailUID = uid;
+  }
+
+  // ProjectDetail
+  @computed
+  get currentProjectDetail() {
+    return this.projects.find(project => this.currentProjectDetailUID === project.uid);
+  }
+
+  @action
+  setCurrentProjectDetailUID = (uid) => {
+    this.currentProjectDetailUID = uid;
   }
 
   // Explore

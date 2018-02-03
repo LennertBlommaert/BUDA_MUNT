@@ -8,6 +8,8 @@ import Messages from '../containers/Messages/';
 import Profile from '../containers/Profile/';
 import PostDemand from '../containers/PostDemand/';
 import DemandDetail from '../containers/DemandDetail/';
+import ProjectDetail from '../containers/ProjectDetail/';
+import PostProject from '../containers/PostProject/';
 import More from '../containers/More/';
 
 const ExploreStack = StackNavigator({
@@ -17,8 +19,14 @@ const ExploreStack = StackNavigator({
   PostDemand: {
     screen: PostDemand,
   },
+  PostProject: {
+    screen: PostProject,
+  },
   DemandDetail: {
     screen: DemandDetail,
+  },
+  ProjectDetail: {
+    screen: ProjectDetail,
   },
 }, {
   mode: 'modal',

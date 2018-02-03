@@ -1,7 +1,7 @@
 import React from 'react';
-import { Button } from 'react-native';
 import { func, object } from 'prop-types';
 import { inject, observer } from 'mobx-react/native';
+import Button from '../../components/Button';
 
 const PostDemandButton = ({ postDemand, navigation }) => {
   const onPressPostDemand = () => {
@@ -10,10 +10,9 @@ const PostDemandButton = ({ postDemand, navigation }) => {
   };
 
   return (
-    <Button
-      onPress={() => onPressPostDemand()}
-      title="plaats het zoekertje"
-    />
+    <Button onPress={onPressPostDemand}>
+      plaats het zoekertje
+    </Button>
   );
 };
 

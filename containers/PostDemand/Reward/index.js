@@ -6,14 +6,16 @@ import RewardSlider from './RewardSlider';
 
 const Reward = ({ minReward, maxReward, reward }) => (
   <View>
-    <Text>{minReward}</Text>
-    <Text>{reward}</Text>
-    <Text>{maxReward}</Text>
-    <RewardSlider
-      minReward={minReward}
-      maxReward={maxReward}
-      reward={reward}
-    />
+    <Text>voor {reward} beetjes</Text>
+    <View>
+      <Text>{minReward}</Text>
+      <RewardSlider
+        minReward={minReward}
+        maxReward={maxReward}
+        reward={reward}
+      />
+      <Text>{maxReward}</Text>
+    </View>
   </View>
 );
 

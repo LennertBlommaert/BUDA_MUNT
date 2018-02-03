@@ -1,6 +1,7 @@
 import React from 'react';
-import { string } from 'prop-types';
+import { string, func } from 'prop-types';
 import { TouchableOpacity, StyleSheet } from 'react-native';
+import { inject, observer } from 'mobx-react/native';
 import BodyText from '../../../components/BodyText';
 import HeaderText from '../../../components/HeaderText';
 import Tile from '../../../components/Tile';
@@ -13,8 +14,11 @@ const styles = StyleSheet.create({
   },
 });
 
-const ProjectTile = ({ name, desc }) => {
-  const onPressProjectTileTextContainer = () => {};
+const ProjectTile = ({ uid, name, desc, navigation, setCurrentProjectDetailUID }) => {
+  const onPressProjectTileTextContainer = () => {
+    setCurrentProjectDetailUID(uid);
+    navigation.navigate('ProjectDetail');
+  };
 
   return (
     <Tile>
@@ -28,7 +32,13 @@ const ProjectTile = ({ name, desc }) => {
 
 ProjectTile.propTypes = {
   name: string.isRequired,
+  uid: string.isRequired,
   desc: string.isRequired,
+  setCurrentProjectDetailUID: func.isRequired,
 };
 
-export default ProjectTile;
+export default inject(
+  ({ store }) => ({ setCurrentProjectDetailUID: store.setCurrentProjectDetailUID }),
+)(
+  observer(ProjectTile),
+);
