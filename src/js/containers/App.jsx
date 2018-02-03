@@ -1,21 +1,31 @@
 import React from 'react';
-import {string} from 'prop-types';
 
-import {inject, observer} from 'mobx-react';
+import {inject, observer, PropTypes} from 'mobx-react';
 import DevTools from 'mobx-react-devtools';
 
 import {Route} from 'react-router-dom';
 import Home from './Home';
 
-const App = ({name}) => (
+const App = ({demands}) => (
 
   <section>
 
     {process.env.NODE_ENV !== `production` ? <DevTools /> : null}
 
     <header>
-      <h1>Hello, {name}</h1>
+      <h1>Buda Munt</h1>
     </header>
+
+    <ul>
+      {
+        console.log(demands)
+      }
+      {
+        demands.map(item => {
+          return <li key={item.uid}>{item.name}</li>;
+        })
+      }
+    </ul>
 
     <section>
       <Route
@@ -29,12 +39,12 @@ const App = ({name}) => (
 );
 
 App.propTypes = {
-  name: string.isRequired
+  demands: PropTypes.observableArray.isRequired
 };
 
 export default inject(
   ({store}) => ({
-    name: store.name
+    demands: store.demands
   })
 )(
   observer(App)
