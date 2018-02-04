@@ -2,6 +2,8 @@ import React from 'react';
 import { TabNavigator, StackNavigator } from 'react-navigation';
 import { Icon } from 'react-native-elements';
 
+// import Header from './HeaderRouter';
+
 import Explore from '../containers/Explore/';
 import Messages from '../containers/Messages/';
 // import Neighbourhood from '../containers/Neighbourhood/';
@@ -13,11 +15,14 @@ import PostProject from '../containers/PostProject/';
 import More from '../containers/More/';
 
 const ExploreStack = StackNavigator({
-  PostDemand: {
-    screen: PostDemand,
-  },
   Explore: {
     screen: Explore,
+    navigationOptions: {
+      // header: Header,
+    },
+  },
+  PostDemand: {
+    screen: PostDemand,
   },
   PostProject: {
     screen: PostProject,

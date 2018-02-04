@@ -1,5 +1,6 @@
 const colors = {
   tile: '#fff',
+  headerBackground: '#fff',
   textInverted: '#fff',
   buttonText: '#fff',
   background: '#eee',

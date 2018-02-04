@@ -1,16 +1,11 @@
 import React from 'react';
-import { Image, TouchableOpacity, StyleSheet } from 'react-native';
+import { TouchableOpacity, StyleSheet } from 'react-native';
 import { string } from 'prop-types';
 
-import defaultUser from '../assets/img/default_user_image_small.png';
 import BodyText from './BodyText';
+import UserImage from './UserImage';
 
 const styles = StyleSheet.create({
-  image: {
-    width: 40,
-    height: 40,
-    marginRight: 10,
-  },
   container: {
     padding: 15,
     flexDirection: 'row',
@@ -18,19 +13,14 @@ const styles = StyleSheet.create({
   },
 });
 
-const UserReference = ({ name, firstName, photoURL }) => {
-  return (
-    <TouchableOpacity style={styles.container}>
-      <Image
-        style={styles.image}
-        source={photoURL ? '' : defaultUser}
-      />
-      <BodyText>
-        {firstName} {name}
-      </BodyText>
-    </TouchableOpacity>
-  );
-};
+const UserReference = ({ name, firstName, photoURL }) => (
+  <TouchableOpacity style={styles.container}>
+    <UserImage photoURL={photoURL} />
+    <BodyText>
+      {firstName} {name}
+    </BodyText>
+  </TouchableOpacity>
+);
 
 UserReference.propTypes = {
   name: string.isRequired,

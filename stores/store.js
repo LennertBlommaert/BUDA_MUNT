@@ -331,6 +331,13 @@ class Store {
     return true;
   }
 
+  // Notifications
+
+  @computed
+  get numberOfNotifications() {
+    return 0;
+  }
+
   // NOTE: Check if user is already logged in
   // Can be replaced by fetches?
   // @computed

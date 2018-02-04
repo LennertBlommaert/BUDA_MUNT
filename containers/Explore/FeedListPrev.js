@@ -1,8 +1,7 @@
 // NOTE: seems that FlatList only renders items form same collection: buttons also need to be scollable
-// => currently not used
 
 import React from 'react';
-import { View, StyleSheet } from 'react-native';
+import { View, FlatList, StyleSheet } from 'react-native';
 import { inject, observer } from 'mobx-react/native';
 import { object, array } from 'prop-types';
 import DemandTile from './DemandTile/';
@@ -16,23 +15,24 @@ const styles = StyleSheet.create({
 });
 
 const FeedList = ({ feedItems, navigation }) => (
-  <View style={styles.feed}>
+  <View>
 
     {
 
       feedItems.length > 0 ?
 
-      feedItems
-        .map((item) => {
-          if (item.userId) {
-            return <DemandTile key={item.uid} navigation={navigation} {...item} />;
-          }
-          return <ProjectTile key={item.uid} navigation={navigation} {...item} />;
-        })
+      <FlatList
+        style={styles.feed}
+        data={feedItems}
+        keyExtractor={item => item.uid}
+        renderItem={({ item }) => { //eslint-disable-line
+          return item.userId ? <DemandTile key={item.uid} navigation={navigation} {...item} /> : <ProjectTile key={item.uid} navigation={navigation} {...item} />;
+        }}
+      />
 
-       :
+      :
 
-       <BodyText> Geen items om weer te geven</BodyText>
+      <BodyText italic>Niets om weer te geven op jouw feed</BodyText>
 
     }
 

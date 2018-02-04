@@ -27,6 +27,9 @@ export default class User {
   @observable
   threads = {}
 
+  @observable
+  balance = 0
+
   constructor(user) {
     this.setProps(user);
   }
@@ -39,6 +42,7 @@ export default class User {
     firstName = '',
     photoURL = '',
     threads = {},
+    balance = 0,
   }) {
     this.uid = uid;
     this.name = name;
@@ -46,6 +50,7 @@ export default class User {
     this.email = email;
     this.photoURL = photoURL;
     this.threads = threads;
+    this.balance = balance;
   }
 
   @action

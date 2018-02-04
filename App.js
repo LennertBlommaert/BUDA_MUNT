@@ -21,7 +21,6 @@ class App extends Component {
   };
 
   async componentDidMount() {
-    // NOTE: font loading in create react native needs the use of requires
     await Font.loadAsync({
       'calibre-medium': CalibreMedium,
       'calibre-medium-italic': CalibreMediumItalic,

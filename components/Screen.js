@@ -9,7 +9,6 @@ const styles = StyleSheet.create({
     backgroundColor: colors.background,
     alignItems: 'center',
     justifyContent: 'space-between',
-    paddingTop: 20,
   },
 });
 
