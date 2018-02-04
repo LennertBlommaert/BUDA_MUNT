@@ -7,7 +7,7 @@ export default class Thread {
   demand = {}
   otherUser = {}
 
-  constructor({ uid, demandId = '', projectId = '', lastMessageId = '', members, otherUser, demand }) {
+  constructor({ uid, demandId = '', projectId = '', lastMessageId = '', members, otherUser, demand = {} }) {
     this.uid = uid;
     this.demandId = demandId;
     this.projectId = projectId;

@@ -1,12 +1,13 @@
 import React from 'react';
-import { FlatList, Text } from 'react-native';
+import { FlatList } from 'react-native';
 import { inject, observer, PropTypes } from 'mobx-react/native';
+import InboxItem from './InboxItem/';
 
 const Inbox = ({ userThreads }) => (
   <FlatList
     data={userThreads}
     keyExtractor={item => item.uid}
-    renderItem={({ item }) => <Text key={item.uid}>{item.otherUser.firstName} {item.otherUser.name}</Text>}
+    renderItem={({ item }) => <InboxItem key={item.uid} {...item} />}
   />
 );
 

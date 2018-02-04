@@ -80,13 +80,16 @@ class Store {
     // this.updateThreadMessages();
   }
 
+  // NOTE: threads will be duplicated on updates
+
   updateUserThreads = () => {
     Object.keys(this.user.threads).forEach((key) => {
       this.fb.threadsRef.child(key).on('value', (snapshot) => {
         const threadData = snapshot.val();
         threadData.uid = key;
 
-        threadData.demand = this.demands.find(d => d.uid === threadData.uid);
+        // strong denormalisation for easy usage
+        // threadData.demand = this.demands.find(d => d.uid === threadData.uid);
 
         const otherUserId = Object.keys(threadData.members).find(k => k !== this.user.uid);
         threadData.otherUser = threadData.members[otherUserId];
