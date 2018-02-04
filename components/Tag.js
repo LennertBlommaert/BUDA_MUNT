@@ -1,29 +1,39 @@
 import React from 'react';
-import { Text, StyleSheet } from 'react-native';
-import { any } from 'prop-types';
+import { Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { any, bool, func } from 'prop-types';
 import colors from '../objects/colors';
 
-const styles = StyleSheet.create({
-  tag: {
-    paddingTop: 10,
-    paddingBottom: 10,
-    paddingLeft: 25,
-    paddingRight: 25,
-    borderRadius: 3,
-    textAlign: 'center',
-    backgroundColor: colors.blueTagBackground,
-    color: colors.blueTagText,
-    fontFamily: 'calibre-medium',
-    fontSize: 18,
-  },
-});
+const Tag = ({ children, selected, onPress }) => {
+  const styles = StyleSheet.create({
+    tag: {
+      paddingTop: 10,
+      paddingBottom: 10,
+      paddingLeft: 25,
+      paddingRight: 25,
+      borderRadius: 3,
+      textAlign: 'center',
+      backgroundColor: selected ? colors.selectedTagBackground : colors.unselectedTagBackground,
+      color: selected ? colors.selectedTagText : colors.unselectedTagText,
+      fontFamily: 'calibre-medium',
+      fontSize: 18,
+    },
+  });
 
-const Tag = ({ children }) => (
-  <Text style={styles.tag}>{children}</Text>
-);
+  return (
+    <TouchableOpacity onPress={onPress}>
+      <Text style={styles.tag}>{children}</Text>
+    </TouchableOpacity>
+  );
+};
 
 Tag.propTypes = {
   children: any.isRequired,
+  onPress: func.isRequired,
+  selected: bool,
+};
+
+Tag.defaultProps = {
+  selected: false,
 };
 
 export default Tag;

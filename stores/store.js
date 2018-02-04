@@ -140,8 +140,26 @@ class Store {
   }
 
   postDemand = () => {
-    const postData = { name: this.title, desc: this.desc, userId: `${this.user.uid}`, reward: this.reward };
-    this.fb.postData(postData, 'demands');
+    if (this.user.uid !== '') {
+      const demandKey = this._postDemandData();
+
+      this._postDemandCapacitiesData(demandKey);
+    }
+  }
+
+  _postDemandData = () => {
+    const data = { name: this.title, desc: this.desc, userId: `${this.user.uid}`, reward: this.reward };
+    return this.fb.postDataSingleRef({ data, updateRef: 'demands' });
+  }
+
+  _postDemandCapacitiesData = (key) => {
+    const data = {};
+
+    this.selectedCapacities.forEach((c) => {
+      data[c.uid] = { name: c.name };
+    });
+
+    this.fb.postDataSingleRef({ data, updateRef: 'demandCapacities', key });
   }
 
   updateDemands = () => {
@@ -203,7 +221,10 @@ class Store {
   _signIn = ({ uid }) => {
     this.fb.usersRef.child(uid)
       .on('value', (snap) => { //eslint-disable-line
-        if (snap.val() !== null) this.user.setProps(snap.val());
+        const userData = snap.val();
+        userData.uid = uid;
+
+        this.user.setProps(userData);
         this.updateData();
       });
 
@@ -226,6 +247,30 @@ class Store {
   @action
   setReward = (reward) => {
     this.reward = reward;
+  }
+
+  @action
+  toggleCapacitySelected = (uid) => {
+    // const cap = this.capacities.find(c => c.uid === capacity.uid);
+    this.capacities = this.capacities.map((c) => {
+      if (c.uid === uid) {
+        c.toggleSelected();
+      }
+      return c;
+    });
+  };
+
+  /*
+  clear = () => {
+  let {todos} = this.state;
+  todos = todos.filter(t => !t.done);
+  this.setState({todos});
+}
+  */
+
+  @computed
+  get selectedCapacities() {
+    return this.capacities.filter(c => c.selected);
   }
 
   // DemandDetail

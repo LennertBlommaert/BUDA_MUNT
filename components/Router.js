@@ -13,11 +13,11 @@ import PostProject from '../containers/PostProject/';
 import More from '../containers/More/';
 
 const ExploreStack = StackNavigator({
-  Explore: {
-    screen: Explore,
-  },
   PostDemand: {
     screen: PostDemand,
+  },
+  Explore: {
+    screen: Explore,
   },
   PostProject: {
     screen: PostProject,
@@ -34,18 +34,18 @@ const ExploreStack = StackNavigator({
 });
 
 const TabBar = TabNavigator({
-  Messages: {
-    screen: Messages,
-    navigationOptions: {
-      tabBarLabel: 'Berichten',
-      tabBarIcon: ({ tintColor }) => <Icon name={'inbox'} size={35} color={tintColor} />,
-    },
-  },
   Explore: {
     screen: ExploreStack,
     navigationOptions: {
       tabBarLabel: 'Buren',
       tabBarIcon: ({ tintColor }) => <Icon name={'list'} size={35} color={tintColor} />,
+    },
+  },
+  Messages: {
+    screen: Messages,
+    navigationOptions: {
+      tabBarLabel: 'Berichten',
+      tabBarIcon: ({ tintColor }) => <Icon name={'inbox'} size={35} color={tintColor} />,
     },
   },
   Profile: {

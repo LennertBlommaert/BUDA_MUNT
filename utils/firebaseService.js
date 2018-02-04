@@ -91,14 +91,31 @@ export default class FirebaseService {
     return {};
   }
 
-  postData(data, ...updateRefs) {
-    // Get a key for a new Post.
-    const newDemandKey = this.demandsRef.push().key;
+  postDataSingleRef({ data, updateRef, key }) {
+    // Write the new post's data to a single ref
+    // And return the key usefull when needing foreign key
 
+    const updates = {};
+
+    if (!key) {
+      key = this.rootRef.child(`${updateRef}`).push().key; //eslint-disable-line
+    }
+
+    updates[`/${updateRef}/${key}`] = data;
+
+    console.warn(updates);
+
+    this.rootRef.update(updates);
+
+    return key;
+  }
+
+  postDataMultipleRefs(data, ...updateRefs) {
     // Write the new post's data simultaneously to multiple refs
     const updates = {};
     updateRefs.forEach((ref) => {
-      updates[`/${ref}/${newDemandKey}`] = data;
+      const newKey = this.ref.push().key;
+      updates[`/${ref}/${newKey}`] = data;
     });
 
     return this.rootRef.update(updates);
