@@ -103,8 +103,6 @@ export default class FirebaseService {
 
     updates[`/${updateRef}/${key}`] = data;
 
-    console.warn(updates);
-
     this.rootRef.update(updates);
 
     return key;

@@ -46,6 +46,8 @@ class Store {
   reward = 0
 
   minReward = 0
+
+  @observable
   maxReward = 200
 
   // Chat
@@ -115,11 +117,7 @@ class Store {
   @action
   _addProjects = (projects) => {
     // Firebase db works with objects
-    Object.keys(projects).forEach((key) => {
-      this.projects.push(
-        new Project(projects[key], key),
-      );
-    });
+    this.projects = Object.keys(projects).map(key => new Project(projects[key], key));
   }
 
   // Capacities
@@ -142,9 +140,10 @@ class Store {
   postDemand = () => {
     if (this.user.uid !== '') {
       const demandKey = this._postDemandData();
-
       this._postDemandCapacitiesData(demandKey);
     }
+
+    this.clearPostDemandForm();
   }
 
   _postDemandData = () => {
@@ -170,14 +169,22 @@ class Store {
 
   @action
   _addDemands = (demands) => {
-    Object.keys(demands).forEach((key) => {
+
+    this.demands = Object.keys(demands).map((key) => {
       const demand = new Demand(demands[key]);
       demand.uid = key;
 
-      this.demands.push(
-        demand,
-      );
+      return demand;
     });
+
+    // Object.keys(demands).forEach((key) => {
+    //   const demand = new Demand(demands[key]);
+    //   demand.uid = key;
+    //
+    //   this.demands.push(
+    //     demand,
+    //   );
+    // });
 
     this._addCapacitiesToDemands();
     this._addUserToDemands();
@@ -248,6 +255,13 @@ class Store {
   setReward = (reward) => {
     this.reward = reward;
   }
+
+  @action
+  clearPostDemandForm = () => {
+    this.title = '';
+    this.desc = '';
+    this.reward = 0;
+  };
 
   @action
   toggleCapacitySelected = (uid) => {
