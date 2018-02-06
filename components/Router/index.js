@@ -108,8 +108,8 @@ const TabBar = TabNavigator({
     },
     tabStyle: {
       height: 50,
-      justifyContent: 'center',
-      alignItems: 'center',
+      // justifyContent: 'center',
+      // alignItems: 'center',
     },
     labelStyle: {
       fontFamily: 'calibre-medium',
