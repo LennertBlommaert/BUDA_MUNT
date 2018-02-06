@@ -2,11 +2,11 @@
 
 import React from 'react';
 import { ScrollView } from 'react-native';
+import { object } from 'prop-types';
 
 import FeedList from './FeedList';
 
 import Screen from '../../components/Screen';
-import Header from '../../components/Header/';
 import Button from '../../components/Button';
 
 const Explore = ({ navigation }) => {
@@ -16,8 +16,7 @@ const Explore = ({ navigation }) => {
   };
 
   return (
-    <Screen>
-      <Header />
+    <Screen navigation={navigation}>
       <ScrollView>
         <Button onPress={onPressNavigateToPostDemand}>
           plaats een zoekertje
@@ -26,6 +25,10 @@ const Explore = ({ navigation }) => {
       </ScrollView>
     </Screen>
   );
+};
+
+Explore.propTypes = {
+  navigation: object.isRequired,
 };
 
 export default Explore;

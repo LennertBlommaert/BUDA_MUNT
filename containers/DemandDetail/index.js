@@ -11,13 +11,13 @@ import PriceText from '../../components/PriceText';
 import Button from '../../components/Button';
 import Tag from '../../components/Tag';
 
-const DemandDetail = ({ currentDemandDetail }) => {
+const DemandDetail = ({ currentDemandDetail, navigation }) => {
   const onPressAcceptDemand = () => {
     console.warn('Accepted demand');
   };
 
   return (
-    <Screen>
+    <Screen navigation={navigation}>
       <HeaderText>{currentDemandDetail.name}</HeaderText>
       <BodyText>{currentDemandDetail.desc}</BodyText>
       <PriceText>{currentDemandDetail.reward}</PriceText>
@@ -35,6 +35,7 @@ const DemandDetail = ({ currentDemandDetail }) => {
 
 DemandDetail.propTypes = {
   currentDemandDetail: object.isRequired,
+  navigation: object.isRequired,
 };
 
 export default inject(

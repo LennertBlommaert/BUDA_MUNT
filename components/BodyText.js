@@ -3,15 +3,16 @@
 
 import React from 'react';
 import { Text, StyleSheet } from 'react-native';
-import { any, bool } from 'prop-types';
+import { any, bool, number } from 'prop-types';
 import colors from '../objects/colors';
 
-const BodyText = ({ children, italic, invertedColor, size }) => {
+const BodyText = ({ children, italic, invertedColor, fontSize, opacity }) => {
   const styles = StyleSheet.create({
     bodyText: {
       color: invertedColor ? colors.textInverted : colors.text,
       fontFamily: `calibre-regular${italic ? '-italic' : ''}`,
-      fontSize: 17,
+      fontSize,
+      opacity,
     },
   });
 
@@ -20,13 +21,17 @@ const BodyText = ({ children, italic, invertedColor, size }) => {
 
 BodyText.propTypes = {
   children: any.isRequired,
-  italic: bool,
-  invertedColor: bool,
+  italic: bool.isRequired,
+  invertedColor: bool.isRequired,
+  fontSize: number.isRequired,
+  opacity: number.isRequired,
 };
 
 BodyText.defaultProps = {
   italic: false,
   invertedColor: false,
+  fontSize: 17,
+  opacity: 1,
 };
 
 export default BodyText;

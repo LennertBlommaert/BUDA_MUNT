@@ -10,7 +10,7 @@ import firebaseConfig from './firebaseConfig.json';
 //   firebase.initializeApp(firebaseConfig);
 // };
 //
-// //
+//
 //
 // export const listenFirebaseDatabase = () => firebase.database().ref().child('projects');
 //

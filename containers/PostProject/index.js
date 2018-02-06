@@ -4,7 +4,7 @@ import { object } from 'prop-types';
 import Screen from '../../components/Screen';
 
 const PostDemand = ({ navigation }) => (
-  <Screen>
+  <Screen navigation={navigation}>
     <Text>PostDemand</Text>
   </Screen>
 );

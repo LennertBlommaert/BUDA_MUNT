@@ -2,9 +2,9 @@ import React from 'react';
 import { Text, View } from 'react-native';
 import { inject, observer } from 'mobx-react/native';
 import { number } from 'prop-types';
-import RewardSlider from './RewardSlider';
+import Slider from './Slider';
 
-const Reward = ({ minReward, maxReward, reward }) => (
+const RewardSlider = ({ minReward, maxReward, reward }) => (
   <View>
     <Text>voor {reward} beetjes</Text>
     <View>
@@ -19,7 +19,7 @@ const Reward = ({ minReward, maxReward, reward }) => (
   </View>
 );
 
-Reward.propTypes = {
+RewardSlider.propTypes = {
   minReward: number.isRequired,
   maxReward: number.isRequired,
   reward: number.isRequired,
@@ -32,5 +32,5 @@ export default inject(
     reward: store.reward,
   }),
 )(
-  observer(Reward),
+  observer(RewardSlider),
 );

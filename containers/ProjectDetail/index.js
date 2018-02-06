@@ -8,13 +8,13 @@ import BodyText from '../../components/BodyText';
 
 import Button from '../../components/Button';
 
-const ProjectDetail = ({ currentProjectDetail }) => {
+const ProjectDetail = ({ currentProjectDetail, navigation }) => {
   const onPressVote = () => {
     console.warn('Voted project');
   };
 
   return (
-    <Screen>
+    <Screen navigation={navigation}>
       <HeaderText>{currentProjectDetail.name}</HeaderText>
       <BodyText>{currentProjectDetail.desc}</BodyText>
       <Button onPress={onPressVote}>
@@ -26,6 +26,7 @@ const ProjectDetail = ({ currentProjectDetail }) => {
 
 ProjectDetail.propTypes = {
   currentProjectDetail: object.isRequired,
+  navigation: object.isRequired,
 };
 
 export default inject(

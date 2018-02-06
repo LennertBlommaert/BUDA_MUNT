@@ -1,26 +1,53 @@
 import React from 'react';
-import { Text, View, TextInput } from 'react-native';
+import { View, TextInput, StyleSheet } from 'react-native';
 import { func, string } from 'prop-types';
 import { inject, observer } from 'mobx-react/native';
-import styles from '../../objects/styles';
+import colors from '../../objects/colors';
+import HeaderText from '../../components/HeaderText';
+
+const styles = StyleSheet.create({
+  textInput: {
+    height: 136,
+    width: 335,
+    borderWidth: 0,
+
+    padding: 20,
+    paddingTop: 15,
+
+    fontSize: 24,
+    fontFamily: 'calibre-regular',
+    marginTop: 5,
+    backgroundColor: colors.textInputBackground,
+
+    borderRadius: 3,
+
+    shadowColor: colors.shadowColor,
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowRadius: 5,
+    shadowOpacity: 0.13,
+  },
+});
 
 const DescInput = ({ setDesc, desc }) => {
   const handleChangeText = text => setDesc(text);
 
   return (
     <View>
-      <Text>
-        Beschrijving
-      </Text>
+      <HeaderText fontSize={22}>Omschrijf je droom</HeaderText>
+
       <TextInput
         style={styles.textInput}
         onChangeText={
           text => handleChangeText(text)
         }
         value={desc}
-        placeholder={'Beschrijf het project'}
+        autoFocus
+        placeholder={'Korte beschrijving'}
+        keyboardType={'default'}
         multiline
-        numberOfLines={6}
       />
     </View>
   );

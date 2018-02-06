@@ -11,7 +11,7 @@ import CalibreMediumItalic from './assets/fonts/Calibre_Medium_Italic.otf';
 import CalibreRegular from './assets/fonts/Calibre_Regular.otf';
 import CalibreRegularItalic from './assets/fonts/Calibre_Regular_Italic.otf';
 
-import Router from './components/Router';
+import Router from './components/Router/';
 
 import stores from './stores';
 

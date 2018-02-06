@@ -4,6 +4,7 @@
 import React from 'react';
 import { View, StyleSheet } from 'react-native';
 import { inject, observer, PropTypes } from 'mobx-react/native';
+import { object } from 'prop-types';
 import colors from '../../objects/colors';
 import UserStatus from './UserStatus';
 import NotificationsIndicator from './NotificationsIndicator';
@@ -32,15 +33,16 @@ const styles = StyleSheet.create({
   },
 });
 
-const Header = ({ user }) => (
+const Header = ({ user, navigation }) => (
   <View style={styles.header}>
     <UserStatus {...user} />
-    <NotificationsIndicator />
+    <NotificationsIndicator navigation={navigation} />
   </View>
 );
 
 Header.propTypes = {
   user: PropTypes.observableObject.isRequired,
+  navigation: object.isRequired,
 };
 
 export default inject(

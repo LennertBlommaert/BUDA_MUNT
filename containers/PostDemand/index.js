@@ -1,26 +1,37 @@
 import React from 'react';
-import { Text } from 'react-native';
-import { object } from 'prop-types';
-import TitleInput from './TitleInput';
-import DescInput from './DescInput';
-import PostDemandButton from './PostDemandButton';
-import Reward from './Reward/';
-import CapacitiesSelection from './CapacitiesSelection/';
-import Screen from '../../components/Screen';
+import { StyleSheet, View } from 'react-native';
+import { inject, observer } from 'mobx-react/native';
+import { object, bool } from 'prop-types';
+// import PostDemandButton from './PostDemandButton';
+import Header from './Header/';
+import colors from '../../objects/colors';
+import InputsAndProgress from './InputsAndProgress';
 
-const PostDemand = ({ navigation }) => (
-  <Screen>
-    <Text>PostDemand</Text>
-    <TitleInput />
-    <DescInput />
-    <Reward />
-    <CapacitiesSelection />
-    <PostDemandButton navigation={navigation} />
-  </Screen>
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    paddingBottom: 225,
+    backgroundColor: colors.postDemandBackground,
+    alignItems: 'center',
+    justifyContent: 'space-between',
+  },
+});
+
+const PostDemand = ({ navigation, endOfInputs }) => (
+  <View style={styles.container}>
+    <Header navigation={navigation} />
+    {console.warn(endOfInputs)}
+    {endOfInputs ? null : <InputsAndProgress />}
+  </View>
 );
 
 PostDemand.propTypes = {
   navigation: object.isRequired,
+  endOfInputs: bool.isRequired,
 };
 
-export default PostDemand;
+export default inject(
+  ({ store }) => ({ endOfInputs: store.endOfInputs }),
+)(
+  observer(PostDemand),
+);

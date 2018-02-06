@@ -29,6 +29,7 @@
     "no-unused-vars": ["error", { "args": "none" }],
     "no-multiple-empty-lines": ["error", { "max": 1 }],
     "no-underscore-dangle": ["error", { "allowAfterThis": true }],
+    "no-param-reassign": "off",
 
     "jsx-a11y/href-no-hash": "off",
     "jsx-a11y/anchor-is-valid": ["warn", { "aspects": ["invalidHref"] }],

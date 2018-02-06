@@ -47,8 +47,17 @@ class Store {
 
   minReward = 0
 
-  @observable
-  maxReward = 200
+  @computed
+  get maxReward() {
+    return this.user.balance;
+  }
+
+  @computed
+  get rewardToTime() {
+    const minutes = this.reward % 60;
+    const hours = (this.reward - minutes) / 60;
+    return `${hours} ${hours === 1 ? 'uur' : 'uren'} en ${minutes} ${minutes === 1 ? 'minuut' : 'minuten'}`;
+  }
 
   // Chat
   @observable
@@ -172,7 +181,6 @@ class Store {
 
   @action
   _addDemands = (demands) => {
-
     this.demands = Object.keys(demands).map((key) => {
       const demand = new Demand(demands[key]);
       demand.uid = key;
@@ -244,6 +252,35 @@ class Store {
   }
 
   // Post demands
+  @observable
+  currentInputIndex = 3;
+
+  maxInputIndex = 3;
+
+  @computed
+  get enableNextInputButton() {
+    if (this.currentInputIndex === 0) return this.title.length > 0;
+    if (this.currentInputIndex === 1) return this.desc.length > 0;
+    if (this.currentInputIndex === 2) return this.reward > 0;
+    if (this.currentInputIndex === 3) return this.selectedCapacities.length > 0;
+    return true;
+  }
+  @computed
+  get enablePreviousInputButton() {
+    return this.currentInputIndex > 0;
+  }
+
+  @action
+  nextInputIndex = () => {
+    // if (this.currentInputIndex < this.maxInputIndex) this.currentInputIndex += 1;
+    this.currentInputIndex += 1;
+  }
+
+  @action
+  previousInputIndex = () => {
+    if (this.currentInputIndex > 0) this.currentInputIndex -= 1;
+  }
+
   @action
   setTitle = (title) => {
     this.title = title;
@@ -256,6 +293,13 @@ class Store {
 
   @action
   setReward = (reward) => {
+    if (reward === '') reward = this.minReward;
+
+    reward = parseInt(reward, 10);
+
+    if (reward >= this.maxReward) reward = this.maxReward;
+    if (reward <= this.minReward) reward = this.minReward;
+
     this.reward = reward;
   }
 
@@ -288,6 +332,11 @@ class Store {
   @computed
   get selectedCapacities() {
     return this.capacities.filter(c => c.selected);
+  }
+
+  @computed
+  get endOfInputs() {
+    return this.currentInputIndex > this.maxInputIndex;
   }
 
   // DemandDetail
@@ -338,7 +387,7 @@ class Store {
 
   @computed
   get numberOfNotifications() {
-    return 0;
+    return 1;
   }
 
   // NOTE: Check if user is already logged in

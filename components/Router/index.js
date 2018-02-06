@@ -4,25 +4,30 @@ import { Icon } from 'react-native-elements';
 
 // import Header from './HeaderRouter';
 
-import Explore from '../containers/Explore/';
-import Messages from '../containers/Messages/';
-// import Neighbourhood from '../containers/Neighbourhood/';
-import Profile from '../containers/Profile/';
-import PostDemand from '../containers/PostDemand/';
-import DemandDetail from '../containers/DemandDetail/';
-import ProjectDetail from '../containers/ProjectDetail/';
-import PostProject from '../containers/PostProject/';
-import More from '../containers/More/';
+import Explore from '../../containers/Explore/';
+import Messages from '../../containers/Messages/';
+// import Neighbourhood from '../../containers/Neighbourhood/';
+import Profile from '../../containers/Profile/';
+import PostDemand from '../../containers/PostDemand/';
+import DemandDetail from '../../containers/DemandDetail/';
+import ProjectDetail from '../../containers/ProjectDetail/';
+import PostProject from '../../containers/PostProject/';
+import More from '../../containers/More/';
+import MessageDetail from '../../containers/MessageDetail/';
+import Notifications from '../../containers/Notifications/';
 
 const ExploreStack = StackNavigator({
+  PostDemand: {
+    screen: PostDemand,
+    navigationOptions: {
+      tabBarVisible: false,
+    },
+  },
   Explore: {
     screen: Explore,
     navigationOptions: {
       // header: Header,
     },
-  },
-  PostDemand: {
-    screen: PostDemand,
   },
   PostProject: {
     screen: PostProject,
@@ -32,6 +37,30 @@ const ExploreStack = StackNavigator({
   },
   ProjectDetail: {
     screen: ProjectDetail,
+  },
+  Notifications: {
+    screen: Notifications,
+  },
+}, {
+  mode: 'modal',
+  headerMode: 'none',
+});
+
+const MessagesStack = StackNavigator({
+  Messages: {
+    screen: Messages,
+    navigationOptions: {
+      // header: Header,
+    },
+  },
+  MessageDetail: {
+    screen: MessageDetail,
+    navigationOptions: {
+      // header: Header,
+    },
+  },
+  Notifications: {
+    screen: Notifications,
   },
 }, {
   mode: 'modal',
@@ -47,7 +76,7 @@ const TabBar = TabNavigator({
     },
   },
   Messages: {
-    screen: Messages,
+    screen: MessagesStack,
     navigationOptions: {
       tabBarLabel: 'Berichten',
       tabBarIcon: ({ tintColor }) => <Icon name={'inbox'} size={35} color={tintColor} />,

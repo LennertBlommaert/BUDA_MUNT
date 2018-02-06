@@ -6,7 +6,7 @@ import { Text, StyleSheet } from 'react-native';
 import { any, bool } from 'prop-types';
 import colors from '../objects/colors';
 
-const ButtonText = ({ children, italic, size }) => {
+const ButtonText = ({ children, italic }) => {
   const styles = StyleSheet.create({
     buttonText: {
       color: colors.buttonText,
