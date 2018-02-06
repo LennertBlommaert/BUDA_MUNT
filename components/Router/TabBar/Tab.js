@@ -35,6 +35,9 @@ const Tab = ({ children, routeName, navigation, active }) => {
       {
         routeName === 'Profile' ? <ActivatableImage style={styles.image} icon={'profile'} active={active} /> : null
       }
+      {
+        routeName === 'Pay' ? <ActivatableImage style={styles.image} icon={'pay'} active={active} /> : null
+      }
       <Text style={styles.label}>
         {children}
       </Text>

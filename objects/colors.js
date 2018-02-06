@@ -23,7 +23,7 @@ const colors = {
   // background: '#eee',
   background: '#EEFAFF',
   headerBackground: '#fff',
-  postDemandBackground: '#f9f9f9',
+  postDemandBackground: '#EEFAFF',
   textInputBackground: '#fff',
   coinBackground: '#FCF6CD',
   coinBackgroundLimit: '#FAB3AA',

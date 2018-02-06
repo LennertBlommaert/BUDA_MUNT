@@ -6,11 +6,12 @@ import BodyText from '../../../components/BodyText';
 import HeaderText from '../../../components/HeaderText';
 import Button from '../../../components/Button';
 import SummaryTile from './SummaryTile/';
+import AddToBucketList from './AddToBucketList';
 import colors from '../../../objects/colors';
 
 const styles = StyleSheet.create({
   container: {
-    flex: 0.8,
+    flex: 0.85,
     alignItems: 'center',
     justifyContent: 'space-between',
     marginBottom: 50,
@@ -42,6 +43,7 @@ const Summary = ({ postDemand, navigation }) => {
       <View style={styles.tileContainer}>
         <HeaderText style={styles.headerText} fontSize={32}>Jouw droom</HeaderText>
         <SummaryTile />
+        <AddToBucketList />
       </View>
 
       <View style={styles.buttonContainer}>

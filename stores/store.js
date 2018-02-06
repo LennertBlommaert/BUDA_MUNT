@@ -40,7 +40,7 @@ class Store {
   title = ''
 
   @observable
-  desc = ''
+  desc = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
 
   @observable
   reward = 0
@@ -159,7 +159,7 @@ class Store {
   }
 
   _postDemandData = () => {
-    const data = { name: this.title, desc: this.desc, userId: `${this.user.uid}`, reward: this.reward };
+    const data = { name: this.title, desc: this.desc, userId: `${this.user.uid}`, reward: this.reward, isBucketListItem: this.isBucketListItem };
     return this.fb.postDataSingleRef({ data, updateRef: 'demands' });
   }
 
@@ -253,9 +253,12 @@ class Store {
 
   // Post demands
   @observable
-  currentInputIndex = 0;
+  currentInputIndex = 4;
 
   maxInputIndex = 3;
+
+  @observable
+  isBucketListItem = false;
 
   @computed
   get enableNextInputButton() {
@@ -291,6 +294,11 @@ class Store {
     this.desc = desc;
   }
 
+  @computed
+  get truncatedDesc() {
+    return `${this.desc.substring(0, 240)}...`;
+  }
+
   @action
   setReward = (reward) => {
     if (reward === '') reward = this.minReward;
@@ -301,6 +309,11 @@ class Store {
     if (reward <= this.minReward) reward = this.minReward;
 
     this.reward = reward;
+  }
+
+  @action
+  toggleIsBucketListItem = () => {
+    this.isBucketListItem = !this.isBucketListItem;
   }
 
   @action

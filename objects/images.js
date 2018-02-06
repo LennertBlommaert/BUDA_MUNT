@@ -5,6 +5,9 @@ import addDreamInactiveInverted from '../assets/img/add_dream_inactive_inverted.
 import addProject from '../assets/img/add_project.png';
 import addProjectInactive from '../assets/img/add_project_inactive.png';
 
+import checkbox from '../assets/img/checkbox.png';
+import checkboxInactive from '../assets/img/checkbox_inactive.png';
+
 // Tags
 import gezelschap from '../assets/img/tags/gezelschap.png';
 import gezelschapSelected from '../assets/img/tags/gezelschap_selected.png';
@@ -70,6 +73,11 @@ const images = {
   addProject: {
     inactive: addProjectInactive,
     active: addProject,
+  },
+
+  checkbox: {
+    inactive: checkboxInactive,
+    active: checkbox,
   },
 
   // Tab bar

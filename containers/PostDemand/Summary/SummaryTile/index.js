@@ -11,28 +11,30 @@ const styles = StyleSheet.create({
   container: {
     flex: 0,
     paddingBottom: 20,
+    marginBottom: 5,
   },
   textContainer: {
     paddingLeft: 20,
     paddingRight: 20,
-    marginBottom: 5,
+    marginBottom: 20,
   },
   tagsAndPriceContainer: {
-    padding: 30,
+    paddingLeft: 30,
+    paddingRight: 30,
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
   },
 });
 
-const SummaryTile = ({ title, desc, selectedCapacities, reward }) => (
+const SummaryTile = ({ title, truncatedDesc, selectedCapacities, reward }) => (
   <Tile style={styles.container}>
     <View style={styles.textContainer}>
       <HeaderText>
         {title}
       </HeaderText>
       <BodyText>
-        {desc}
+        {truncatedDesc}
       </BodyText>
     </View>
     <View style={styles.tagsAndPriceContainer}>
@@ -49,7 +51,7 @@ SummaryTile.propTypes = {};
 export default inject(
   ({ store }) => ({
     title: store.title,
-    desc: store.desc,
+    truncatedDesc: store.truncatedDesc,
     selectedCapacities: store.selectedCapacities,
     reward: store.reward,
   }),

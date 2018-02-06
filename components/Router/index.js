@@ -16,6 +16,7 @@ import PostProject from '../../containers/PostProject/';
 import Neighbourhood from '../../containers/Neighbourhood/';
 import MessageDetail from '../../containers/MessageDetail/';
 import Notifications from '../../containers/Notifications/';
+import Pay from '../../containers/Pay/';
 
 import TabBar from './TabBar/';
 
@@ -97,6 +98,13 @@ const TabBarStack = TabNavigator({
     navigationOptions: {
       tabBarLabel: 'Profiel',
       tabBarIcon: ({ focused }) => <ActivatableImage icon={'profile'} active={focused} />,
+    },
+  },
+  Pay: {
+    screen: Pay,
+    navigationOptions: {
+      tabBarLabel: 'Betaal',
+      tabBarIcon: ({ focused }) => <ActivatableImage icon={'pay'} active={focused} />,
     },
   },
 }, {
