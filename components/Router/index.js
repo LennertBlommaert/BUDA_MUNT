@@ -1,6 +1,7 @@
 import React from 'react';
 import { TabNavigator, StackNavigator } from 'react-navigation';
-import { Icon } from 'react-native-elements';
+import ActivatableImage from '../ActivatableImage';
+import colors from '../../objects/colors';
 
 // import Header from './HeaderRouter';
 
@@ -12,7 +13,7 @@ import PostDemand from '../../containers/PostDemand/';
 import DemandDetail from '../../containers/DemandDetail/';
 import ProjectDetail from '../../containers/ProjectDetail/';
 import PostProject from '../../containers/PostProject/';
-import More from '../../containers/More/';
+import Neighbourhood from '../../containers/Neighbourhood/';
 import MessageDetail from '../../containers/MessageDetail/';
 import Notifications from '../../containers/Notifications/';
 
@@ -72,28 +73,47 @@ const TabBar = TabNavigator({
     screen: ExploreStack,
     navigationOptions: {
       tabBarLabel: 'Buren',
-      tabBarIcon: ({ tintColor }) => <Icon name={'list'} size={35} color={tintColor} />,
+      tabBarIcon: ({ focused }) => <ActivatableImage icon={'explore'} size={35} active={focused} />,
     },
   },
   Messages: {
     screen: MessagesStack,
     navigationOptions: {
       tabBarLabel: 'Berichten',
-      tabBarIcon: ({ tintColor }) => <Icon name={'inbox'} size={35} color={tintColor} />,
+      tabBarIcon: ({ focused }) => <ActivatableImage icon={'messages'} size={35} active={focused} />,
+    },
+  },
+  Neighbourhood: {
+    screen: Neighbourhood,
+    navigationOptions: {
+      tabBarLabel: 'Buurt',
+      tabBarIcon: ({ focused }) => <ActivatableImage icon={'neighbourhood'} size={35} active={focused} />,
     },
   },
   Profile: {
     screen: Profile,
     navigationOptions: {
       tabBarLabel: 'Profiel',
-      tabBarIcon: ({ tintColor }) => <Icon name={'account-circle'} size={35} color={tintColor} />,
+      tabBarIcon: ({ focused }) => <ActivatableImage icon={'profile'} size={35} active={focused} />,
     },
   },
-  More: {
-    screen: More,
-    navigationOptions: {
-      tabBarLabel: 'Meer',
-      tabBarIcon: ({ tintColor }) => <Icon name={'more'} size={35} color={tintColor} />,
+}, {
+  tabBarOptions: {
+    activeTintColor: colors.tabBarActiveTintColor,
+    inactiveTintColor: colors.tabBarInactiveTintColor,
+    backgroundColor: colors.headerBackground,
+    // showLabel: false,
+    iconStyle: {
+      paddingRight: 10,
+    },
+    tabStyle: {
+      height: 50,
+      justifyContent: 'center',
+      alignItems: 'center',
+    },
+    labelStyle: {
+      fontFamily: 'calibre-medium',
+      fontSize: 12,
     },
   },
 });

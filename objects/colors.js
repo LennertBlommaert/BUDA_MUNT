@@ -35,6 +35,9 @@ const colors = {
 
   addProjectButtonBackground: '#fff',
   addProjectButtonText: '#6480FF',
+
+  tabBarActiveTintColor: '#000',
+  tabBarInactiveTintColor: '#A6A6A6',
 };
 
 export default colors;

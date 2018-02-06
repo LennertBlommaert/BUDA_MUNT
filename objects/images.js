@@ -45,6 +45,22 @@ import creatief from '../assets/img/tags/creatief.png';
 import ontspanningSelected from '../assets/img/tags/ontspanning_selected.png';
 import ontspanning from '../assets/img/tags/ontspanning.png';
 
+// Tab bar
+import messagesInactive from '../assets/img/messages_tab_inactive.png';
+import messages from '../assets/img/messages_tab.png';
+
+import exploreInactive from '../assets/img/explore_tab_inactive.png';
+import explore from '../assets/img/explore_tab.png';
+
+import neighbourhoodInactive from '../assets/img/neighbourhood_tab_inactive.png';
+import neighbourhood from '../assets/img/neighbourhood_tab.png';
+
+import payInactive from '../assets/img/pay_tab_inactive.png';
+import pay from '../assets/img/pay_tab.png';
+
+import profileInactive from '../assets/img/profile_tab_inactive.png';
+import profile from '../assets/img/profile_tab.png';
+
 const images = {
   addDream: {
     inactive: addDreamInactive,
@@ -55,6 +71,29 @@ const images = {
     inactive: addProjectInactive,
     active: addProject,
   },
+
+  // Tab bar
+  messages: {
+    inactive: messagesInactive,
+    active: messages,
+  },
+  explore: {
+    inactive: exploreInactive,
+    active: explore,
+  },
+  profile: {
+    inactive: profileInactive,
+    active: profile,
+  },
+  neighbourhood: {
+    inactive: neighbourhoodInactive,
+    active: neighbourhood,
+  },
+  pay: {
+    inactive: payInactive,
+    active: pay,
+  },
+
   // Tags
   huishouden: {
     inactive: huishouden,
