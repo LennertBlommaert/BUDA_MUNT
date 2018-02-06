@@ -1,16 +1,36 @@
 import React from 'react';
-import { Text } from 'react-native';
-import { object } from 'prop-types';
-import Screen from '../../components/Screen';
+import { StyleSheet, View } from 'react-native';
+import { inject, observer } from 'mobx-react/native';
+import { object, bool } from 'prop-types';
+// import PostProjectButton from './PostDemandButton';
+import Header from './Header/';
+import colors from '../../objects/colors';
+import InputAndProgress from './InputAndProgress/';
+import Summary from './Summary/';
 
-const PostDemand = ({ navigation }) => (
-  <Screen navigation={navigation}>
-    <Text>PostProject</Text>
-  </Screen>
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: colors.postDemandBackground,
+    alignItems: 'center',
+    justifyContent: 'space-between',
+  },
+});
+
+const PostProject = ({ navigation, endOfInputsPostProject }) => (
+  <View style={styles.container}>
+    <Header navigation={navigation} />
+    {endOfInputsPostProject ? <Summary navigation={navigation} /> : <InputAndProgress />}
+  </View>
 );
 
-PostDemand.propTypes = {
+PostProject.propTypes = {
   navigation: object.isRequired,
+  endOfInputsPostProject: bool.isRequired,
 };
 
-export default PostDemand;
+export default inject(
+  ({ store }) => ({ endOfInputsPostProject: store.endOfInputsPostProject }),
+)(
+  observer(PostProject),
+);

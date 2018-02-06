@@ -35,6 +35,9 @@ const ExploreStack = StackNavigator({
   },
   PostProject: {
     screen: PostProject,
+    navigationOptions: {
+      tabBarVisible: false,
+    },
   },
   DemandDetail: {
     screen: DemandDetail,

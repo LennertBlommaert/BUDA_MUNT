@@ -18,7 +18,7 @@ const styles = StyleSheet.create({
 
 const Tab = ({ children, routeName, navigation, active }) => {
   const onTabPress = () => {
-    navigation.navigate(routeName);
+    if (!active) navigation.navigate(routeName);
   };
 
   return (

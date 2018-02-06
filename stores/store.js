@@ -35,30 +35,6 @@ class Store {
   @observable
   password = 'testtest'
 
-  // Post demand
-  @observable
-  title = ''
-
-  @observable
-  desc = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
-
-  @observable
-  reward = 0
-
-  minReward = 0
-
-  @computed
-  get maxReward() {
-    return this.user.balance;
-  }
-
-  @computed
-  get rewardToTime() {
-    const minutes = this.reward % 60;
-    const hours = (this.reward - minutes) / 60;
-    return `${hours} ${hours === 1 ? 'uur' : 'uren'} en ${minutes} ${minutes === 1 ? 'minuut' : 'minuten'}`;
-  }
-
   // Chat
   @observable
   threadMessages = []
@@ -130,6 +106,17 @@ class Store {
   _addProjects = (projects) => {
     // Firebase db works with objects
     this.projects = Object.keys(projects).map(key => new Project(projects[key], key));
+  }
+
+  postProject = () => {
+    if (this.user.uid !== '') {
+      this._postProjectData();
+    }
+  }
+
+  _postProjectData = () => {
+    const data = { name: this.titlePostProject, desc: this.descPostProject, userId: `${this.user.uid}` };
+    return this.fb.postDataSingleRef({ data, updateRef: 'projects' });
   }
 
   // Capacities
@@ -251,9 +238,93 @@ class Store {
     });
   }
 
+  // Post projects
+  @observable
+  titlePostProject = ''
+
+  @observable
+  descPostProject = ''
+
+  @observable
+  currentInputIndexPostProject = 0;
+
+  maxInputIndexPostProject = 1;
+
+  @computed
+  get enableNextInputButtonPostProject() {
+    if (this.currentInputIndex === 0) return this.titlePostProject.length > 0;
+    if (this.currentInputIndex === 1) return this.descPostProject.length > 0;
+    return true;
+  }
+
+  @computed
+  get enablePreviousInputButtonPostProject() {
+    return this.currentInputIndexPostProject > 0;
+  }
+
+  @action
+  nextInputIndexPostProject = () => {
+    // if (this.currentInputIndex < this.maxInputIndex) this.currentInputIndex += 1;
+    this.currentInputIndexPostProject += 1;
+  }
+
+  @action
+  previousInputIndexPostProject = () => {
+    if (this.currentInputIndexPostProject > 0) this.currentInputIndexPostProject -= 1;
+  }
+
+  @computed
+  get endOfInputsPostProject() {
+    return this.currentInputIndexPostProject > this.maxInputIndexPostProject;
+  }
+
+  @action
+  setTitlePostProject = (title) => {
+    this.titlePostProject = title;
+  }
+
+  @action
+  setDescPostProject = (desc) => {
+    this.descPostProject = desc;
+  }
+
+  @computed
+  get truncatedDescPostProject() {
+    return `${this.descPostProject.substring(0, 240)}${this.descPostProject.length > 240 ? '...' : ''}`;
+  }
+
+  @action
+  clearPostProjectForm = () => {
+    this.titlePostProject = '';
+    this.descPostProject = '';
+  };
+
   // Post demands
   @observable
-  currentInputIndex = 4;
+  title = ''
+
+  @observable
+  desc = ''
+
+  @observable
+  reward = 0
+
+  minReward = 0
+
+  @computed
+  get maxReward() {
+    return this.user.balance;
+  }
+
+  @computed
+  get rewardToTime() {
+    const minutes = this.reward % 60;
+    const hours = (this.reward - minutes) / 60;
+    return `${hours} ${hours === 1 ? 'uur' : 'uren'} en ${minutes} ${minutes === 1 ? 'minuut' : 'minuten'}`;
+  }
+
+  @observable
+  currentInputIndex = 0;
 
   maxInputIndex = 3;
 
@@ -300,6 +371,19 @@ class Store {
   }
 
   @action
+  clearPostDemandForm = () => {
+    this.title = '';
+    this.desc = '';
+    this.reward = 0;
+    this.currentInputIndex = 0;
+  };
+
+  @computed
+  get endOfInputs() {
+    return this.currentInputIndex > this.maxInputIndex;
+  }
+
+  @action
   setReward = (reward) => {
     if (reward === '') reward = this.minReward;
 
@@ -315,14 +399,6 @@ class Store {
   toggleIsBucketListItem = () => {
     this.isBucketListItem = !this.isBucketListItem;
   }
-
-  @action
-  clearPostDemandForm = () => {
-    this.title = '';
-    this.desc = '';
-    this.reward = 0;
-    this.currentInputIndex = 0;
-  };
 
   @action
   toggleCapacitySelected = (uid) => {
@@ -346,11 +422,6 @@ class Store {
   @computed
   get selectedCapacities() {
     return this.capacities.filter(c => c.selected);
-  }
-
-  @computed
-  get endOfInputs() {
-    return this.currentInputIndex > this.maxInputIndex;
   }
 
   // DemandDetail
