@@ -2,8 +2,8 @@ import React from 'react';
 import { View, TextInput, StyleSheet } from 'react-native';
 import { func, string } from 'prop-types';
 import { inject, observer } from 'mobx-react/native';
-import colors from '../../objects/colors';
-import HeaderText from '../../components/HeaderText';
+import colors from '../../../objects/colors';
+import HeaderText from '../../../components/HeaderText';
 
 const styles = StyleSheet.create({
   textInput: {

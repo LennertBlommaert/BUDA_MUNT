@@ -34,6 +34,13 @@ class Button extends Component {
         borderBottomRightRadius: 5,
         borderTopLeftRadius: tileButton ? 0 : 5,
         borderTopRightRadius: tileButton ? 0 : 5,
+        shadowColor: tileButton ? 'transparent' : colors.shadowColor,
+        shadowOffset: {
+          width: 0,
+          height: 3,
+        },
+        shadowRadius: 5,
+        shadowOpacity: 0.13,
       },
     });
   }
@@ -46,13 +53,13 @@ class Button extends Component {
   }
 
   render() {
-    const { icon, children } = this.props;
+    const { icon, children, style, color } = this.props;
     const { active } = this.state;
 
     return (
-      <TouchableOpacity onPress={() => this.onPress()} style={this.styles.button}>
+      <TouchableOpacity onPress={() => this.onPress()} style={[this.styles.button, style]}>
         <ActivatableImage icon={icon} active={active} />
-        <ButtonText>{children}</ButtonText>
+        <ButtonText color={color}>{children}</ButtonText>
       </TouchableOpacity>
     );
   }
@@ -63,11 +70,15 @@ Button.propTypes = {
   onPress: func.isRequired,
   tileButton: bool.isRequired,
   icon: string.isRequired,
+  style: any.isRequired,
+  color: string.isRequired,
 };
 
 Button.defaultProps = {
   tileButton: false,
-  icon: '',
+  icon: 'addDream',
+  style: {},
+  color: colors.buttonText,
 };
 
 export default Button;

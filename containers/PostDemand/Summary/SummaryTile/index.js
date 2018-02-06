@@ -10,6 +10,7 @@ import Capacities from './Capacities';
 const styles = StyleSheet.create({
   container: {
     flex: 0,
+    paddingBottom: 20,
   },
   textContainer: {
     paddingLeft: 20,

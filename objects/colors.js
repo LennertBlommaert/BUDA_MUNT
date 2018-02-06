@@ -20,7 +20,8 @@ const colors = {
   // selectedTagBackground: '#DEFBBE',
   selectedTagText: '#6BCC00',
 
-  background: '#eee',
+  // background: '#eee',
+  background: '#EEFAFF',
   headerBackground: '#fff',
   postDemandBackground: '#f9f9f9',
   textInputBackground: '#fff',
@@ -29,6 +30,11 @@ const colors = {
 
   progressInActive: '#E0E0E0',
   progressActive: '#6480FF',
+
+  addDemandButtonBackground: '#6480FF',
+
+  addProjectButtonBackground: '#fff',
+  addProjectButtonText: '#6480FF',
 };
 
 export default colors;

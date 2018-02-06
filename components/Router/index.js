@@ -17,16 +17,16 @@ import MessageDetail from '../../containers/MessageDetail/';
 import Notifications from '../../containers/Notifications/';
 
 const ExploreStack = StackNavigator({
-  PostDemand: {
-    screen: PostDemand,
-    navigationOptions: {
-      tabBarVisible: false,
-    },
-  },
   Explore: {
     screen: Explore,
     navigationOptions: {
       // header: Header,
+    },
+  },
+  PostDemand: {
+    screen: PostDemand,
+    navigationOptions: {
+      tabBarVisible: false,
     },
   },
   PostProject: {

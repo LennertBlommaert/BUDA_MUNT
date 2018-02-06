@@ -2,7 +2,7 @@ import React from 'react';
 import { StyleSheet, View } from 'react-native';
 import Inputs from './Inputs';
 import ProgressBar from './ProgressBar';
-import InputsNavigator from './InputsNavigator';
+import InputsNavigator from './InputsNavigator/';
 
 const styles = StyleSheet.create({
   progressContainer: {
@@ -16,7 +16,7 @@ const styles = StyleSheet.create({
   },
 });
 
-const InputsAndProgress = () => (
+const InputAndProgress = () => (
   <View style={styles.inputsAndProgressContainer}>
     <Inputs />
     <View style={styles.progressContainer}>
@@ -26,6 +26,6 @@ const InputsAndProgress = () => (
   </View>
 );
 
-InputsAndProgress.propTypes = {};
+InputAndProgress.propTypes = {};
 
-export default InputsAndProgress;
+export default InputAndProgress;

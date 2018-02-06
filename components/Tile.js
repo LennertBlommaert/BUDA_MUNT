@@ -9,7 +9,6 @@ const styles = StyleSheet.create({
     backgroundColor: colors.tile,
     width: 335,
     paddingTop: 20,
-    paddingBottom: 20,
     marginBottom: 50,
     borderRadius: 5,
     shadowColor: colors.shadowColor,

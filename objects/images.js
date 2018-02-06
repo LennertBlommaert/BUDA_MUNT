@@ -1,69 +1,112 @@
+import addDream from '../assets/img/add_dream.png';
 import addDreamInactive from '../assets/img/add_dream_inactive.png';
 import addDreamInactiveInverted from '../assets/img/add_dream_inactive_inverted.png';
+
+import addProject from '../assets/img/add_project.png';
+import addProjectInactive from '../assets/img/add_project_inactive.png';
 
 // Tags
 import gezelschap from '../assets/img/tags/gezelschap.png';
 import gezelschapSelected from '../assets/img/tags/gezelschap_selected.png';
 
+import huishoudenSelected from '../assets/img/tags/huishouden_selected.png';
+import huishouden from '../assets/img/tags/huishouden.png';
+
+import verzorgingSelected from '../assets/img/tags/verzorging_selected.png';
+import verzorging from '../assets/img/tags/verzorging.png';
+
+import vervoerSelected from '../assets/img/tags/vervoer_selected.png';
+import vervoer from '../assets/img/tags/vervoer.png';
+
+import schoolSelected from '../assets/img/tags/school_selected.png';
+import school from '../assets/img/tags/school.png';
+
+import taalSelected from '../assets/img/tags/taal_selected.png';
+import taal from '../assets/img/tags/taal.png';
+
+import administratieSelected from '../assets/img/tags/administratie_selected.png';
+import administratie from '../assets/img/tags/administratie.png';
+
+import sociaalSelected from '../assets/img/tags/sociaal_selected.png';
+import sociaal from '../assets/img/tags/sociaal.png';
+
+import technologieSelected from '../assets/img/tags/technologie_selected.png';
+import technologie from '../assets/img/tags/technologie.png';
+
+import klussenSelected from '../assets/img/tags/klussen_selected.png';
+import klussen from '../assets/img/tags/klussen.png';
+
+import tuinierenSelected from '../assets/img/tags/tuinieren_selected.png';
+import tuinieren from '../assets/img/tags/tuinieren.png';
+
+import creatiefSelected from '../assets/img/tags/creatief_selected.png';
+import creatief from '../assets/img/tags/creatief.png';
+
+import ontspanningSelected from '../assets/img/tags/ontspanning_selected.png';
+import ontspanning from '../assets/img/tags/ontspanning.png';
+
 const images = {
   addDream: {
     inactive: addDreamInactive,
-    active: addDreamInactiveInverted,
+    active: addDream,
     inactiveInverted: addDreamInactiveInverted,
   },
-  gezelschap: {
-    unselected: gezelschap,
-    selected: gezelschapSelected,
+  addProject: {
+    inactive: addProjectInactive,
+    active: addProject,
   },
-
   // Tags
   huishouden: {
-    unselected: require('../assets/img/tags/huishouden.png'),
-    selected: require('../assets/img/tags/huishouden_selected.png'),
+    inactive: huishouden,
+    active: huishoudenSelected,
+  },
+  gezelschap: {
+    inactive: gezelschap,
+    active: gezelschapSelected,
   },
   verzorging: {
-    unselected: require('../assets/img/tags/verzorging.png'),
-    selected: require('../assets/img/tags/verzorging_selected.png'),
+    inactive: verzorging,
+    active: verzorgingSelected,
   },
   vervoer: {
-    unselected: require('../assets/img/tags/vervoer.png'),
-    selected: require('../assets/img/tags/vervoer_selected.png'),
+    inactive: vervoer,
+    active: vervoerSelected,
   },
   school: {
-    unselected: require('../assets/img/tags/school.png'),
-    selected: require('../assets/img/tags/school_selected.png'),
+    inactive: school,
+    active: schoolSelected,
   },
   taal: {
-    unselected: require('../assets/img/tags/taal.png'),
-    selected: require('../assets/img/tags/taal_selected.png'),
+    inactive: taal,
+    active: taalSelected,
   },
   sociaal: {
-    unselected: require('../assets/img/tags/sociaal.png'),
-    selected: require('../assets/img/tags/sociaal_selected.png'),
+    inactive: sociaal,
+    active: sociaalSelected,
   },
   technologie: {
-    unselected: require('../assets/img/tags/technologie.png'),
-    selected: require('../assets/img/tags/technologie_selected.png'),
+    inactive: technologie,
+    active: technologieSelected,
   },
   administratie: {
-    unselected: require('../assets/img/tags/administratie.png'),
-    selected: require('../assets/img/tags/administratie_selected.png'),
+    inactive: administratie,
+    active: administratieSelected,
   },
   tuinieren: {
-    unselected: require('../assets/img/tags/tuinieren.png'),
-    selected: require('../assets/img/tags/tuinieren_selected.png'),
+    inactive: tuinieren,
+    active: tuinierenSelected,
   },
   klussen: {
-    unselected: require('../assets/img/tags/klussen.png'),
-    selected: require('../assets/img/tags/klussen_selected.png'),
+    inactive: klussen,
+    active: klussenSelected,
   },
   creatief: {
-    unselected: require('../assets/img/tags/creatief.png'),
-    selected: require('../assets/img/tags/creatief_selected.png'),
+    inactive: creatief,
+    active: creatiefSelected,
   },
   ontspanning: {
-    unselected: require('../assets/img/tags/ontspanning.png'),
-    selected: require('../assets/img/tags/ontspanning_selected.png'),
+    inactive: ontspanning,
+    active: ontspanningSelected,
   },
 };
 

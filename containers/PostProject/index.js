@@ -5,7 +5,7 @@ import Screen from '../../components/Screen';
 
 const PostDemand = ({ navigation }) => (
   <Screen navigation={navigation}>
-    <Text>PostDemand</Text>
+    <Text>PostProject</Text>
   </Screen>
 );
 

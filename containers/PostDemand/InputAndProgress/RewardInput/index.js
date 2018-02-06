@@ -1,7 +1,7 @@
 import React from 'react';
 import { View } from 'react-native';
-import HeaderText from '../../../components/HeaderText';
-import BodyText from '../../../components/BodyText';
+import HeaderText from '../../../../components/HeaderText';
+import BodyText from '../../../../components/BodyText';
 import InputContainer from './InputContainer';
 import InputInfo from './InputInfo';
 

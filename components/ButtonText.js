@@ -3,13 +3,12 @@
 
 import React from 'react';
 import { Text, StyleSheet } from 'react-native';
-import { any, bool } from 'prop-types';
-import colors from '../objects/colors';
+import { any, bool, string } from 'prop-types';
 
-const ButtonText = ({ children, italic }) => {
+const ButtonText = ({ children, italic, color }) => {
   const styles = StyleSheet.create({
     buttonText: {
-      color: colors.buttonText,
+      color,
       fontFamily: `calibre-medium${italic ? '-italic' : ''}`,
       fontSize: 20,
     },
@@ -20,6 +19,7 @@ const ButtonText = ({ children, italic }) => {
 
 ButtonText.propTypes = {
   children: any.isRequired,
+  color: string.isRequired,
   italic: bool,
 };
 

@@ -6,11 +6,27 @@ import BodyText from '../../../components/BodyText';
 import HeaderText from '../../../components/HeaderText';
 import Button from '../../../components/Button';
 import SummaryTile from './SummaryTile/';
+import colors from '../../../objects/colors';
 
 const styles = StyleSheet.create({
   container: {
+    flex: 0.8,
     alignItems: 'center',
-    marginBottom: 40,
+    justifyContent: 'space-between',
+    marginBottom: 50,
+  },
+  tileContainer: {
+    alignItems: 'center',
+  },
+  buttonContainer: {
+    alignItems: 'center',
+  },
+  headerText: {
+    marginBottom: 10,
+    color: colors.progressActive,
+  },
+  button: {
+    marginBottom: 10,
   },
 });
 
@@ -22,12 +38,18 @@ const Summary = ({ postDemand, navigation }) => {
 
   return (
     <View style={styles.container}>
-      <SummaryTile />
-      <HeaderText fontSize={18}>We sturen je droom uit naar de rest van de buurt</HeaderText>
-      <BodyText italic>Je kan hem steeds aanpassen bij je profiel</BodyText>
-      <Button icon={'addDream'} onPress={onPressButton}>
-        Plaats mijn droom
-      </Button>
+      {/* <HeaderText style={styles.headerText} fontSize={18}>We sturen je droom uit naar de rest van de buurt</HeaderText> */}
+      <View style={styles.tileContainer}>
+        <HeaderText style={styles.headerText} fontSize={32}>Jouw droom</HeaderText>
+        <SummaryTile />
+      </View>
+
+      <View style={styles.buttonContainer}>
+        <Button style={styles.button} icon={'addDream'} onPress={onPressButton}>
+          Plaats mijn droom
+        </Button>
+        <BodyText opacity={0.7} style={styles.bodyText} italic>Je kan hem steeds aanpassen bij je profiel</BodyText>
+      </View>
     </View>
   );
 };

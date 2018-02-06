@@ -1,6 +1,6 @@
 import React from 'react';
 import { inject, observer } from 'mobx-react/native';
-import BodyText from '../../../../components/BodyText';
+import BodyText from '../../../../../components/BodyText';
 
 const RewardToTime = ({ rewardToTime, reward }) => (
   <BodyText opacity={0.7} italic>

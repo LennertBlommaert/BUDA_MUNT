@@ -6,7 +6,7 @@ import { Text, StyleSheet } from 'react-native';
 import { any, bool, number } from 'prop-types';
 import colors from '../objects/colors';
 
-const HeaderText = ({ children, italic, fontSize }) => {
+const HeaderText = ({ children, italic, fontSize, style }) => {
   const styles = StyleSheet.create({
     bodyText: {
       color: colors.text,
@@ -15,18 +15,20 @@ const HeaderText = ({ children, italic, fontSize }) => {
     },
   });
 
-  return <Text style={styles.bodyText}>{children}</Text>;
+  return <Text style={[styles.bodyText, style]}>{children}</Text>;
 };
 
 HeaderText.propTypes = {
   children: any.isRequired,
   italic: bool.isRequired,
   fontSize: number.isRequired,
+  style: any.isRequired,
 };
 
 HeaderText.defaultProps = {
   italic: false,
   fontSize: 24,
+  style: {},
 };
 
 export default HeaderText;

@@ -4,7 +4,7 @@ import React from 'react';
 import { View, StyleSheet } from 'react-native';
 import { inject, observer } from 'mobx-react/native';
 import { number } from 'prop-types';
-import colors from '../../objects/colors';
+import colors from '../../../objects/colors';
 
 const styles = StyleSheet.create({
   container: {

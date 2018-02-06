@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Image, StyleSheet } from 'react-native';
 import HeaderText from '../../../components/HeaderText';
-import dream from '../../../assets/img/add_dream.png';
+import dream from '../../../assets/img/add_dream_inactive_inverted.png';
 import CloseButton from './CloseButton';
 
 const styles = StyleSheet.create({

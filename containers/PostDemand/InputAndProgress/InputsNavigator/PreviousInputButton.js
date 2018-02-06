@@ -2,8 +2,8 @@ import React from 'react';
 import { Text, Image, TouchableOpacity, StyleSheet } from 'react-native';
 import { inject, observer } from 'mobx-react/native';
 import { bool, func } from 'prop-types';
-import colors from '../../../objects/colors';
-import arrow from '../../../assets/img/left_arrow_active.png';
+import colors from '../../../../objects/colors';
+import arrow from '../../../../assets/img/left_arrow_active.png';
 
 const PreviousInputButton = ({ enablePreviousInputButton, previousInputIndex }) => {
   const styles = StyleSheet.create({

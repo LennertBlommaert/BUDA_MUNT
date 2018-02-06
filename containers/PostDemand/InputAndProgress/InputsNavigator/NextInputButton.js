@@ -2,9 +2,9 @@ import React from 'react';
 import { Text, Image, TouchableOpacity, StyleSheet } from 'react-native';
 import { inject, observer } from 'mobx-react/native';
 import { bool, func } from 'prop-types';
-import colors from '../../../objects/colors';
-import arrowActive from '../../../assets/img/right_arrow_active.png';
-import arrowInActive from '../../../assets/img/right_arrow_inactive.png';
+import colors from '../../../../objects/colors';
+import arrowActive from '../../../../assets/img/right_arrow_active.png';
+import arrowInActive from '../../../../assets/img/right_arrow_inactive.png';
 
 const NextInputButton = ({ enableNextInputButton, nextInputIndex }) => {
   const styles = StyleSheet.create({

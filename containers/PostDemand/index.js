@@ -5,7 +5,7 @@ import { object, bool } from 'prop-types';
 // import PostDemandButton from './PostDemandButton';
 import Header from './Header/';
 import colors from '../../objects/colors';
-import InputsAndProgress from './InputsAndProgress';
+import InputAndProgress from './InputAndProgress/';
 import Summary from './Summary/';
 
 const styles = StyleSheet.create({
@@ -20,7 +20,7 @@ const styles = StyleSheet.create({
 const PostDemand = ({ navigation, endOfInputs }) => (
   <View style={styles.container}>
     <Header navigation={navigation} />
-    {endOfInputs ? <Summary navigation={navigation} /> : <InputsAndProgress />}
+    {endOfInputs ? <Summary navigation={navigation} /> : <InputAndProgress />}
   </View>
 );
 

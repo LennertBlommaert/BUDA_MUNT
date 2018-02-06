@@ -1,26 +1,32 @@
 /* eslint-disable react/jsx-filename-extension */
 
 import React from 'react';
-import { ScrollView } from 'react-native';
+import { View, ScrollView, StyleSheet } from 'react-native';
 import { object } from 'prop-types';
 
 import FeedList from './FeedList';
 
 import Screen from '../../components/Screen';
-import Button from '../../components/Button';
+import NavigateToPostDemandButton from './NavigateToPostDemandButton';
+import NavigateToPostProjectButton from './NavigateToPostProjectButton';
+
+const styles = StyleSheet.create({
+  buttonContainer: {
+    marginBottom: 30,
+    marginTop: 30,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+});
 
 const Explore = ({ navigation }) => {
-  const onPressNavigateToPostDemand = () => {
-    navigation.navigate('PostDemand');
-    // navigation.navigate('Profile', { name: 'Jane' });
-  };
-
   return (
     <Screen navigation={navigation}>
       <ScrollView>
-        <Button onPress={onPressNavigateToPostDemand}>
-          plaats een zoekertje
-        </Button>
+        <View style={styles.buttonContainer}>
+          <NavigateToPostDemandButton navigation={navigation} />
+          <NavigateToPostProjectButton navigation={navigation} />
+        </View>
         <FeedList navigation={navigation} />
       </ScrollView>
     </Screen>

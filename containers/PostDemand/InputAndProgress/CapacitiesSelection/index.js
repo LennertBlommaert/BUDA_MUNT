@@ -2,9 +2,9 @@ import React from 'react';
 import { View, StyleSheet } from 'react-native';
 import { inject, observer, PropTypes } from 'mobx-react/native';
 import { func } from 'prop-types';
-import Tag from '../../../components/Tag';
-import HeaderText from '../../../components/HeaderText';
-import BodyText from '../../../components/BodyText';
+import Tag from '../../../../components/Tag';
+import HeaderText from '../../../../components/HeaderText';
+import BodyText from '../../../../components/BodyText';
 
 const styles = StyleSheet.create({
   container: {

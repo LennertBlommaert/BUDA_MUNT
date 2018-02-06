@@ -2,8 +2,8 @@ import React from 'react';
 import { StyleSheet } from 'react-native';
 import { inject, observer } from 'mobx-react/native';
 import { number } from 'prop-types';
-import BodyText from '../../../../components/BodyText';
-import colors from '../../../../objects/colors';
+import BodyText from '../../../../../components/BodyText';
+import colors from '../../../../../objects/colors';
 
 const styles = StyleSheet.create({
   text: {

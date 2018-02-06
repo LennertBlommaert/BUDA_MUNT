@@ -3,10 +3,10 @@ import { func, number } from 'prop-types';
 import { Image, View, TextInput, StyleSheet } from 'react-native';
 import { inject, observer } from 'mobx-react/native';
 
-import colors from '../../../objects/colors';
+import colors from '../../../../objects/colors';
 
-import coinImage from '../../../assets/img/coin_gold.png';
-import coinImageLimit from '../../../assets/img/coin_red.png';
+import coinImage from '../../../../assets/img/coin_gold.png';
+import coinImageLimit from '../../../../assets/img/coin_red.png';
 
 const InputContainer = ({ setReward, reward, maxReward }) => {
   const styles = StyleSheet.create({

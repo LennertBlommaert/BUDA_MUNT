@@ -1,6 +1,6 @@
 import React from 'react';
 import { Text, StyleSheet, TouchableOpacity } from 'react-native';
-import { any, bool, func, object } from 'prop-types';
+import { any, bool, func } from 'prop-types';
 import colors from '../objects/colors';
 import ActivatableImage from '../components/ActivatableImage';
 
@@ -38,7 +38,7 @@ const Tag = ({ children, selected, onPress, style }) => {
 
   return (
     <TouchableOpacity onPress={onPress} style={[styles.tag, style]}>
-      <ActivatableImage active={selected} />
+      <ActivatableImage icon={children} active={selected} />
       <Text style={styles.text}>{children}</Text>
     </TouchableOpacity>
   );
@@ -47,8 +47,8 @@ const Tag = ({ children, selected, onPress, style }) => {
 Tag.propTypes = {
   children: any.isRequired,
   onPress: func.isRequired,
-  selected: bool,
-  style: object.isRequired,
+  selected: bool.isRequired,
+  style: any.isRequired,
 };
 
 Tag.defaultProps = {
