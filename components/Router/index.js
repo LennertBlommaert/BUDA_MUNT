@@ -17,6 +17,8 @@ import Neighbourhood from '../../containers/Neighbourhood/';
 import MessageDetail from '../../containers/MessageDetail/';
 import Notifications from '../../containers/Notifications/';
 
+import TabBar from './TabBar/';
+
 const ExploreStack = StackNavigator({
   Explore: {
     screen: Explore,
@@ -68,36 +70,37 @@ const MessagesStack = StackNavigator({
   headerMode: 'none',
 });
 
-const TabBar = TabNavigator({
+const TabBarStack = TabNavigator({
   Explore: {
     screen: ExploreStack,
     navigationOptions: {
       tabBarLabel: 'Buren',
-      tabBarIcon: ({ focused }) => <ActivatableImage icon={'explore'} size={35} active={focused} />,
+      tabBarIcon: ({ focused }) => <ActivatableImage icon={'explore'} active={focused} />,
     },
   },
   Messages: {
     screen: MessagesStack,
     navigationOptions: {
       tabBarLabel: 'Berichten',
-      tabBarIcon: ({ focused }) => <ActivatableImage icon={'messages'} size={35} active={focused} />,
+      tabBarIcon: ({ focused }) => <ActivatableImage icon={'messages'} active={focused} />,
     },
   },
   Neighbourhood: {
     screen: Neighbourhood,
     navigationOptions: {
       tabBarLabel: 'Buurt',
-      tabBarIcon: ({ focused }) => <ActivatableImage icon={'neighbourhood'} size={35} active={focused} />,
+      tabBarIcon: ({ focused }) => <ActivatableImage icon={'neighbourhood'} active={focused} />,
     },
   },
   Profile: {
     screen: Profile,
     navigationOptions: {
       tabBarLabel: 'Profiel',
-      tabBarIcon: ({ focused }) => <ActivatableImage icon={'profile'} size={35} active={focused} />,
+      tabBarIcon: ({ focused }) => <ActivatableImage icon={'profile'} active={focused} />,
     },
   },
 }, {
+  tabBarComponent: TabBar,
   tabBarOptions: {
     activeTintColor: colors.tabBarActiveTintColor,
     inactiveTintColor: colors.tabBarInactiveTintColor,
@@ -118,4 +121,4 @@ const TabBar = TabNavigator({
   },
 });
 
-export default TabBar;
+export default TabBarStack;
