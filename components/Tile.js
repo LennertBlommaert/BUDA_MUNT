@@ -9,6 +9,7 @@ const styles = StyleSheet.create({
     backgroundColor: colors.tile,
     width: 335,
     paddingTop: 20,
+    paddingBottom: 20,
     marginBottom: 50,
     borderRadius: 5,
     shadowColor: colors.shadowColor,
@@ -21,8 +22,8 @@ const styles = StyleSheet.create({
   },
 });
 
-const Tile = ({ children }) => (
-  <View style={styles.tile}>{children}</View>
+const Tile = ({ children, style }) => (
+  <View style={[styles.tile, style]}>{children}</View>
 );
 
 Tile.propTypes = {

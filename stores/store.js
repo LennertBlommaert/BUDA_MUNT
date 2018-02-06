@@ -37,13 +37,13 @@ class Store {
 
   // Post demand
   @observable
-  title = ''
+  title = 'Test'
 
   @observable
-  desc = ''
+  desc = 'Test de tester teste teven tagen tang te test tormulier'
 
   @observable
-  reward = 0
+  reward = 10
 
   minReward = 0
 
@@ -82,10 +82,10 @@ class Store {
   }
 
   updateData = () => {
-    this.updateProjects();
-    this.updateDemands();
+    // this.updateProjects();
+    // this.updateDemands();
     this.updateCapacities();
-    this.updateUserThreads();
+    // this.updateUserThreads();
     // this.updateThreadMessages();
   }
 
@@ -253,7 +253,7 @@ class Store {
 
   // Post demands
   @observable
-  currentInputIndex = 3;
+  currentInputIndex = 4;
 
   maxInputIndex = 3;
 

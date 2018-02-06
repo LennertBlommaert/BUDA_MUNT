@@ -6,11 +6,11 @@ import { object, bool } from 'prop-types';
 import Header from './Header/';
 import colors from '../../objects/colors';
 import InputsAndProgress from './InputsAndProgress';
+import Summary from './Summary/';
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingBottom: 225,
     backgroundColor: colors.postDemandBackground,
     alignItems: 'center',
     justifyContent: 'space-between',
@@ -20,8 +20,7 @@ const styles = StyleSheet.create({
 const PostDemand = ({ navigation, endOfInputs }) => (
   <View style={styles.container}>
     <Header navigation={navigation} />
-    {console.warn(endOfInputs)}
-    {endOfInputs ? null : <InputsAndProgress />}
+    {endOfInputs ? <Summary navigation={navigation} /> : <InputsAndProgress />}
   </View>
 );
 

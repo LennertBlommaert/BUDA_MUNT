@@ -4,37 +4,49 @@
 // GUIDE: placing italic as a prop sets text in italic
 
 import React from 'react';
-import { Text, Image, StyleSheet } from 'react-native';
-import { any } from 'prop-types';
+import { View, Text, Image, StyleSheet } from 'react-native';
+import { any, number } from 'prop-types';
 import colors from '../objects/colors';
-import coin from '../assets/img/coin.png';
+import coin from '../assets/img/coin_gold.png';
 
-const PriceText = ({ children }) => {
+const PriceText = ({ children, fontSize }) => {
   const styles = StyleSheet.create({
+    container: {
+      flexDirection: 'row',
+      alignItems: 'center',
+    },
     bodyText: {
       color: colors.priceText,
-      fontFamily: 'calibre-regular',
-      fontSize: 24,
+      fontFamily: 'calibre-medium',
+      fontSize,
     },
     coinImage: {
-      width: 11,
-      height: 16,
+      width: 29,
+      height: 30,
+      marginRight: 10,
     },
   });
 
   return (
-    <Text style={styles.bodyText}>
-      {children}
+    <View style={styles.container}>
       <Image
         style={styles.coinImage}
         source={coin}
       />
-    </Text>
+      <Text style={styles.bodyText}>
+        {children}
+      </Text>
+    </View>
   );
 };
 
 PriceText.propTypes = {
   children: any.isRequired,
+  fontSize: number.isRequired,
+};
+
+PriceText.defaultProps = {
+  fontSize: 30,
 };
 
 export default PriceText;

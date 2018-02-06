@@ -4,7 +4,8 @@ const colors = {
   text: '#000',
   buttonText: '#fff',
   textInverted: '#fff',
-  priceText: '#07DE2E',
+  priceText: '#FFD700',
+  // priceText: '#07DE2E',
   coinText: '#FFD700',
   coinTextLimit: '#F0624E',
 
@@ -15,8 +16,9 @@ const colors = {
   unselectedTagBackground: '#fff',
   unselectedTagText: '#505050',
 
-  selectedTagBackground: '#F7ECE4',
-  selectedTagText: '#F47D33',
+  selectedTagBackground: '#fff',
+  // selectedTagBackground: '#DEFBBE',
+  selectedTagText: '#6BCC00',
 
   background: '#eee',
   headerBackground: '#fff',
