@@ -1,5 +1,5 @@
 import React from 'react';
-import { TouchableOpacity, StyleSheet } from 'react-native';
+import { View, TouchableOpacity, StyleSheet } from 'react-native';
 import { string } from 'prop-types';
 
 import BodyText from './BodyText';
@@ -11,14 +11,21 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
   },
+  textContainer: {
+  },
 });
 
-const UserReference = ({ name, firstName, photoURL }) => (
+const UserReference = ({ name, firstName, topBucketlistItemName, photoURL }) => (
   <TouchableOpacity style={styles.container}>
     <UserImage photoURL={photoURL} />
-    <BodyText>
-      {firstName} {name}
-    </BodyText>
+    <View class={styles.textContainer}>
+      <BodyText>
+        {firstName} {name}
+      </BodyText>
+      <BodyText italic fontSize={16}>
+        {topBucketlistItemName}
+      </BodyText>
+    </View>
   </TouchableOpacity>
 );
 
@@ -26,6 +33,7 @@ UserReference.propTypes = {
   name: string.isRequired,
   firstName: string.isRequired,
   photoURL: string.isRequired,
+  topBucketlistItemName: string.isRequired,
 };
 
 export default UserReference;

@@ -8,15 +8,15 @@ import Inbox from './Inbox';
 import Screen from '../../components/Screen';
 import styles from '../../objects/styles';
 
-const Messages = ({ userThreads, navigation }) => (
+const Threads = ({ userThreads, navigation }) => (
   <Screen style={styles.container} navigation={navigation}>
     {
-      userThreads.length > 0 ? <Inbox /> : <NoContacts />
+      userThreads.length > 0 ? <Inbox navigation={navigation} /> : <NoContacts />
     }
   </Screen>
 );
 
-Messages.propTypes = {
+Threads.propTypes = {
   userThreads: PropTypes.observableArray.isRequired,
   navigation: object.isRequired,
 };
@@ -24,5 +24,5 @@ Messages.propTypes = {
 export default inject(
   ({ store }) => ({ userThreads: store.userThreads }),
 )(
-  observer(Messages),
+  observer(Threads),
 );

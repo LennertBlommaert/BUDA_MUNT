@@ -35,13 +35,6 @@ class Store {
   @observable
   password = 'testtest'
 
-  // Chat
-  @observable
-  threadMessages = []
-
-  @observable
-  userThreads = []
-
   // Demand Detail
   currentDemandDetailUID = '';
 
@@ -89,11 +82,11 @@ class Store {
     this.userThreads.push(new Thread(thread));
   }
 
-  updateProjects = () => {
-    this.fb.threadMessagesRef.on('value', (snapshot) => {
-      if (snapshot.val() !== null) this._addProjects(snapshot.val());
-    });
-  }
+  // updateProjects = () => {
+  //   this.fb.threadMessagesRef.on('value', (snapshot) => {
+  //     if (snapshot.val() !== null) this._addProjects(snapshot.val());
+  //   });
+  // }
 
   // Projects
   updateProjects = () => {
@@ -146,7 +139,14 @@ class Store {
   }
 
   _postDemandData = () => {
-    const data = { name: this.title, desc: this.desc, userId: `${this.user.uid}`, reward: this.reward, isBucketListItem: this.isBucketListItem };
+    const data = {
+      name: this.title,
+      desc: this.desc,
+      userId: `${this.user.uid}`,
+      reward: this.reward,
+      isBucketListItem: this.isBucketListItem ? 1 : 0,
+      isBucketListItem_userId: `${this.isBucketListItem ? 1 : 0}_${this.user.uid}`,
+    };
     return this.fb.postDataSingleRef({ data, updateRef: 'demands' });
   }
 
@@ -202,6 +202,10 @@ class Store {
     this.demands.forEach((d) => {
       this.fb.usersRef.child(d.userId).once('value', (snapshot) => {
         d.user.setProps(snapshot.val());
+
+        this.fb.demandsRef.orderByChild('isBucketListItem_userId').equalTo(`1_${d.userId}`).on('child_added', (snap) => {
+          d.user.setTopBucketListItemName(snap.val());
+        });
       });
     });
   }
@@ -233,9 +237,33 @@ class Store {
         this.updateData();
       });
 
+    this.fb.demandsRef.orderByChild('isBucketListItem_userId').equalTo(`1_${uid}`).on('child_added', (snap) => {
+      this.user.setTopBucketListItemName(snap.val());
+    });
+
     this.fb.userCapacitiesRef.child(uid).on('child_added', (snap) => {
       this.fb.capacitiesRef.child(snap.key).once('value', snapshot => this.user.addCapacity(snapshot.val(), snap.key));
     });
+  }
+
+  // Chat / threads
+  @observable
+  threadMessages = []
+
+  @observable
+  userThreads = []
+
+  @observable
+  currentThreadDetailUID = ''
+
+  @computed
+  get currentThread() {
+    return this.userThreads.find(t => t.uid === this.currentThreadDetailUID);
+  }
+
+  @action
+  setCurrentThreadDetailUID = (uid) => {
+    this.currentThreadDetailUID = uid;
   }
 
   // Post projects

@@ -26,7 +26,7 @@ const DemandTile = ({ uid, name, desc, reward, userId, user, navigation, setCurr
   };
 
   const onPressAcceptDemandButton = () => {
-    console.warn('Accpeted demand');
+    console.warn('Accepeted demand');
   };
 
   return (

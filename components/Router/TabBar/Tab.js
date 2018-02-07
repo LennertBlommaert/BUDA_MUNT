@@ -27,7 +27,7 @@ const Tab = ({ children, routeName, navigation, active }) => {
         routeName === 'Explore' ? <ActivatableImage style={styles.image} icon={'explore'} active={active} /> : null
       }
       {
-        routeName === 'Messages' ? <ActivatableImage style={styles.image} icon={'messages'} active={active} /> : null
+        routeName === 'Threads' ? <ActivatableImage style={styles.image} icon={'messages'} active={active} /> : null
       }
       {
         routeName === 'Neighbourhood' ? <ActivatableImage style={styles.image} icon={'neighbourhood'} active={active} /> : null

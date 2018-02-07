@@ -1,12 +1,14 @@
 import React from 'react';
 import { TouchableOpacity } from 'react-native';
-import { object } from 'prop-types';
+import { object, func, string } from 'prop-types';
+import { inject, observer } from 'mobx-react/native';
 import BodyText from '../../../components/BodyText';
 import HeaderText from '../../../components/HeaderText';
 
-const InboxItem = ({ otherUser, demand }) => {
+const InboxItem = ({ uid, otherUser, demand, navigation, setCurrentThreadDetailUID }) => {
   const onPressInboxItem = () => {
-    console.warn(`Open conversation with ${otherUser.firstName}`);
+    setCurrentThreadDetailUID(uid);
+    navigation.navigate('ThreadDetail');
   };
 
   return (
@@ -22,7 +24,14 @@ const InboxItem = ({ otherUser, demand }) => {
 };
 
 InboxItem.propTypes = {
+  uid: string.isRequired,
   otherUser: object.isRequired,
+  navigation: object.isRequired,
+  setCurrentThreadDetailUID: func.isRequired,
 };
 
-export default InboxItem;
+export default inject(
+  ({ store }) => ({ setCurrentThreadDetailUID: store.setCurrentThreadDetailUID }),
+)(
+  observer(InboxItem),
+);

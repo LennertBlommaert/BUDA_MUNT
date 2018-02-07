@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Image, StyleSheet } from 'react-native';
 import HeaderText from '../../../components/HeaderText';
-import dream from '../../../assets/img/add_dream_inactive_inverted.png';
+import project from '../../../assets/img/add_project_inactive.png';
 import CloseButton from './CloseButton';
 
 const styles = StyleSheet.create({
@@ -14,19 +14,19 @@ const styles = StyleSheet.create({
     paddingRight: 22,
     marginTop: 40,
   },
-  dreamImage: {
-    width: 36,
-    height: 24,
+  projectImage: {
+    width: 32,
+    height: 30,
   },
 });
 
 const Header = ({ navigation }) => (
   <View style={styles.container}>
     <Image
-      style={styles.dreamImage}
-      source={dream}
+      style={styles.projectImage}
+      source={project}
     />
-    <HeaderText>Plaats je droom</HeaderText>
+    <HeaderText>Plaats je buurtwens</HeaderText>
     <CloseButton navigation={navigation} />
   </View>
 );

@@ -7,6 +7,7 @@ import Screen from '../../components/Screen';
 import HeaderText from '../../components/HeaderText';
 import BodyText from '../../components/BodyText';
 import PriceText from '../../components/PriceText';
+import UserReference from '../../components/UserReference';
 
 import Button from '../../components/Button';
 import Tag from '../../components/Tag';
@@ -26,6 +27,7 @@ const DemandDetail = ({ currentDemandDetail, navigation }) => {
           currentDemandDetail.capacities.map(c => <Tag key={c.uid}>{c.name}</Tag>)
         }
       </View>
+      <UserReference {...currentDemandDetail.user} />
       <Button onPress={onPressAcceptDemand}>
         ik wil helpen
       </Button>

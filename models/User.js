@@ -30,6 +30,9 @@ export default class User {
   @observable
   balance = 0
 
+  @observable
+  topBucketlistItemName = ''
+
   constructor(user) {
     this.setProps(user);
   }
@@ -43,6 +46,7 @@ export default class User {
     photoURL = '',
     threads = {},
     balance = 0,
+    topBucketlistItemName = '',
   }) {
     this.uid = uid;
     this.name = name;
@@ -51,6 +55,13 @@ export default class User {
     this.photoURL = photoURL;
     this.threads = threads;
     this.balance = balance;
+    this.topBucketlistItemName = topBucketlistItemName;
+  }
+
+  @action
+  setTopBucketListItemName = ({ name }) => {
+    console.warn(name);
+    this.topBucketlistItemName = name;
   }
 
   @action

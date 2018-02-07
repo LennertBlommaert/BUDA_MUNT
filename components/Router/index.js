@@ -6,7 +6,7 @@ import colors from '../../objects/colors';
 // import Header from './HeaderRouter';
 
 import Explore from '../../containers/Explore/';
-import Messages from '../../containers/Messages/';
+import Threads from '../../containers/Threads/';
 // import Neighbourhood from '../../containers/Neighbourhood/';
 import Profile from '../../containers/Profile/';
 import PostDemand from '../../containers/PostDemand/';
@@ -14,7 +14,7 @@ import DemandDetail from '../../containers/DemandDetail/';
 import ProjectDetail from '../../containers/ProjectDetail/';
 import PostProject from '../../containers/PostProject/';
 import Neighbourhood from '../../containers/Neighbourhood/';
-import MessageDetail from '../../containers/MessageDetail/';
+import ThreadDetail from '../../containers/ThreadDetail/';
 import Notifications from '../../containers/Notifications/';
 import Pay from '../../containers/Pay/';
 
@@ -53,15 +53,21 @@ const ExploreStack = StackNavigator({
   headerMode: 'none',
 });
 
-const MessagesStack = StackNavigator({
-  Messages: {
-    screen: Messages,
+const ThreadsStack = StackNavigator({
+  Threads: {
+    screen: Threads,
     navigationOptions: {
       // header: Header,
     },
   },
-  MessageDetail: {
-    screen: MessageDetail,
+  ThreadDetail: {
+    screen: ThreadDetail,
+    navigationOptions: {
+      // header: Header,
+    },
+  },
+  DemandDetail: {
+    screen: DemandDetail,
     navigationOptions: {
       // header: Header,
     },
@@ -82,8 +88,8 @@ const TabBarStack = TabNavigator({
       tabBarIcon: ({ focused }) => <ActivatableImage icon={'explore'} active={focused} />,
     },
   },
-  Messages: {
-    screen: MessagesStack,
+  Threads: {
+    screen: ThreadsStack,
     navigationOptions: {
       tabBarLabel: 'Berichten',
       tabBarIcon: ({ focused }) => <ActivatableImage icon={'messages'} active={focused} />,
