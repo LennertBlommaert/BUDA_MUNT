@@ -38,6 +38,10 @@ const colors = {
 
   tabBarActiveTintColor: '#000',
   tabBarInactiveTintColor: '#A6A6A6',
+
+  demandTileAccent: '#6480FF',
+  projectProposalAccent: '#64B2FF',
+  projectVacantPositionAccent: '#FF8864',
 };
 
 export default colors;

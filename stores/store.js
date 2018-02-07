@@ -15,11 +15,37 @@ import Thread from '../models/Thread';
 import FirebaseService from '../utils/firebaseService';
 
 class Store {
+  // @observable
+  // user = new User({});
+
   @observable
   user = new User({});
 
   @observable
   projects = []
+
+  @observable
+  projectStages = []
+
+  // @observable
+  // demands = [{
+  //   name: 'Test',
+  //   desc: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+  //   truncatedDesc: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo conseq...',
+  //   userId: 123,
+  //   reward: 500,
+  //   user: {
+  //     uid: 123,
+  //     email: '',
+  //     name: 'Testertje',
+  //     firstName: 'Test',
+  //     photoURL: '',
+  //     threads: {},
+  //     balance: 0,
+  //     topBucketlistItemName: 'Testen eja',
+  //   },
+  //   capacities: [new Capacity({ name: 'Test', uid: 1 })],
+  // }]
 
   @observable
   demands = []
@@ -89,8 +115,10 @@ class Store {
   // }
 
   // Projects
+  maxProjectVotes = 5;
+
   updateProjects = () => {
-    this.fb.projectsRef.on('value', (snapshot) => {
+    this.fb.projectProposalsRef.on('value', (snapshot) => {
       if (snapshot.val() !== null) this._addProjects(snapshot.val());
     });
   }
@@ -108,8 +136,8 @@ class Store {
   }
 
   _postProjectData = () => {
-    const data = { name: this.titlePostProject, desc: this.descPostProject, userId: `${this.user.uid}` };
-    return this.fb.postDataSingleRef({ data, updateRef: 'projects' });
+    const data = { name: this.titlePostProject, desc: this.descPostProject, userId: `${this.user.uid}`, stage: 'voorstel' };
+    return this.fb.postDataSingleRef({ data, updateRef: 'projectProposals' });
   }
 
   // Capacities
@@ -174,15 +202,6 @@ class Store {
 
       return demand;
     });
-
-    // Object.keys(demands).forEach((key) => {
-    //   const demand = new Demand(demands[key]);
-    //   demand.uid = key;
-    //
-    //   this.demands.push(
-    //     demand,
-    //   );
-    // });
 
     this._addCapacitiesToDemands();
     this._addUserToDemands();
@@ -395,7 +414,7 @@ class Store {
 
   @computed
   get truncatedDesc() {
-    return `${this.desc.substring(0, 240)}...`;
+    return `${this.desc.substring(0, 240)}${this.desc.length > 240 ? '...' : ''}`;
   }
 
   @action

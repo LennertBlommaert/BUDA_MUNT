@@ -25,6 +25,7 @@ ButtonText.propTypes = {
 
 ButtonText.defaultProps = {
   italic: false,
+  color: '#fff',
 };
 
 export default ButtonText;

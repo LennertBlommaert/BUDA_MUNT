@@ -1,34 +1,38 @@
 import React from 'react';
 import { Image, StyleSheet } from 'react-native';
-import { bool, string, any } from 'prop-types';
+import { bool, string, any, number } from 'prop-types';
 import images from '../objects/images';
 
-const styles = StyleSheet.create({
-  image: {
-    width: 25,
-    height: 25,
-    alignSelf: 'stretch',
-  },
-});
+const ActivatableImage = ({ icon, active, style, size }) => {
+  const styles = StyleSheet.create({
+    image: {
+      width: size,
+      height: size,
+      alignSelf: 'stretch',
+    },
+  });
 
-const ActivatableImage = ({ icon, active, style }) => (
-  <Image
-    style={[styles.image, style]}
-    source={active ? images[icon].active : images[icon].inactive}
-    resizeMode={'contain'}
-  />
-);
+  return (
+    <Image
+      style={[styles.image, style]}
+      source={active ? images[icon].active : images[icon].inactive}
+      resizeMode={'contain'}
+    />
+  );
+};
 
 ActivatableImage.propTypes = {
   icon: string.isRequired,
   active: bool.isRequired,
   style: any.isRequired,
+  size: number.isRequired,
 };
 
 ActivatableImage.defaultProps = {
   icon: 'addDream',
   active: false,
   style: {},
+  size: 25,
 };
 
 export default ActivatableImage;

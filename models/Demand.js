@@ -22,6 +22,7 @@ export default class Demand {
   constructor({ name = '', desc = '', userId = '', reward = 0, uid = '' }) {
     this.name = name;
     this.desc = desc;
+    this.truncatedDesc = `${desc.substring(0, 240)}${desc.length > 240 ? '...' : ''}`;
     this.userId = userId;
     this.uid = uid;
     this.reward = reward;

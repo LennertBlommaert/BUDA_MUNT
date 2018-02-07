@@ -24,7 +24,7 @@ const DemandDetail = ({ currentDemandDetail, navigation }) => {
       <PriceText>{currentDemandDetail.reward}</PriceText>
       <View>
         {
-          currentDemandDetail.capacities.map(c => <Tag key={c.uid}>{c.name}</Tag>)
+          currentDemandDetail.capacities.map(c => <Tag key={c.uid} onPress={() => console.warn(`Filter op: ${c.name}`)}>{c.name}</Tag>)
         }
       </View>
       <UserReference {...currentDemandDetail.user} />

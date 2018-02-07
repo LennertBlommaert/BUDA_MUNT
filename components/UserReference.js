@@ -4,12 +4,13 @@ import { string } from 'prop-types';
 
 import BodyText from './BodyText';
 import UserImage from './UserImage';
+import TopBucketListItem from './TopBucketListItem';
 
 const styles = StyleSheet.create({
   container: {
-    padding: 15,
     flexDirection: 'row',
     alignItems: 'center',
+    // borderWidth: 1,
   },
   textContainer: {
   },
@@ -22,9 +23,9 @@ const UserReference = ({ name, firstName, topBucketlistItemName, photoURL }) => 
       <BodyText>
         {firstName} {name}
       </BodyText>
-      <BodyText italic fontSize={16}>
-        {topBucketlistItemName}
-      </BodyText>
+      {
+        topBucketlistItemName !== '' ? <TopBucketListItem topBucketlistItemName={topBucketlistItemName} /> : null
+      }
     </View>
   </TouchableOpacity>
 );

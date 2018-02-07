@@ -60,7 +60,6 @@ export default class User {
 
   @action
   setTopBucketListItemName = ({ name }) => {
-    console.warn(name);
     this.topBucketlistItemName = name;
   }
 

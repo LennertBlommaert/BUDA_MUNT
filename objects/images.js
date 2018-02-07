@@ -10,6 +10,23 @@ import checkboxInactive from '../assets/img/checkbox_inactive.png';
 
 import backButton from '../assets/img/back_button.png';
 
+import topBucketListItem from '../assets/img/top_bucketlist_item.png';
+
+import voorstel from '../assets/img/proposal.png';
+
+//
+
+import voteProjectInactive from '../assets/img/vote_project_inactive.png';
+import voteProject from '../assets/img/vote_project.png';
+
+import projectVoteIndicatorInactive from '../assets/img/project_vote_indicator_inactive.png';
+import projectVoteIndicator from '../assets/img/project_vote_indicator.png';
+
+//
+
+import acceptDemandInactive from '../assets/img/accept_demand_inactive.png';
+import acceptDemand from '../assets/img/accept_demand.png';
+
 // Tags
 import gezelschap from '../assets/img/tags/gezelschap.png';
 import gezelschapSelected from '../assets/img/tags/gezelschap_selected.png';
@@ -72,6 +89,7 @@ const images = {
     active: addDream,
     inactiveInverted: addDreamInactiveInverted,
   },
+
   addProject: {
     inactive: addProjectInactive,
     active: addProject,
@@ -85,6 +103,34 @@ const images = {
   backButton: {
     inactive: backButton,
     active: backButton,
+  },
+
+  topBucketListItem: {
+    inactive: topBucketListItem,
+    active: topBucketListItem,
+  },
+
+  voorstel: {
+    inactive: voorstel,
+    active: voorstel,
+  },
+
+  //
+
+  acceptDemand: {
+    inactive: acceptDemandInactive,
+    active: acceptDemand,
+  },
+
+  //
+
+  voteProject: {
+    inactive: voteProjectInactive,
+    active: voteProject,
+  },
+  projectVoteIndicator: {
+    inactive: projectVoteIndicatorInactive,
+    active: projectVoteIndicator,
   },
 
   // Tab bar

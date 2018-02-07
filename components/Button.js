@@ -19,13 +19,11 @@ class Button extends Component {
       button: {
         flexDirection: 'row',
         backgroundColor: colors.buttonGreen,
-        justifyContent: 'space-between',
+        justifyContent: 'center',
         alignItems: 'center',
 
         paddingTop: 15,
         paddingBottom: 15,
-        paddingLeft: 80,
-        paddingRight: 80,
 
         height: 50,
         width: 335,
@@ -41,6 +39,9 @@ class Button extends Component {
         },
         shadowRadius: 5,
         shadowOpacity: 0.13,
+      },
+      icon: {
+        marginRight: 20,
       },
     });
   }
@@ -58,7 +59,7 @@ class Button extends Component {
 
     return (
       <TouchableOpacity onPress={() => this.onPress()} style={[this.styles.button, style]}>
-        <ActivatableImage icon={icon} active={active} />
+        <ActivatableImage style={this.styles.icon} icon={icon} active={active} />
         <ButtonText color={color}>{children}</ButtonText>
       </TouchableOpacity>
     );

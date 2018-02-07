@@ -1,5 +1,5 @@
 import React from 'react';
-import { TouchableOpacity, StyleSheet } from 'react-native';
+import { TouchableOpacity, StyleSheet, View } from 'react-native';
 import { string, number, object, func } from 'prop-types';
 import { inject, observer } from 'mobx-react/native';
 
@@ -7,8 +7,8 @@ import HeaderText from '../../../components/HeaderText';
 import BodyText from '../../../components/BodyText';
 import PriceText from '../../../components/PriceText';
 import Tile from '../../../components/Tile';
+import TileButton from './TileButton';
 
-import Button from '../../../components/Button';
 import UserReference from '../../../components/UserReference';
 
 const styles = StyleSheet.create({
@@ -17,9 +17,14 @@ const styles = StyleSheet.create({
     paddingRight: 20,
     marginBottom: 5,
   },
+  userAndPriceContainer: {
+    padding: 20,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
 });
 
-const DemandTile = ({ uid, name, desc, reward, userId, user, navigation, setCurrentDemandDetailUID }) => {
+const DemandTile = ({ uid, name, truncatedDesc, reward, userId, user, navigation, setCurrentDemandDetailUID }) => {
   const onPressDemandTileTextContainer = () => {
     setCurrentDemandDetailUID(uid);
     navigation.navigate('DemandDetail');
@@ -33,18 +38,20 @@ const DemandTile = ({ uid, name, desc, reward, userId, user, navigation, setCurr
     <Tile>
       <TouchableOpacity style={styles.textContainer} onPress={onPressDemandTileTextContainer}>
         <HeaderText>{name}</HeaderText>
-        <BodyText>{desc}</BodyText>
-        <PriceText>{reward}</PriceText>
+        <BodyText>{truncatedDesc}</BodyText>
       </TouchableOpacity>
-      <UserReference {...user} />
-      <Button onPress={onPressAcceptDemandButton} tileButton>ik wil helpen</Button>
+      <View style={styles.userAndPriceContainer}>
+        <UserReference {...user} />
+        <PriceText simpleCoinIcon>{reward}</PriceText>
+      </View>
+      <TileButton userName={user.firstName} demandTile icon={'acceptDemand'} onPress={onPressAcceptDemandButton} style={styles.button} />
     </Tile>
   );
 };
 
 DemandTile.propTypes = {
   name: string.isRequired,
-  desc: string.isRequired,
+  truncatedDesc: string.isRequired,
   reward: number.isRequired,
   navigation: object.isRequired,
   user: object.isRequired,

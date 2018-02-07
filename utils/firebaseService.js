@@ -42,7 +42,7 @@ export default class FirebaseService {
     this.rootRef = firebase.database().ref();
 
     this.usersRef = this.rootRef.child('users');
-    this.projectsRef = this.rootRef.child('projects');
+    this.projectProposalsRef = this.rootRef.child('projectProposals');
     this.threadsRef = this.rootRef.child('threads');
     this.threadMessagesRef = this.rootRef.child('threadMessages');
     this.userThreadsRef = this.rootRef.child('userThreads');
@@ -50,6 +50,7 @@ export default class FirebaseService {
     this.demandsRef = this.rootRef.child('demands');
     this.userCapacitiesRef = this.rootRef.child('userCapacities');
     this.demandCapacitiesRef = this.rootRef.child('demandCapacities');
+    this.projectStagesRef = this.rootRef.child('projectStages');
   }
 
   /* NOTE: NOT IN USE

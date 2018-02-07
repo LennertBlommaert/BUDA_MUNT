@@ -6,6 +6,7 @@ import colors from '../objects/colors';
 const styles = StyleSheet.create({
   tile: {
     flex: 1,
+
     backgroundColor: colors.tile,
     width: 335,
     paddingTop: 20,
