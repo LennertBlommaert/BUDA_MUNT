@@ -5,7 +5,7 @@ import Screen from '../../components/Screen';
 import Header from './Header/';
 
 const ThreadDetail = ({ navigation, currentThread }) => (
-  <Screen navigation={navigation}>
+  <Screen backButton navigation={navigation}>
     <Header navigation={navigation} demand={currentThread.demand} otherUser={currentThread.otherUser} />
   </Screen>
 );

@@ -18,7 +18,7 @@ const DemandDetail = ({ currentDemandDetail, navigation }) => {
   };
 
   return (
-    <Screen navigation={navigation}>
+    <Screen backButton navigation={navigation}>
       <HeaderText>{currentDemandDetail.name}</HeaderText>
       <BodyText>{currentDemandDetail.desc}</BodyText>
       <PriceText>{currentDemandDetail.reward}</PriceText>

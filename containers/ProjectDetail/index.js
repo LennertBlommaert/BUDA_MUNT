@@ -14,7 +14,7 @@ const ProjectDetail = ({ currentProjectDetail, navigation }) => {
   };
 
   return (
-    <Screen navigation={navigation}>
+    <Screen backButton navigation={navigation}>
       <HeaderText>{currentProjectDetail.name}</HeaderText>
       <BodyText>{currentProjectDetail.desc}</BodyText>
       <Button onPress={onPressVote}>

@@ -8,6 +8,8 @@ import addProjectInactive from '../assets/img/add_project_inactive.png';
 import checkbox from '../assets/img/checkbox.png';
 import checkboxInactive from '../assets/img/checkbox_inactive.png';
 
+import backButton from '../assets/img/back_button.png';
+
 // Tags
 import gezelschap from '../assets/img/tags/gezelschap.png';
 import gezelschapSelected from '../assets/img/tags/gezelschap_selected.png';
@@ -78,6 +80,11 @@ const images = {
   checkbox: {
     inactive: checkboxInactive,
     active: checkbox,
+  },
+
+  backButton: {
+    inactive: backButton,
+    active: backButton,
   },
 
   // Tab bar

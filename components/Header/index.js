@@ -4,10 +4,11 @@
 import React from 'react';
 import { View, StyleSheet } from 'react-native';
 import { inject, observer, PropTypes } from 'mobx-react/native';
-import { object } from 'prop-types';
+import { object, bool } from 'prop-types';
 import colors from '../../objects/colors';
 import UserStatus from './UserStatus';
 import NotificationsIndicator from './NotificationsIndicator';
+import BackButton from './BackButton';
 
 const styles = StyleSheet.create({
   header: {
@@ -20,7 +21,7 @@ const styles = StyleSheet.create({
 
     paddingLeft: 22,
     paddingRight: 22,
-    paddingTop: 30,
+    paddingTop: 25,
     paddingBottom: 5,
 
     shadowColor: colors.shadowColor,
@@ -33,8 +34,11 @@ const styles = StyleSheet.create({
   },
 });
 
-const Header = ({ user, navigation }) => (
+const Header = ({ user, navigation, backButton }) => (
   <View style={styles.header}>
+    {
+      backButton ? <BackButton navigation={navigation} /> : null
+    }
     <UserStatus {...user} />
     <NotificationsIndicator navigation={navigation} />
   </View>
@@ -43,6 +47,7 @@ const Header = ({ user, navigation }) => (
 Header.propTypes = {
   user: PropTypes.observableObject.isRequired,
   navigation: object.isRequired,
+  backButton: bool.isRequired,
 };
 
 export default inject(
