@@ -27,7 +27,7 @@ Pay.propTypes = {
 };
 
 Pay.defaultProps = {
-  screen: 'https://invis.io/5QFRDNYXKWD',
+  screen: '5QFRDNYXKWD',
 };
 
 export default Pay;

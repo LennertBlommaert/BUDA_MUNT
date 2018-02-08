@@ -18,7 +18,7 @@ class Button extends Component {
     this.styles = StyleSheet.create({
       button: {
         flexDirection: 'row',
-        backgroundColor: colors.buttonGreen,
+        backgroundColor: colors.buttonBlueSoft,
         justifyContent: 'center',
         alignItems: 'center',
 
@@ -60,7 +60,7 @@ class Button extends Component {
     return (
       <TouchableOpacity onPress={() => this.onPress()} style={[this.styles.button, style]}>
         <ActivatableImage style={this.styles.icon} icon={icon} active={active} />
-        <ButtonText color={color}>{children}</ButtonText>
+        <ButtonText color={color === '' ? colors.buttonBlueStrong : color}>{children}</ButtonText>
       </TouchableOpacity>
     );
   }
@@ -72,14 +72,14 @@ Button.propTypes = {
   tileButton: bool.isRequired,
   icon: string.isRequired,
   style: any.isRequired,
-  color: string.isRequired,
+  color: string,
 };
 
 Button.defaultProps = {
   tileButton: false,
   icon: 'addDream',
   style: {},
-  color: colors.buttonText,
+  color: '',
 };
 
 export default Button;

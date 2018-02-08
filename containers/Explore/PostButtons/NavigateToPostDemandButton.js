@@ -20,7 +20,7 @@ const NavigateToPostDemandButton = ({ navigation }) => {
   };
 
   return (
-    <Button style={styles.button} onPress={onPressNavigateToPostDemand}>
+    <Button color={colors.buttonText} style={styles.button} onPress={onPressNavigateToPostDemand}>
       droom
     </Button>
   );

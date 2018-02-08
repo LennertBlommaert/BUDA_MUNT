@@ -11,7 +11,11 @@ const colors = {
 
   shadowColor: '#000',
 
-  buttonGreen: '#7ED321',
+  buttonGreenStrong: '#66D19C',
+  buttonGreenSoft: '#A9E5CD',
+
+  buttonBlueStrong: '#37BBEB',
+  buttonBlueSoft: '#AFE0F2',
 
   unselectedTagBackground: '#fff',
   unselectedTagText: '#505050',
@@ -45,6 +49,9 @@ const colors = {
 
   searchInputBackground: '#F4F4F4',
   searchInputText: '#000',
+
+  inboxItemBackground: '#fff',
+  inboxItemBorder: '#A6A6A6',
 };
 
 export default colors;

@@ -280,7 +280,7 @@ class Store {
   userThreads = []
 
   @observable
-  currentThreadDetailUID = ''
+  currentThreadDetailUID = 'threadId1'
 
   @computed
   get currentThread() {

@@ -2,19 +2,43 @@
 
 import React from 'react';
 import { inject, observer, PropTypes } from 'mobx-react/native';
+import { ScrollView, StyleSheet } from 'react-native';
 import { object } from 'prop-types';
 import NoContacts from './NoContacts';
 import Inbox from './Inbox';
 import Screen from '../../components/Screen';
-import styles from '../../objects/styles';
+import Button from '../../components/Button';
+import BodyText from '../../components/BodyText';
 
-const Threads = ({ userThreads, navigation }) => (
-  <Screen style={styles.container} navigation={navigation}>
-    {
-      userThreads.length > 0 ? <Inbox navigation={navigation} /> : <NoContacts />
-    }
-  </Screen>
-);
+const styles = StyleSheet.create({
+  container: {
+    marginTop: 30,
+    flex: 1,
+  },
+  button: {
+    marginBottom: 30,
+  },
+});
+
+const Threads = ({ userThreads, navigation }) => {
+  const onPress = () => {
+    console.warn('stuur een bericht');
+  };
+
+  return (
+    <Screen navigation={navigation}>
+      <ScrollView style={styles.container}>
+        <Button onPress={onPress} icon={'addThread'} style={styles.button}>stuur een bericht</Button>
+        {
+          userThreads.length > 0 ? <Inbox navigation={navigation} /> : <NoContacts />
+        }
+        {
+          userThreads.length > 4 ? <BodyText italic>Dit waren al jouw berichten</BodyText> : null
+        }
+      </ScrollView>
+    </Screen>
+  );
+};
 
 Threads.propTypes = {
   userThreads: PropTypes.observableArray.isRequired,

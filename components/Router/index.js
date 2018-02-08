@@ -81,18 +81,18 @@ const ThreadsStack = StackNavigator({
 });
 
 const TabBarStack = TabNavigator({
-  Explore: {
-    screen: ExploreStack,
-    navigationOptions: {
-      tabBarLabel: 'Buren',
-      tabBarIcon: ({ focused }) => <ActivatableImage icon={'explore'} active={focused} />,
-    },
-  },
   Threads: {
     screen: ThreadsStack,
     navigationOptions: {
       tabBarLabel: 'Berichten',
       tabBarIcon: ({ focused }) => <ActivatableImage icon={'messages'} active={focused} />,
+    },
+  },
+  Explore: {
+    screen: ExploreStack,
+    navigationOptions: {
+      tabBarLabel: 'Buren',
+      tabBarIcon: ({ focused }) => <ActivatableImage icon={'explore'} active={focused} />,
     },
   },
   Neighbourhood: {

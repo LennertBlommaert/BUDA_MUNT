@@ -18,7 +18,7 @@ const styles = StyleSheet.create({
 
 const UserStatus = ({ balance, photoURL }) => (
   <TouchableOpacity style={styles.headerRight}>
-    <UserImage photoURL={photoURL} />
+    <UserImage size={36} photoURL={photoURL} />
     <HeaderText>{balance}</HeaderText>
     <Image
       style={styles.coinImage}

@@ -30,6 +30,9 @@ import projectVoteIndicator from '../assets/img/project_vote_indicator.png';
 import acceptDemandInactive from '../assets/img/accept_demand_inactive.png';
 import acceptDemand from '../assets/img/accept_demand.png';
 
+import addThread from '../assets/img/add_thread.png';
+import sendMessage from '../assets/img/send_message.png';
+
 // Tags
 import gezelschap from '../assets/img/tags/gezelschap.png';
 import gezelschapSelected from '../assets/img/tags/gezelschap_selected.png';
@@ -130,6 +133,16 @@ const images = {
   acceptDemand: {
     inactive: acceptDemandInactive,
     active: acceptDemand,
+  },
+
+  addThread: {
+    inactive: addThread,
+    active: addThread,
+  },
+
+  sendMessage: {
+    inactive: sendMessage,
+    active: sendMessage,
   },
 
   //

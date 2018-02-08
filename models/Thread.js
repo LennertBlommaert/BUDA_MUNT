@@ -2,16 +2,16 @@ export default class Thread {
   demandId = ''
   projectId = ''
   uid = ''
-  lastMessageId = ''
+  lastMessage = {}
   members = {}
   demand = {}
   otherUser = {}
 
-  constructor({ uid, demandId = '', projectId = '', lastMessageId = '', members, otherUser, demand = {} }) {
+  constructor({ uid, demandId = '', projectId = '', lastMessage = {}, members, otherUser, demand = {} }) {
     this.uid = uid;
     this.demandId = demandId;
     this.projectId = projectId;
-    this.lastMessageId = lastMessageId;
+    this.lastMessage = lastMessage;
     this.members = members;
     this.demand = demand;
     this.otherUser = otherUser;
