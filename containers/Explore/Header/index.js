@@ -14,6 +14,7 @@ import sharedStyles from '../../../objects/sharedStyles';
 const styles = StyleSheet.create({
   header: {
     flexDirection: 'column',
+    zIndex: 100,
   },
   headerTop: {
     flexDirection: 'row',

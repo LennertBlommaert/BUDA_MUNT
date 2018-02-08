@@ -1,16 +1,8 @@
 import React from 'react';
-import { Text } from 'react-native';
-import { object } from 'prop-types';
-import Screen from '../../components/Screen';
+import InvisionWebView from '../../components/InvisionWebView';
 
-const Pay = ({ navigation }) => (
-  <Screen navigation={navigation}>
-    <Text>Betalen</Text>
-  </Screen>
+const Pay = () => (
+  <InvisionWebView screen={'NQFRDZ1KUP9'} />
 );
-
-Pay.propTypes = {
-  navigation: object.isRequired,
-};
 
 export default Pay;
