@@ -267,6 +267,14 @@ class Store {
 
   // Chat / threads
   @observable
+  message = ''
+
+  @action
+  setMessage = (message) => {
+    this.message = message;
+  }
+
+  @observable
   threadMessages = []
 
   @observable

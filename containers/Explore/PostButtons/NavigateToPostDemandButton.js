@@ -1,8 +1,8 @@
 import React from 'react';
 import { object } from 'prop-types';
 import { StyleSheet } from 'react-native';
-import Button from '../../components/Button';
-import colors from '../../objects/colors';
+import Button from '../../../components/Button';
+import colors from '../../../objects/colors';
 
 const styles = StyleSheet.create({
   button: {

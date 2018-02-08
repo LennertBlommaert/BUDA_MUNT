@@ -14,6 +14,9 @@ import topBucketListItem from '../assets/img/top_bucketlist_item.png';
 
 import voorstel from '../assets/img/proposal.png';
 
+import searchInactive from '../assets/img/search_inactive.png';
+import search from '../assets/img/search.png';
+
 //
 
 import voteProjectInactive from '../assets/img/vote_project_inactive.png';
@@ -113,6 +116,13 @@ const images = {
   voorstel: {
     inactive: voorstel,
     active: voorstel,
+  },
+
+  //
+
+  search: {
+    inactive: searchInactive,
+    active: search,
   },
 
   //

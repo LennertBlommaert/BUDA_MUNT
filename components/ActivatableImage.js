@@ -9,6 +9,7 @@ const ActivatableImage = ({ icon, active, style, size }) => {
       width: size,
       height: size,
       alignSelf: 'stretch',
+      //borderWidth: 1,
     },
   });
 

@@ -5,7 +5,7 @@ import colors from '../../objects/colors';
 
 // import Header from './HeaderRouter';
 
-import Explore from '../../containers/Explore/';
+import Explore from '../../containers/Explore/indexTest';
 import Threads from '../../containers/Threads/';
 // import Neighbourhood from '../../containers/Neighbourhood/';
 import Profile from '../../containers/Profile/';

@@ -42,6 +42,9 @@ const colors = {
   demandTileAccent: '#6480FF',
   projectProposalAccent: '#64B2FF',
   projectVacantPositionAccent: '#FF8864',
+
+  searchInputBackground: '#F4F4F4',
+  searchInputText: '#000',
 };
 
 export default colors;
