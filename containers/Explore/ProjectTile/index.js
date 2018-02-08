@@ -1,5 +1,5 @@
 import React from 'react';
-import { string, func } from 'prop-types';
+import { string, func, bool } from 'prop-types';
 import { TouchableOpacity, StyleSheet } from 'react-native';
 import { inject, observer } from 'mobx-react/native';
 import BodyText from '../../../components/BodyText';
@@ -22,25 +22,27 @@ const styles = StyleSheet.create({
   },
 });
 
-const ProjectTile = ({ uid, name, truncatedDesc, stage, navigation, setCurrentProjectDetailUID, votes }) => {
+const ProjectTile = ({ uid, name, truncatedDesc, stage, navigation, setCurrentProjectDetailUID, voteProjectProposal, voterUIDs, active }) => {
   const onPressProjectTileTextContainer = () => {
     setCurrentProjectDetailUID(uid);
     navigation.navigate('ProjectDetail');
   };
 
   const onPressVoteButton = () => {
-    console.warn('Voted');
+    voteProjectProposal(uid);
   };
 
   return (
     <Tile>
+      {
+      }
       <TouchableOpacity style={styles.textContainer} onPress={onPressProjectTileTextContainer}>
         <Stage />
         <HeaderText style={styles.headerText}>{name}</HeaderText>
         <BodyText style={styles.descText}>{truncatedDesc}</BodyText>
-        <VotesIndicator votes={votes} />
+        <VotesIndicator votes={voterUIDs.length} />
       </TouchableOpacity>
-      <TileButton onPress={onPressVoteButton} />
+      <TileButton active={active} onPress={onPressVoteButton} />
     </Tile>
   );
 };
@@ -51,12 +53,15 @@ ProjectTile.propTypes = {
   uid: string.isRequired,
   truncatedDesc: string.isRequired,
   setCurrentProjectDetailUID: func.isRequired,
+  voteProjectProposal: func.isRequired,
+  active: bool.isRequired,
 };
 
 export default inject(
   ({ store }) => ({
     setCurrentProjectDetailUID: store.setCurrentProjectDetailUID,
     maxProjectVotes: store.maxProjectVotes,
+    voteProjectProposal: store.voteProjectProposal,
   }),
 )(
   observer(ProjectTile),

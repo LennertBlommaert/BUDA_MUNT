@@ -1,9 +1,13 @@
+import { observable, computed, action } from 'mobx';
+
 export default class Project {
   name = ''
   desc = ''
   uid = ''
   stage = ''
-  votes = 0
+
+  @observable
+  voterUIDs = []
 
   constructor({ name, desc, stage }, uid = '') {
     this.name = name;
@@ -11,6 +15,12 @@ export default class Project {
     this.stage = stage;
     this.truncatedDesc = `${desc.substring(0, 240)}${desc.length > 240 ? '...' : ''}`;
     this.uid = uid;
-    this.votes = 1;
+    this.voterUIDs = [];
+  }
+
+  @action
+  addVoterUID(voter) {
+    if (!this.voterUIDs.find(v => v.uid === voter.key)) this.voterUIDs.push(voter);
+    // console.warn(this.voterUIDs.find(uid => uid === 's7CVMe57o2QsHZDRv1gZNOyqdLD2') !== undefined);
   }
 }

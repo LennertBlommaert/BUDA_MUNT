@@ -17,11 +17,11 @@ const styles = StyleSheet.create({
 
 const GraphicIndicator = ({ votes, maxProjectVotes }) => (
   <View style={styles.container}>
-    <ActivatableImage icon={'projectVoteIndicator'} active={votes === 1} size={32} />
-    <ActivatableImage icon={'projectVoteIndicator'} active={votes === 2} size={32} />
-    <ActivatableImage icon={'projectVoteIndicator'} active={votes === 3} size={32} />
-    <ActivatableImage icon={'projectVoteIndicator'} active={votes === 4} size={32} />
-    <ActivatableImage icon={'projectVoteIndicator'} active={votes === 5} size={32} />
+    <ActivatableImage icon={'projectVoteIndicator'} active={votes >= 1} size={32} />
+    <ActivatableImage icon={'projectVoteIndicator'} active={votes >= 2} size={32} />
+    <ActivatableImage icon={'projectVoteIndicator'} active={votes >= 3} size={32} />
+    <ActivatableImage icon={'projectVoteIndicator'} active={votes >= 4} size={32} />
+    <ActivatableImage icon={'projectVoteIndicator'} active={votes >= 5} size={32} />
   </View>
 );
 

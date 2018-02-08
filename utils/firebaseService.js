@@ -43,6 +43,7 @@ export default class FirebaseService {
 
     this.usersRef = this.rootRef.child('users');
     this.projectProposalsRef = this.rootRef.child('projectProposals');
+    this.projectProposalVotersRef = this.rootRef.child('projectProposalVoters');
     this.threadsRef = this.rootRef.child('threads');
     this.threadMessagesRef = this.rootRef.child('threadMessages');
     this.userThreadsRef = this.rootRef.child('userThreads');
@@ -107,6 +108,10 @@ export default class FirebaseService {
     this.rootRef.update(updates);
 
     return key;
+  }
+
+  updateDataSingleRef({ data, updateRef }) {
+    this.rootRef.child(`${updateRef}`).setValue(data);
   }
 
   postDataMultipleRefs(data, ...updateRefs) {

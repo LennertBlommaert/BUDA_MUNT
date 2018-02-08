@@ -126,6 +126,17 @@ class Store {
   _addProjects = (projects) => {
     // Firebase db works with objects
     this.projects = Object.keys(projects).map(key => new Project(projects[key], key));
+    this._addVoterUIDsToProjects();
+  }
+
+  @action
+  _addVoterUIDsToProjects = () => {
+    this.projects.forEach((p) => {
+      this.fb.projectProposalVotersRef.child(p.uid).on('child_added', (snap) => {
+        if (snap.val() !== null) p.addVoterUID(snap.key);
+        // this.fb.usersRef.child(snap.key).once('value', snapshot => d.addCapacity(snapshot.val(), snap.key));
+      });
+    });
   }
 
   postProject = () => {
@@ -137,6 +148,25 @@ class Store {
   _postProjectData = () => {
     const data = { name: this.titlePostProject, desc: this.descPostProject, userId: `${this.user.uid}`, stage: 'voorstel' };
     return this.fb.postDataSingleRef({ data, updateRef: 'projectProposals' });
+  }
+
+  voteProjectProposal = (projectUID) => {
+    this.updateUserBalance();
+    this.postProjectProposalVoter(projectUID);
+  }
+
+  updateUserBalance = (price = -1) => {
+    // const data = { balance: this.user.balance += price };
+    // this.fb.usersRef.child(this.user.uid).child('balance').setValue(this.user.balance += price);
+    this.fb.usersRef.child(this.user.uid).update({
+      balance: this.user.balance += price,
+    });
+    // return this.fb.updateDataSingleRef({ data, updateRef: `users/${this.user.uid}/balance` });
+  }
+
+  postProjectProposalVoter = (projectUID) => {
+    const data = { name: this.user.firstName };
+    return this.fb.postDataSingleRef({ data, updateRef: `projectProposalVoters/${projectUID}`, key: this.user.uid });
   }
 
   // Capacities

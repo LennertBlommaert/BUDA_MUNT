@@ -90,7 +90,7 @@ class Explore extends Component {
   };
 
   render() {
-    const { navigation, feedItems } = this.props;
+    const { navigation, feedItems, user } = this.props;
     const { clampedScroll } = this.state;
 
     const searchInputOffset = clampedScroll.interpolate({
@@ -132,7 +132,14 @@ class Explore extends Component {
                 if (item.userId) {
                   return <DemandTile key={item.uid} navigation={navigation} {...item} />;
                 }
-                return <ProjectTile key={item.uid} navigation={navigation} {...item} />;
+                return (
+                  <ProjectTile
+                    key={item.uid}
+                    navigation={navigation}
+                    {...item}
+                    active={item.voterUIDs.find(uid => uid === user.uid) !== undefined}
+                  />
+                );
               })
 
               :

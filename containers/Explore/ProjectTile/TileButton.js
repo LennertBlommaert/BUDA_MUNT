@@ -34,25 +34,30 @@ const styles = StyleSheet.create({
 });
 
 class TileButton extends Component {
-  state = {
-    active: false,
-  }
+  state = {}
 
+  // componentWillMount() {
+  //   const { active } = this.props;
+  //   this.setState({ active });
+  // }
+  //
   onPress() {
-    this.setState({ active: !this.state.active });
-    const { onPress } = this.props;
+    // this.setState({ active: !this.state.active });
+    const { active, onPress } = this.props;
+
+    if (active) return;
     onPress();
   }
 
   render() {
-    const { icon, style } = this.props;
-    const { active } = this.state;
+    const { icon, style, active } = this.props;
+    // const { active } = this.props;
 
     return (
       <TouchableOpacity onPress={() => this.onPress()} style={[styles.button, style]}>
         <ActivatableImage style={styles.icon} icon={icon} active={active} />
         <ButtonText color={colors.projectProposalAccent} styles={styles.text}>
-          { !active ? 'Ik ben voor' : 'Ik ben voor' }
+          { !active ? 'Ik ben voor' : 'Je stem werd verstuurd' }
         </ButtonText>
       </TouchableOpacity>
     );
