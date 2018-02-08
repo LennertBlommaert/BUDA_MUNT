@@ -1,11 +1,16 @@
 import React from 'react';
 import { TouchableOpacity, Text, StyleSheet } from 'react-native';
-import { any, bool } from 'prop-types';
+import { any, number, func } from 'prop-types';
+import { inject, observer } from 'mobx-react/native';
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
   text: {
     fontFamily: 'calibre-regular',
-    fontSize: 20,
+    fontSize: 18,
+    textAlign: 'center',
   },
   textActive: {
     fontFamily: 'calibre-medium',
@@ -15,14 +20,14 @@ const styles = StyleSheet.create({
   },
 });
 
-const SegmentedControlItem = ({ children, active }) => {
+const SegmentedControlItem = ({ children, id, setCurrentSegmentedControlItemIndex, currentSegmentedControlItemIndex }) => {
   const onPress = () => {
-    console.warn(`Filter ${children}`);
-  }
+    setCurrentSegmentedControlItemIndex(id);
+  };
 
   return (
-    <TouchableOpacity onPres={onPress}>
-      <Text style={[styles.text, active ? styles.textActive : styles.textInactive]}>
+    <TouchableOpacity style={styles.container} onPress={onPress}>
+      <Text style={[styles.text, currentSegmentedControlItemIndex === id ? styles.textActive : styles.textInactive]}>
         {children}
       </Text>
     </TouchableOpacity>
@@ -30,12 +35,22 @@ const SegmentedControlItem = ({ children, active }) => {
 };
 
 SegmentedControlItem.propTypes = {
+  id: number,
   children: any.isRequired,
-  active: bool.isRequired,
+  setCurrentSegmentedControlItemIndex: func.isRequired,
+  currentSegmentedControlItemIndex: number,
 };
 
 SegmentedControlItem.defaultProps = {
-  active: false,
+  id: 0,
+  currentSegmentedControlItemIndex: 0,
 };
 
-export default SegmentedControlItem;
+export default inject(
+  ({ store }) => ({
+    setCurrentSegmentedControlItemIndex: store.setCurrentSegmentedControlItemIndex,
+    currentSegmentedControlItemIndex: store.currentSegmentedControlItemIndex,
+  }),
+)(
+  observer(SegmentedControlItem),
+);

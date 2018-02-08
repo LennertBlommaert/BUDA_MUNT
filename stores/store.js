@@ -85,7 +85,6 @@ class Store {
   }
 
   // NOTE: threads will be duplicated on updates
-
   updateUserThreads = () => {
     Object.keys(this.user.threads).forEach((key) => {
       this.fb.threadsRef.child(key).on('value', (snapshot) => {
@@ -502,8 +501,18 @@ class Store {
   }
 
   // Explore
+  @observable
+  currentSegmentedControlItemIndex = 0
+
+  @action
+  setCurrentSegmentedControlItemIndex = (index) => {
+    this.currentSegmentedControlItemIndex = index;
+  }
+
   @computed
   get feedItems() {
+    if (this.currentSegmentedControlItemIndex === 1) return [...this.demands].sort((a, b) => a.name - b.name);
+    if (this.currentSegmentedControlItemIndex === 2) return [...this.projects].sort((a, b) => a.name - b.name);
     return [...this.demands, ...this.projects].sort((a, b) => a.name - b.name);
   }
 

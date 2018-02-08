@@ -119,6 +119,7 @@ class Explore extends Component {
             // { useNativeDriver: true },
             { useNativeDriver: false },
           )}
+          showsVerticalScrollIndicator={false}
           style={styles.feed}
         >
           <PostButtons navigation={navigation} />
