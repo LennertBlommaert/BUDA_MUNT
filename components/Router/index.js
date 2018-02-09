@@ -81,13 +81,6 @@ const ThreadsStack = StackNavigator({
 });
 
 const TabBarStack = TabNavigator({
-  Threads: {
-    screen: ThreadsStack,
-    navigationOptions: {
-      tabBarLabel: 'Berichten',
-      tabBarIcon: ({ focused }) => <ActivatableImage icon={'messages'} active={focused} />,
-    },
-  },
   Explore: {
     screen: ExploreStack,
     navigationOptions: {
@@ -102,11 +95,11 @@ const TabBarStack = TabNavigator({
       tabBarIcon: ({ focused }) => <ActivatableImage icon={'neighbourhood'} active={focused} />,
     },
   },
-  Profile: {
-    screen: Profile,
+  Threads: {
+    screen: ThreadsStack,
     navigationOptions: {
-      tabBarLabel: 'Profiel',
-      tabBarIcon: ({ focused }) => <ActivatableImage icon={'profile'} active={focused} />,
+      tabBarLabel: 'Berichten',
+      tabBarIcon: ({ focused }) => <ActivatableImage icon={'messages'} active={focused} />,
     },
   },
   Pay: {
@@ -114,6 +107,13 @@ const TabBarStack = TabNavigator({
     navigationOptions: {
       tabBarLabel: 'Betaal',
       tabBarIcon: ({ focused }) => <ActivatableImage icon={'pay'} active={focused} />,
+    },
+  },
+  Profile: {
+    screen: Profile,
+    navigationOptions: {
+      tabBarLabel: 'Profiel',
+      tabBarIcon: ({ focused }) => <ActivatableImage icon={'profile'} active={focused} />,
     },
   },
 }, {

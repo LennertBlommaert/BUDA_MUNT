@@ -7,10 +7,8 @@ import SignIn from '../SignIn/';
 import Info from './Info';
 import Screen from '../../components/Screen';
 
-import styles from '../../objects/styles';
-
 const Profile = ({ userIsSignedIn, navigation }) => (
-  <Screen style={styles.container} navigation={navigation}>
+  <Screen navigation={navigation}>
     {
       userIsSignedIn ? <Info /> : <SignIn />
     }

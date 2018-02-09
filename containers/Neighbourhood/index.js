@@ -1,16 +1,8 @@
 import React from 'react';
-import { Text } from 'react-native';
-import { object } from 'prop-types';
-import Screen from '../../components/Screen';
+import InvisionWebView from '../../components/InvisionWebView';
 
-const Neighbourhood = ({ navigation }) => (
-  <Screen navigation={navigation}>
-    <Text>POI</Text>
-  </Screen>
+const Pay = () => (
+  <InvisionWebView screen={'NQFRDZ1KUP9'} />
 );
 
-Neighbourhood.propTypes = {
-  navigation: object.isRequired,
-};
-
-export default Neighbourhood;
+export default Pay;

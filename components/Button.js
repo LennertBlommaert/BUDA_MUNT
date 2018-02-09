@@ -15,7 +15,7 @@ class Button extends Component {
   }
 
   componentWillMount() {
-    const { tileButton } = this.props;
+    const { tileButton, mainColor, secondaryColor } = this.props;
 
     this.styles = StyleSheet.create({
       textContainer: {
@@ -24,7 +24,7 @@ class Button extends Component {
         alignItems: 'center',
 
         borderWidth: 2,
-        borderColor: colors.buttonBlueStrong,
+        borderColor: mainColor,
         backgroundColor: 'transparent',
 
         paddingTop: 15,
@@ -32,6 +32,22 @@ class Button extends Component {
 
         height: 50,
         width: 335,
+        borderRadius: 3,
+
+      },
+      icon: {
+        marginRight: 20,
+        alignSelf: 'center',
+      },
+      offSetBackground: {
+        backgroundColor: secondaryColor,
+        position: 'absolute',
+        left: 0,
+        right: 0,
+        top: 0,
+        bottom: 0,
+        borderRadius: 3,
+        transform: [{ translateY: 3 }],
 
         borderBottomLeftRadius: 5,
         borderBottomRightRadius: 5,
@@ -42,23 +58,8 @@ class Button extends Component {
           width: 0,
           height: 3,
         },
-        shadowRadius: 5,
-        shadowOpacity: 0.13,
-
-        borderRadius: 3,
-      },
-      icon: {
-        marginRight: 20,
-      },
-      offSetBackground: {
-        backgroundColor: colors.buttonBlueSoft,
-        position: 'absolute',
-        left: 0,
-        right: 0,
-        top: 0,
-        bottom: 0,
-        borderRadius: 3,
-        transform: [{ translateY: 3 }],
+        shadowRadius: 3,
+        shadowOpacity: 0.10,
       },
     });
   }
@@ -71,7 +72,7 @@ class Button extends Component {
   }
 
   render() {
-    const { icon, children, style, color } = this.props;
+    const { icon, children, style, mainColor } = this.props;
     const { active } = this.state;
 
     return (
@@ -79,7 +80,7 @@ class Button extends Component {
         <View style={this.styles.offSetBackground}></View>
         <View style={this.styles.textContainer}>
           <ActivatableImage style={this.styles.icon} icon={icon} active={active} />
-          <ButtonText color={color === '' ? colors.buttonBlueStrong : color}>{children}</ButtonText>
+          <ButtonText color={mainColor}>{children}</ButtonText>
         </View>
       </TouchableOpacity>
     );
@@ -92,14 +93,16 @@ Button.propTypes = {
   tileButton: bool.isRequired,
   icon: string.isRequired,
   style: any.isRequired,
-  color: string,
+  mainColor: string,
+  secondaryColor: string,
 };
 
 Button.defaultProps = {
   tileButton: false,
   icon: 'addDream',
   style: {},
-  color: '',
+  mainColor: colors.buttonBlueStrong,
+  secondaryColor: colors.buttonBlueSoft,
 };
 
 export default Button;

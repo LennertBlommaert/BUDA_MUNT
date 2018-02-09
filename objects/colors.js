@@ -17,6 +17,9 @@ const colors = {
   buttonBlueStrong: '#37BBEB',
   buttonBlueSoft: '#AFE0F2',
 
+  buttonPurpleStrong: '#7188FE',
+  buttonPurpleSoft: '#C8D7FE',
+
   unselectedTagBackground: '#fff',
   unselectedTagText: '#505050',
 

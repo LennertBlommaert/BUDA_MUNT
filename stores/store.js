@@ -80,7 +80,7 @@ class Store {
   }
 
   init = () => {
-    this.signIn();
+    // this.signIn();
   }
 
   updateData = () => {
@@ -357,6 +357,10 @@ class Store {
         this._signIn(user);
       })
       .catch(err => console.warn(err));
+  }
+
+  signOut = () => {
+    this.fb.signOut();
   }
 
   createUser = () => {
@@ -664,7 +668,7 @@ class Store {
 
   @computed
   get userIsSignedIn() {
-    return true;
+    return this.user.uid !== '';
   }
 
   // Notifications

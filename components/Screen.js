@@ -13,8 +13,8 @@ const styles = StyleSheet.create({
   },
 });
 
-const Screen = ({ children, navigation, noHeader, backButton }) => (
-  <View style={styles.screen}>
+const Screen = ({ children, navigation, noHeader, backButton, style }) => (
+  <View style={[styles.screen, style]}>
     { noHeader ? null : <Header backButton={backButton} navigation={navigation} /> }
     { children }
   </View>
@@ -25,12 +25,14 @@ Screen.propTypes = {
   navigation: object,
   noHeader: bool.isRequired,
   backButton: bool.isRequired,
+  style: any,
 };
 
 Screen.defaultProps = {
   noHeader: false,
   backButton: false,
   navigation: {},
+  style: {},
 };
 
 export default Screen;

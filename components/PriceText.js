@@ -10,7 +10,7 @@ import colors from '../objects/colors';
 import coin from '../assets/img/coin_gold.png';
 import simpleCoin from '../assets/img/coin_gold_simple.png';
 
-const PriceText = ({ children, fontSize, simpleCoinIcon }) => {
+const PriceText = ({ children, fontSize, simpleCoinIcon, style }) => {
   const styles = StyleSheet.create({
     container: {
       flexDirection: 'row',
@@ -34,7 +34,7 @@ const PriceText = ({ children, fontSize, simpleCoinIcon }) => {
   });
 
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, style]}>
       {
         !simpleCoinIcon ?
           <Image
@@ -64,11 +64,13 @@ PriceText.propTypes = {
   children: any.isRequired,
   fontSize: number.isRequired,
   simpleCoinIcon: bool,
+  style: any,
 };
 
 PriceText.defaultProps = {
   fontSize: 30,
   simpleCoinIcon: false,
+  style: {},
 };
 
 export default PriceText;

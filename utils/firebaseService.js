@@ -80,7 +80,7 @@ export default class FirebaseService {
     return firebase.auth().signInWithEmailAndPassword(email, password);
   }
 
-  signOut({ email, password }) {
+  signOut() {
     return firebase.auth().signOut();
   }
 

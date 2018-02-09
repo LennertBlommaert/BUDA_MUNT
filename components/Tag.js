@@ -34,11 +34,14 @@ const Tag = ({ children, selected, onPress, style }) => {
       fontSize: 18,
       textAlign: 'center',
     },
+    icon: {
+      alignSelf: 'center',
+    },
   });
 
   return (
     <TouchableOpacity onPress={onPress} style={[styles.tag, style]}>
-      <ActivatableImage icon={children} active={selected} />
+      <ActivatableImage style={styles.icon} icon={children} active={selected} />
       <Text style={styles.text}>{children}</Text>
     </TouchableOpacity>
   );
