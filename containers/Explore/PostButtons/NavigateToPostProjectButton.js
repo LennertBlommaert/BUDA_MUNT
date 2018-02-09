@@ -1,7 +1,7 @@
 import React from 'react';
 import { object } from 'prop-types';
 import { StyleSheet } from 'react-native';
-import Button from '../../../components/Button';
+import Button from '../../../components/ButtonUnshifted';
 import colors from '../../../objects/colors';
 
 const styles = StyleSheet.create({

@@ -52,6 +52,13 @@ const colors = {
 
   inboxItemBackground: '#fff',
   inboxItemBorder: '#A6A6A6',
+
+  messageBackground: '# ',
+  // messageBackground: '#36BBEE',
+  messageText: '#fff',
+
+  messageOtherUserBackground: '#fff',
+  messageOtherUserText: '#000',
 };
 
 export default colors;

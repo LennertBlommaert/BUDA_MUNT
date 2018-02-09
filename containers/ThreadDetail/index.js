@@ -10,6 +10,7 @@ import MessageInput from './MessageInput/';
 const styles = StyleSheet.create({
   container: {
     alignItems: 'center',
+    flex: 1,
   },
 });
 

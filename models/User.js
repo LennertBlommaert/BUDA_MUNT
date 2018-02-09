@@ -45,17 +45,17 @@ export default class User {
     firstName = '',
     photoURL = '',
     threads = {},
-    balance = 0,
+    balance = '',
     topBucketlistItemName = '',
   }) {
-    this.uid = uid;
-    this.name = name;
-    this.firstName = firstName;
-    this.email = email;
-    this.photoURL = photoURL;
-    this.threads = threads;
-    this.balance = balance;
-    this.topBucketlistItemName = topBucketlistItemName;
+    if (uid !== '') this.uid = uid;
+    if (name !== '') this.name = name;
+    if (firstName !== '') this.firstName = firstName;
+    if (email !== '') this.email = email;
+    if (photoURL !== '') this.photoURL = photoURL;
+    if (threads !== {}) this.threads = threads;
+    if (balance !== '') this.balance = balance;
+    if (topBucketlistItemName !== '') this.topBucketlistItemName = topBucketlistItemName;
   }
 
   @action

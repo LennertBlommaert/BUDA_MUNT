@@ -31,9 +31,9 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
   textInput: {
-    borderWidth: 1,
     fontSize: 20,
     fontFamily: 'calibre-regular',
+    flex: 1,
   },
 });
 

@@ -1,20 +1,37 @@
 import React from 'react';
 import { ScrollView, StyleSheet } from 'react-native';
 import { array } from 'prop-types';
+import { inject, observer, PropTypes } from 'mobx-react/native';
+import Message from './Message';
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    alignSelf: 'stretch',
+    padding: 20,
   },
 });
 
-const Messages = ({ messages }) => (
-  <ScrollView style={styles.container}>
+const Messages = ({ currentThreadDetailMessages, user }) => (
+  <ScrollView
+    style={styles.container}
+  >
+    {
+      currentThreadDetailMessages.map(m => <Message otherUserMessage={m.senderId !== user.uid} key={m.uid} payLoad={m.payLoad} />)
+    }
   </ScrollView>
 );
 
 Messages.propTypes = {
-  messages: array.isRequired,
+  currentThreadDetailMessages: array.isRequired,
+  user: PropTypes.observableObject.isRequired,
 };
 
-export default Messages;
+export default inject(
+  ({ store }) => ({
+    currentThreadDetailMessages: store.currentThreadDetailMessages,
+    user: store.user,
+  }),
+)(
+  observer(Messages),
+);

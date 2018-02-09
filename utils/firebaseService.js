@@ -93,17 +93,21 @@ export default class FirebaseService {
     return {};
   }
 
-  postDataSingleRef({ data, updateRef, key }) {
+  postDataSingleRef({ data, updateRootRef, updateRef, key }) {
     // Write the new post's data to a single ref
     // And return the key usefull when needing foreign key
 
     const updates = {};
 
     if (!key) {
-      key = this.rootRef.child(`${updateRef}`).push().key; //eslint-disable-line
+      key = this.rootRef.child(`${updateRootRef}`).push().key; //eslint-disable-line
     }
 
-    updates[`/${updateRef}/${key}`] = data;
+    if (!updateRef) {
+      updates[`/${updateRootRef}/${key}`] = data;
+    } else {
+      updates[`/${updateRootRef}/${updateRef}/${key}`] = data;
+    }
 
     this.rootRef.update(updates);
 

@@ -8,6 +8,7 @@ import User from '../models/User';
 import Project from '../models/Project';
 import Demand from '../models/Demand';
 import Capacity from '../models/Capacity';
+import Message from '../models/Message';
 import Thread from '../models/Thread';
 
 // import AsyncStorage from 'react-native';
@@ -53,8 +54,14 @@ class Store {
   @observable
   capacities = []
 
+  @observable
+  userThreadMessages = []
+
   // LogIn
   // NOTE: currently bypassing loginflow, strings should be empty
+  // @observable
+  // email = 'annette.vandevelde@test.be'
+
   @observable
   email = 'test@test.be'
 
@@ -81,18 +88,15 @@ class Store {
     this.updateDemands();
     this.updateCapacities();
     this.updateUserThreads();
-    // this.updateThreadMessages();
+    this.updateThreadMessages();
   }
 
-  // NOTE: threads will be duplicated on updates
+  // NOTE: needs to be written more performantally
   updateUserThreads = () => {
     Object.keys(this.user.threads).forEach((key) => {
       this.fb.threadsRef.child(key).on('value', (snapshot) => {
         const threadData = snapshot.val();
         threadData.uid = key;
-
-        // strong denormalisation for easy usage
-        // threadData.demand = this.demands.find(d => d.uid === threadData.uid);
 
         const otherUserId = Object.keys(threadData.members).find(k => k !== this.user.uid);
         threadData.otherUser = threadData.members[otherUserId];
@@ -104,8 +108,45 @@ class Store {
 
   @action
   _addUserThread = (thread) => {
-    this.userThreads.push(new Thread(thread));
+    const threadCheck = this.userThreads.find(t => t.uid === thread.uid);
+    if (!threadCheck) this.userThreads.push(new Thread(thread));
+    // this._addMessagesToUserThreads();
   }
+
+  // @action
+  // _addMessagesToUserThreads = () => {
+  //   this.userThreads.forEach((t) => {
+  //     this.fb.threadMessagesRef.child(t.uid).on('child_added', (snap) => {
+  //       t.addMessage(snap.val());
+  //     });
+  //   });
+  // }
+
+  @action
+  updateThreadMessages = () => {
+    Object.keys(this.user.threads).forEach((key) => {
+      this.fb.threadMessagesRef.child(key).on('child_added', (snap) => {
+        this.userThreadMessages.push(
+          new Message(snap.val(), snap.key, key),
+        );
+      });
+    });
+
+    this.userThreadMessages = Array.from(new Set(this.userThreadMessages));
+  }
+
+  @computed
+  get currentThreadDetailMessages() {
+    const messages = this.userThreadMessages.filter(m => m.threadUID === this.currentThreadDetailUID);
+    return messages;
+  }
+
+  // @action
+  // _updateThreadMessages = (thread) => {
+  //   this.user.threads.forEach(t => {
+  //     t.messages.push
+  //   });
+  // }
 
   // updateProjects = () => {
   //   this.fb.threadMessagesRef.on('value', (snapshot) => {
@@ -147,7 +188,7 @@ class Store {
 
   _postProjectData = () => {
     const data = { name: this.titlePostProject, desc: this.descPostProject, userId: `${this.user.uid}`, stage: 'voorstel' };
-    return this.fb.postDataSingleRef({ data, updateRef: 'projectProposals' });
+    return this.fb.postDataSingleRef({ data, updateRootRef: 'projectProposals' });
   }
 
   voteProjectProposal = (projectUID) => {
@@ -161,12 +202,12 @@ class Store {
     this.fb.usersRef.child(this.user.uid).update({
       balance: this.user.balance += price,
     });
-    // return this.fb.updateDataSingleRef({ data, updateRef: `users/${this.user.uid}/balance` });
+    // return this.fb.updateDataSingleRef({ data, updateRootRef: `users/${this.user.uid}/balance` });
   }
 
   postProjectProposalVoter = (projectUID) => {
     const data = { name: this.user.firstName };
-    return this.fb.postDataSingleRef({ data, updateRef: `projectProposalVoters/${projectUID}`, key: this.user.uid });
+    return this.fb.postDataSingleRef({ data, updateRootRef: `projectProposalVoters/${projectUID}`, key: this.user.uid });
   }
 
   // Capacities
@@ -204,7 +245,7 @@ class Store {
       isBucketListItem: this.isBucketListItem ? 1 : 0,
       isBucketListItem_userId: `${this.isBucketListItem ? 1 : 0}_${this.user.uid}`,
     };
-    return this.fb.postDataSingleRef({ data, updateRef: 'demands' });
+    return this.fb.postDataSingleRef({ data, updateRootRef: 'demands' });
   }
 
   _postDemandCapacitiesData = (key) => {
@@ -214,13 +255,7 @@ class Store {
       data[c.uid] = { name: c.name };
     });
 
-    this.fb.postDataSingleRef({ data, updateRef: 'demandCapacities', key });
-  }
-
-  updateDemands = () => {
-    this.fb.demandsRef.on('value', (snapshot) => {
-      if (snapshot.val() !== null) this._addDemands(snapshot.val());
-    });
+    this.fb.postDataSingleRef({ data, updateRootRef: 'demandCapacities', key });
   }
 
   @action
@@ -234,6 +269,12 @@ class Store {
 
     this._addCapacitiesToDemands();
     this._addUserToDemands();
+  }
+
+  updateDemands = () => {
+    this.fb.demandsRef.on('value', (snapshot) => {
+      if (snapshot.val() !== null) this._addDemands(snapshot.val());
+    });
   }
 
   @action
@@ -250,13 +291,65 @@ class Store {
     this.demands.forEach((d) => {
       this.fb.usersRef.child(d.userId).once('value', (snapshot) => {
         d.user.setProps(snapshot.val());
-
+        d.user.setProps({ uid: snapshot.key });
         this.fb.demandsRef.orderByChild('isBucketListItem_userId').equalTo(`1_${d.userId}`).on('child_added', (snap) => {
           d.user.setTopBucketListItemName(snap.val());
         });
       });
     });
   }
+
+  acceptDemand = (uid) => {
+    const demand = this.demands.find(d => d.uid === uid);
+    if (!demand) return;
+    // this.postThreadUsers(demand);
+
+    const message = {
+      payLoad: `Hey ${demand.user.firstName}, ik wil je graag helpen met ${demand.name}`,
+      senderId: this.user.uid,
+      createdAt: this.fb.serverTime,
+    };
+
+    const members = {};
+    members[`${this.user.uid}`] = this.user;
+    members[`${demand.user.uid}`] = demand.user;
+
+    const threadUID = this.postThread(demand, members, message);
+    this.postFirstMessage(message, threadUID);
+    this.postThreadUsers(members, threadUID);
+    this.updateThreadUsers(members, threadUID, demand.name);
+  }
+
+  postThread = (demand, members, message) => {
+    const data = { demand, demandId: `${demand.uid}`, members, lastMessage: message };
+    return this.fb.postDataSingleRef({ data, updateRootRef: 'threads' });
+  }
+
+  postFirstMessage = (data, threadUID) => {
+    this.fb.postDataSingleRef({ data, updateRootRef: 'threadMessages', updateRef: `${threadUID}` });
+  }
+
+  postThreadUsers = (data, threadUID) => {
+    this.fb.postDataSingleRef({ data, updateRootRef: 'threadUsers', key: `${threadUID}` });
+    // this.fb.postDataSingleRef({ members, updateRootRef: `threadUsers/${threadUID}` });
+  }
+
+  updateThreadUsers = (members, threadUID, name) => {
+    Object.keys(members).map(key => this.fb.postDataSingleRef({ updateRootRef: `users/${key}/threads`, data: name, key: `${threadUID}` }));
+  };
+
+  // DemandDetail
+  @computed
+  get currentDemandDetail() {
+    return this.demands.find(demand => this.currentDemandDetailUID === demand.uid);
+  }
+
+  @action
+  setCurrentDemandDetailUID = (uid) => {
+    this.currentDemandDetailUID = uid;
+  }
+
+  // user
 
   signIn = () => {
     this.fb.singIn({ email: this.email, password: this.password })
@@ -322,9 +415,21 @@ class Store {
     this.currentThreadDetailUID = uid;
   }
 
-  postMessage = () => {
-    const data = { payLoad: this.message, senderId: this.user.uid, createdAt: this.fb.serverTime };
-    this.fb.postDataSingleRef({ data, updateRef: `threadMessages/${this.currentThreadDetailUID}` });
+  postMessage = ({ message, threadId }) => {
+    const data = { senderId: this.user.uid, createdAt: this.fb.serverTime };
+
+    if (message) {
+      data.payLoad = message;
+    } else {
+      data.payLoad = this.message;
+    }
+
+    if (threadId) {
+      this.fb.postDataSingleRef({ data, updateRootRef: `threadMessages/${threadId}` });
+    } else {
+      this.fb.postDataSingleRef({ data, updateRootRef: `threadMessages/${this.currentThreadDetailUID}` });
+    }
+
     this.clearMessage();
   }
 
@@ -517,17 +622,6 @@ class Store {
   @computed
   get selectedCapacities() {
     return this.capacities.filter(c => c.selected);
-  }
-
-  // DemandDetail
-  @computed
-  get currentDemandDetail() {
-    return this.demands.find(demand => this.currentDemandDetailUID === demand.uid);
-  }
-
-  @action
-  setCurrentDemandDetailUID = (uid) => {
-    this.currentDemandDetailUID = uid;
   }
 
   // ProjectDetail

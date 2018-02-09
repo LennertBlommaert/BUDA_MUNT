@@ -24,14 +24,14 @@ const styles = StyleSheet.create({
   },
 });
 
-const DemandTile = ({ uid, name, truncatedDesc, reward, userId, user, navigation, setCurrentDemandDetailUID }) => {
+const DemandTile = ({ uid, name, truncatedDesc, reward, userId, user, navigation, setCurrentDemandDetailUID, acceptDemand }) => {
   const onPressDemandTileTextContainer = () => {
     setCurrentDemandDetailUID(uid);
     navigation.navigate('DemandDetail');
   };
 
   const onPressAcceptDemandButton = () => {
-    console.warn('Accepeted demand');
+    acceptDemand(uid);
   };
 
   return (
@@ -56,10 +56,14 @@ DemandTile.propTypes = {
   navigation: object.isRequired,
   user: object.isRequired,
   setCurrentDemandDetailUID: func.isRequired,
+  acceptDemand: func.isRequired,
 };
 
 export default inject(
-  ({ store }) => ({ setCurrentDemandDetailUID: store.setCurrentDemandDetailUID }),
+  ({ store }) => ({
+    setCurrentDemandDetailUID: store.setCurrentDemandDetailUID,
+    acceptDemand: store.acceptDemand,
+  }),
 )(
   observer(DemandTile),
 );

@@ -11,7 +11,7 @@ const styles = StyleSheet.create({
 });
 
 const SendMessageButton = ({ postMessage }) => (
-  <TouchableOpacity onPress={() => postMessage()}>
+  <TouchableOpacity onPress={() => postMessage({})}>
     <ActivatableImage
       size={25}
       style={styles.image}
