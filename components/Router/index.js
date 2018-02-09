@@ -19,6 +19,7 @@ import Notifications from '../../containers/Notifications/';
 import Pay from '../../containers/Pay/';
 
 import TabBar from './TabBar/';
+// import transitionConfig from './transitionConfig';
 
 const ExploreStack = StackNavigator({
   Explore: {
@@ -76,7 +77,7 @@ const ThreadsStack = StackNavigator({
     screen: Notifications,
   },
 }, {
-  mode: 'modal',
+  mode: 'card',
   headerMode: 'none',
 });
 
@@ -118,6 +119,9 @@ const TabBarStack = TabNavigator({
   },
 }, {
   tabBarComponent: TabBar,
+  initialRouteName: 'Explore',
+  animationEnabled: true,
+  swipeEnabled: false,
   tabBarOptions: {
     activeTintColor: colors.tabBarActiveTintColor,
     inactiveTintColor: colors.tabBarInactiveTintColor,

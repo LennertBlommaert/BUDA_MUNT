@@ -1,24 +1,35 @@
 import React from 'react';
+import { StyleSheet } from 'react-native';
 import { inject, observer } from 'mobx-react/native';
-import { object } from 'prop-types';
+import { object, func } from 'prop-types';
 
 import Screen from '../../components/Screen';
-import HeaderText from '../../components/HeaderText';
-import BodyText from '../../components/BodyText';
-
 import Button from '../../components/Button';
+import HeaderAndDescriptionDetail from '../../components/HeaderAndDescriptionDetail';
 
-const ProjectDetail = ({ currentProjectDetail, navigation }) => {
+const styles = StyleSheet.create({
+  container: {
+    justifyContent: 'flex-start',
+  },
+  button: {
+    position: 'absolute',
+    bottom: 30,
+  },
+});
+
+const ProjectDetail = ({ currentProjectDetail, navigation, voteProjectProposal }) => {
   const onPressVote = () => {
-    console.warn('Voted project');
+    voteProjectProposal(currentProjectDetail.uid);
   };
 
   return (
-    <Screen backButton navigation={navigation}>
-      <HeaderText>{currentProjectDetail.name}</HeaderText>
-      <BodyText>{currentProjectDetail.desc}</BodyText>
-      <Button onPress={onPressVote}>
-        ik stem mee
+    <Screen style={styles.container} backButton navigation={navigation}>
+      <HeaderAndDescriptionDetail
+        desc={currentProjectDetail.desc}
+        name={currentProjectDetail.name}
+      />
+      <Button style={styles.button} icon={'voteProject'} onPress={onPressVote}>
+        ik ben voor
       </Button>
     </Screen>
   );
@@ -27,10 +38,14 @@ const ProjectDetail = ({ currentProjectDetail, navigation }) => {
 ProjectDetail.propTypes = {
   currentProjectDetail: object.isRequired,
   navigation: object.isRequired,
+  voteProjectProposal: func.isRequired,
 };
 
 export default inject(
-  ({ store }) => ({ currentProjectDetail: store.currentProjectDetail }),
+  ({ store }) => ({
+    currentProjectDetail: store.currentProjectDetail,
+    voteProjectProposal: store.voteProjectProposal,
+  }),
 )(
   observer(ProjectDetail),
 );

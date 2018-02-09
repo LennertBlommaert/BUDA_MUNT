@@ -42,7 +42,12 @@ const FeedList = ({ feedItems, navigation }) => (
           if (item.userId) {
             return <DemandTile key={item.uid} navigation={navigation} {...item} />;
           }
-          return <ProjectTile key={item.uid} navigation={navigation} {...item} />;
+          return <ProjectTile
+                  key={item.uid}
+                  navigation={navigation}
+                  {...item}
+                  active={item.voterUIDs.find(uid => uid === )}
+                />;
         })
 
         :
@@ -57,10 +62,14 @@ const FeedList = ({ feedItems, navigation }) => (
 FeedList.propTypes = {
   feedItems: array.isRequired,
   navigation: object.isRequired,
+  user: object.isRequired
 };
 
 export default inject(
-  ({ store }) => ({ feedItems: store.feedItems }),
+  ({ store }) => ({
+    feedItems: store.feedItems,
+    user: store.user,
+  }),
 )(
   observer(FeedList),
 );

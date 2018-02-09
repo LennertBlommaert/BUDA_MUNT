@@ -80,7 +80,7 @@ class Store {
   }
 
   init = () => {
-    // this.signIn();
+    this.signIn();
   }
 
   updateData = () => {

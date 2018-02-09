@@ -56,7 +56,7 @@ const colors = {
   inboxItemBackground: '#fff',
   inboxItemBorder: '#A6A6A6',
 
-  messageBackground: '# ',
+  messageBackground: '#BFE8F8',
   // messageBackground: '#36BBEE',
   messageText: '#fff',
 
