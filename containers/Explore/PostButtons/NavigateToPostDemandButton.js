@@ -6,9 +6,11 @@ import colors from '../../../objects/colors';
 
 const styles = StyleSheet.create({
   button: {
-    width: 165,
-    paddingLeft: 42,
-    paddingRight: 42,
+    // width: 165,
+    flex: 0.8,
+    minWidth: 140,
+    marginRight: 4,
+    justifyContent: 'center',
     backgroundColor: colors.addDemandButtonBackground,
   },
 });

@@ -6,9 +6,10 @@ import colors from '../../../objects/colors';
 
 const styles = StyleSheet.create({
   button: {
-    width: 165,
-    paddingLeft: 25,
-    paddingRight: 25,
+    flex: 0.8,
+    minWidth: 140,
+    marginLeft: 4,
+    justifyContent: 'center',
     backgroundColor: colors.addProjectButtonBackground,
   },
 });

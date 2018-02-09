@@ -1,6 +1,7 @@
 import React from 'react';
 import { object } from 'prop-types';
 import { View, StyleSheet } from 'react-native';
+import { inject, observer } from 'mobx-react/native';
 import NavigateToPostDemandButton from './NavigateToPostDemandButton';
 import NavigateToPostProjectButton from './NavigateToPostProjectButton';
 
@@ -9,14 +10,18 @@ const styles = StyleSheet.create({
     marginBottom: 50,
     marginTop: 50,
     flexDirection: 'row',
-    justifyContent: 'space-between',
+    justifyContent: 'center',
   },
 });
 
-const PostButtons = ({ navigation }) => (
+const PostButtons = ({ navigation, currentSegmentedControlItemIndex }) => (
   <View style={styles.buttonContainer}>
-    <NavigateToPostDemandButton navigation={navigation} />
-    <NavigateToPostProjectButton navigation={navigation} />
+    {
+      currentSegmentedControlItemIndex !== 2 ? <NavigateToPostDemandButton navigation={navigation} /> : null
+    }
+    {
+      currentSegmentedControlItemIndex !== 1 ? <NavigateToPostProjectButton navigation={navigation} /> : null
+    }
   </View>
 );
 
@@ -24,4 +29,8 @@ PostButtons.propTypes = {
   navigation: object.isRequired,
 };
 
-export default PostButtons;
+export default inject(
+  ({ store }) => ({ currentSegmentedControlItemIndex: store.currentSegmentedControlItemIndex }),
+)(
+  observer(PostButtons),
+);
