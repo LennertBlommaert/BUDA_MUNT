@@ -6,6 +6,7 @@ import { inject, observer } from 'mobx-react/native';
 import { View, StyleSheet } from 'react-native';
 import SegmentedControlItem from './SegmentedControlItem';
 import colors from '../../../../objects/colors';
+import ActiveSegmentIndicator from './ActiveSegmentIndicator';
 
 const styles = StyleSheet.create({
   container: {
@@ -30,10 +31,11 @@ const SegmentedControl = ({ currentSegmentedControlItemIndex }) => (
       <SegmentedControlItem id={1}>Dromen</SegmentedControlItem>
       <SegmentedControlItem id={2}>Buurtwensen</SegmentedControlItem>
     </View>
-    <View
+    <ActiveSegmentIndicator />
+    {/* <View
       style={[styles.line, { transform: [{ translateY: 7 }, { translateX: 111 * currentSegmentedControlItemIndex }] }]}
     >
-    </View>
+    </View> */}
   </View>
 );
 
