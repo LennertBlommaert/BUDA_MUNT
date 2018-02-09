@@ -37,7 +37,12 @@ class Button extends Component {
     const { active } = this.state;
 
     return (
-      <TouchableOpacity onPress={() => this.onPress()} onTouchEnd={() => this.setActive()} onTouchStart={() => this.setInActive()} style={[styles.button, style]}>
+      <TouchableOpacity
+        onPress={() => this.onPress()}
+        onTouchEnd={() => this.setActive()}
+        onTouchStart={() => this.setInActive()}
+        style={[styles.button, style]}
+      >
         <ActivatableImage style={styles.icon} icon={icon} active={active} />
       </TouchableOpacity>
     );

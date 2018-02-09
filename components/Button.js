@@ -79,7 +79,7 @@ class Button extends Component {
       <TouchableOpacity onPress={() => this.onPress()} style={[this.styles.button, style]}>
         <View style={this.styles.offSetBackground}></View>
         <View style={this.styles.textContainer}>
-          <ActivatableImage style={this.styles.icon} icon={icon} active={active} />
+          <ActivatableImage size={35} style={this.styles.icon} icon={icon} active={active} />
           <ButtonText color={mainColor}>{children}</ButtonText>
         </View>
       </TouchableOpacity>

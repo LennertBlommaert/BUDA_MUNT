@@ -9,6 +9,8 @@ const styles = StyleSheet.create({
   buttonContainer: {
     marginBottom: 50,
     marginTop: 50,
+    paddingLeft: 20,
+    paddingRight: 20,
     flexDirection: 'row',
     justifyContent: 'center',
   },

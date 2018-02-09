@@ -7,6 +7,8 @@ import stats from '../../assets/img/stats.png';
 import colors from '../../objects/colors';
 
 const styles = StyleSheet.create({
+  container: {
+  },
   imageContainer: {
     shadowColor: colors.shadowColor,
     shadowOffset: {
@@ -32,8 +34,8 @@ const styles = StyleSheet.create({
   },
 });
 
-const componentName = () => (
-  <View>
+const FeedListFill = () => (
+  <View style={styles.container}>
     <View style={styles.imageContainer}>
       <Image
         style={styles.openVacancyImage}
@@ -53,6 +55,6 @@ const componentName = () => (
   </View>
 );
 
-componentName.propTypes = {};
+FeedListFill.propTypes = {};
 
-export default componentName;
+export default FeedListFill;

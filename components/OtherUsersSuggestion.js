@@ -1,7 +1,8 @@
 import React from 'react';
 import { View, ScrollView, Image, StyleSheet } from 'react-native';
-import otherUsersSuggestion from '../../assets/img/other_users_suggestion.png';
-import HeaderText from '../../components/HeaderText';
+import { any } from 'prop-types';
+import otherUsersSuggestion from '../assets/img/other_users_suggestion.png';
+import HeaderText from './HeaderText';
 
 const styles = StyleSheet.create({
   container: {
@@ -19,8 +20,8 @@ const styles = StyleSheet.create({
   },
 });
 
-const OtherUsersSuggestion = () => (
-  <View style={styles.container}>
+const OtherUsersSuggestion = ({ style }) => (
+  <View style={[styles.container, style]}>
     <HeaderText fontSize={20} style={styles.header}>
       Zij kunnen jou misschien helpen
     </HeaderText>
@@ -34,6 +35,12 @@ const OtherUsersSuggestion = () => (
   </View>
 );
 
-OtherUsersSuggestion.propTypes = {};
+OtherUsersSuggestion.propTypes = {
+  style: any,
+};
+
+OtherUsersSuggestion.defaultProps = {
+  style: '',
+};
 
 export default OtherUsersSuggestion;

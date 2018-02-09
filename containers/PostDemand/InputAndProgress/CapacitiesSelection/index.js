@@ -7,13 +7,17 @@ import HeaderText from '../../../../components/HeaderText';
 import BodyText from '../../../../components/BodyText';
 
 const styles = StyleSheet.create({
+  label: {
+  },
   container: {
     padding: 30,
+    marginTop: 10,
   },
   capacitiesContainer: {
+    marginTop: 20,
     flex: 1,
-    justifyContent: 'space-around',
-    alignContent: 'space-around',
+    justifyContent: 'space-between',
+    alignContent: 'space-between',
     flexDirection: 'row',
     flexWrap: 'wrap',
   },
@@ -26,7 +30,7 @@ const CapacitiesSelection = ({ capacities, toggleCapacitySelected }) => {
 
   return (
     <View style={styles.container}>
-      <HeaderText fontSize={22}>Zeg het in kernwoorden</HeaderText>
+      <HeaderText style={styles.label} fontSize={22}>Zeg het in kernwoorden</HeaderText>
       <BodyText opacity={0.7} italic>Duid de passende tags aan</BodyText>
       <View style={styles.capacitiesContainer}>
         {

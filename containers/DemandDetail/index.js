@@ -8,7 +8,7 @@ import PriceText from '../../components/PriceText';
 import UserReference from '../../components/UserReference';
 import ActivatableImage from '../../components/ActivatableImage';
 import HeaderAndDescriptionDetail from '../../components/HeaderAndDescriptionDetail';
-import OtherUsersSuggestion from './OtherUsersSuggestion';
+import OtherUsersSuggestion from '../../components/OtherUsersSuggestion';
 
 import Button from '../../components/Button';
 import Tag from '../../components/Tag';

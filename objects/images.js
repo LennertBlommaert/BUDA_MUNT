@@ -102,7 +102,8 @@ import profile from '../assets/img/profile_tab.png';
 
 const images = {
   addDream: {
-    inactive: addDreamInactive,
+    inactive: addDream,
+    // inactive: addDreamInactive,
     active: addDream,
     inactiveInverted: addDreamInactiveInverted,
   },

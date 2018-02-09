@@ -7,6 +7,7 @@ import BodyText from './BodyText';
 const styles = StyleSheet.create({
   textContainer: {
     alignItems: 'flex-start',
+    alignSelf: 'stretch',
     marginTop: 30,
     marginBottom: 50,
     paddingLeft: 20,

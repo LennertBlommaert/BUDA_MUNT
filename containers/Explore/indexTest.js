@@ -6,6 +6,7 @@ import DemandTile from './DemandTile/';
 import ProjectTile from './ProjectTile/';
 import FeedListFill from './FeedListFill';
 import BodyText from '../../components/BodyText';
+import OtherUsersSuggestion from '../../components/OtherUsersSuggestion';
 import PostButtons from './PostButtons/';
 
 import Screen from '../../components/Screen';
@@ -16,8 +17,13 @@ const Feed = Animated.createAnimatedComponent(ScrollView);
 const styles = StyleSheet.create({
   feed: {
     alignSelf: 'stretch',
-    paddingLeft: 20,
-    paddingRight: 20,
+    // paddingLeft: 20,
+    // paddingRight: 20,
+  },
+  otherUsersSuggestion: {
+    position: 'relative',
+    bottom: 0,
+    paddingBottom: 150,
   },
 });
 
@@ -118,11 +124,11 @@ class Explore extends Component {
           onScrollEndDrag={this._onScrollEndDrag}
           onScroll={Animated.event(
             [{ nativeEvent: { contentOffset: { y: this.state.scrollAnim } } }],
-            // { useNativeDriver: true },
             { useNativeDriver: false },
           )}
           showsVerticalScrollIndicator={false}
           style={styles.feed}
+          contentContainerStyle={{ alignItems: 'center' }} //eslint-disable-line
         >
           <PostButtons navigation={navigation} />
           {/* <BodyText style={styles.recommandationLabel} italic opacity={0.7}>Dit lijkt ons helemaal iets voor jou...</BodyText> */}
@@ -130,7 +136,7 @@ class Explore extends Component {
 
             feedItems.length > 0 ?
 
-              feedItems.map((item) => {
+              feedItems.map((item, index) => {
                 if (item.userId) {
                   return <DemandTile key={item.uid} navigation={navigation} {...item} />;
                 }
@@ -146,10 +152,11 @@ class Explore extends Component {
 
               :
 
-              <BodyText> Geen items om weer te geven</BodyText>
+              <BodyText style={styles.noItemsText} italic> Geen items om weer te geven</BodyText>
 
           }
           <FeedListFill />
+          <OtherUsersSuggestion style={styles.otherUsersSuggestion} />
         </Feed>
       </Screen>
     );
