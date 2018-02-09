@@ -65,10 +65,10 @@ class Store {
   // LogIn
   // NOTE: currently bypassing loginflow, strings should be empty
   @observable
-  email = 'annette.vandevelde@test.be'
+  // email = 'annette.vandevelde@test.be'
 
   // @observable
-  // email = 'test@test.be'
+  email = 'test@test.be'
 
   @observable
   password = 'testtest'
@@ -655,9 +655,12 @@ class Store {
 
   @computed
   get feedItems() {
-    if (this.currentSegmentedControlItemIndex === 1) return [...this.demands].sort((a, b) => a.name - b.name);
-    if (this.currentSegmentedControlItemIndex === 2) return [...this.projects].sort((a, b) => a.name - b.name);
-    return [...this.demands, ...this.projects].sort((a, b) => a.name - b.name);
+    const demands = this.demands.filter(d => d.userId !== this.user.uid);
+    const projects = this.projects.filter(p => p.userId !== this.user.uid);
+
+    if (this.currentSegmentedControlItemIndex === 1) return [...demands].sort((a, b) => a.name - b.name);
+    if (this.currentSegmentedControlItemIndex === 2) return [...projects].sort((a, b) => a.name - b.name);
+    return [...demands, ...projects].sort((a, b) => a.name - b.name);
   }
 
   //  LogIn
