@@ -322,6 +322,17 @@ class Store {
     this.currentThreadDetailUID = uid;
   }
 
+  postMessage = () => {
+    const data = { payLoad: this.message, senderId: this.user.uid, createdAt: this.fb.serverTime };
+    this.fb.postDataSingleRef({ data, updateRef: `threadMessages/${this.currentThreadDetailUID}` });
+    this.clearMessage();
+  }
+
+  @action
+  clearMessage = () => {
+    this.message = '';
+  }
+
   // Post projects
   @observable
   titlePostProject = ''

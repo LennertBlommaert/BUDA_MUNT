@@ -3,7 +3,7 @@ import { TextInput, StyleSheet, KeyboardAvoidingView, View } from 'react-native'
 import { func, string } from 'prop-types';
 import { inject, observer } from 'mobx-react/native';
 import colors from '../../../objects/colors';
-import ActivatableImage from '../../../components/ActivatableImage';
+import SendMessageButton from './SendMessageButton';
 
 const styles = StyleSheet.create({
   container: {
@@ -31,16 +31,13 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
   textInput: {
-    borderWidth: 0,
+    borderWidth: 1,
     fontSize: 20,
     fontFamily: 'calibre-regular',
   },
-  image: {
-    alignSelf: 'center',
-  },
 });
 
-const MessageInput = ({ setMessage, message }) => {
+const MessageInput = ({ setMessage, message, postMessage }) => {
   const handleChangeText = text => setMessage(text);
 
   return (
@@ -61,7 +58,9 @@ const MessageInput = ({ setMessage, message }) => {
           numberOfLines={2}
         />
         {
-          message.length > 0 ? <ActivatableImage size={25} style={styles.image} icon={'sendMessage'} onPress={console.warn('Verzend bericht')} /> : null
+          message.length > 0 ?
+            <SendMessageButton />
+            : null
         }
       </View>
     </KeyboardAvoidingView>

@@ -124,4 +124,8 @@ export default class FirebaseService {
 
     return this.rootRef.update(updates);
   }
+
+  get serverTime() {
+    return firebase.database.ServerValue.TIMESTAMP;
+  }
 }

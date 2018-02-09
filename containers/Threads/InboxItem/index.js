@@ -20,7 +20,9 @@ const styles = StyleSheet.create({
       height: 3,
     },
     shadowRadius: 5,
-    shadowOpacity: 0.5,
+    shadowOpacity: 0.05,
+
+    borderRadius: 3,
   },
 });
 

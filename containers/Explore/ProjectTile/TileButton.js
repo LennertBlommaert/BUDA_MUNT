@@ -1,3 +1,5 @@
+// NOTE: can be rewritten as a functional component
+
 import React, { Component } from 'react';
 
 import { TouchableOpacity, StyleSheet } from 'react-native';

@@ -1,5 +1,5 @@
 import React from 'react';
-import { FlatList, StyleSheet } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import { inject, observer, PropTypes } from 'mobx-react/native';
 import { object } from 'prop-types';
 import InboxItem from './InboxItem/';
@@ -7,16 +7,18 @@ import InboxItem from './InboxItem/';
 const styles = StyleSheet.create({
   list: {
     marginBottom: 50,
+    flex: 1,
   },
 });
 
 const Inbox = ({ userThreads, navigation }) => (
-  <FlatList
+  <View
     style={styles.list}
-    data={userThreads}
-    keyExtractor={item => item.uid}
-    renderItem={({ item }) => <InboxItem key={item.uid} {...item} navigation={navigation} />}
-  />
+  >
+    {
+      userThreads.map(t => <InboxItem key={t.uid} {...t} navigation={navigation} />)
+    }
+  </View>
 );
 
 Inbox.propTypes = {
