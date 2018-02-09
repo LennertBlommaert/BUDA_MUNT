@@ -11,15 +11,15 @@ const styles = StyleSheet.create({
   },
 });
 
-const ItemBot = ({ lastMessagepayLoad, time }) => (
+const ItemBot = ({ lastMessageTruncatedPayLoad, time }) => (
   <View style={styles.container}>
-    <BodyText fontSize={18} italic>{lastMessagepayLoad}</BodyText>
+    <BodyText fontSize={18} italic>{lastMessageTruncatedPayLoad}</BodyText>
     <BodyText italic opacity={0.7}>{time}</BodyText>
   </View>
 );
 
 ItemBot.propTypes = {
-  lastMessagepayLoad: string.isRequired,
+  lastMessageTruncatedPayLoad: string.isRequired,
   time: string.isRequired,
 };
 

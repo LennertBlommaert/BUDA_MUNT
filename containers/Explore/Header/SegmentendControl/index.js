@@ -5,7 +5,6 @@ import { number } from 'prop-types';
 import { inject, observer } from 'mobx-react/native';
 import { View, StyleSheet } from 'react-native';
 import SegmentedControlItem from './SegmentedControlItem';
-import colors from '../../../../objects/colors';
 import ActiveSegmentIndicator from './ActiveSegmentIndicator';
 
 const styles = StyleSheet.create({
@@ -14,13 +13,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'flex-end',
-  },
-  line: {
-    width: 111,
-    height: 3,
-    borderRadius: 3,
-    backgroundColor: colors.addDemandButtonBackground,
-    transform: [{ translateY: 7 }, { translateX: -7 }],
   },
 });
 
@@ -32,10 +24,6 @@ const SegmentedControl = ({ currentSegmentedControlItemIndex }) => (
       <SegmentedControlItem id={2}>Buurtwensen</SegmentedControlItem>
     </View>
     <ActiveSegmentIndicator />
-    {/* <View
-      style={[styles.line, { transform: [{ translateY: 7 }, { translateX: 111 * currentSegmentedControlItemIndex }] }]}
-    >
-    </View> */}
   </View>
 );
 

@@ -4,6 +4,7 @@ import { func, string } from 'prop-types';
 import { inject, observer } from 'mobx-react/native';
 import colors from '../../../objects/colors';
 import SendMessageButton from './SendMessageButton';
+import MessageOptions from './MessageOptions';
 
 const styles = StyleSheet.create({
   container: {
@@ -60,7 +61,7 @@ const MessageInput = ({ setMessage, message, postMessage }) => {
         {
           message.length > 0 ?
             <SendMessageButton />
-            : null
+            : <MessageOptions />
         }
       </View>
     </KeyboardAvoidingView>

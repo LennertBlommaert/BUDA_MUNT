@@ -22,6 +22,11 @@ class Store {
   @observable
   user = new User({});
 
+  @computed
+  get currentUserUID() {
+    return this.user.uid;
+  }
+
   @observable
   projects = []
 

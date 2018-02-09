@@ -15,7 +15,9 @@ const Feed = Animated.createAnimatedComponent(ScrollView);
 
 const styles = StyleSheet.create({
   feed: {
-    flex: 1,
+    alignSelf: 'stretch',
+    paddingLeft: 20,
+    paddingRight: 20,
   },
 });
 

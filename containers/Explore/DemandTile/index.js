@@ -24,7 +24,7 @@ const styles = StyleSheet.create({
   },
 });
 
-const DemandTile = ({ uid, name, truncatedDesc, reward, userId, user, navigation, setCurrentDemandDetailUID, acceptDemand }) => {
+const DemandTile = ({ uid, name, truncatedDesc, reward, userId, user, navigation, setCurrentDemandDetailUID, acceptDemand, currentUserUID }) => {
   const onPressDemandTileTextContainer = () => {
     setCurrentDemandDetailUID(uid);
     navigation.navigate('DemandDetail');
@@ -44,7 +44,11 @@ const DemandTile = ({ uid, name, truncatedDesc, reward, userId, user, navigation
         <UserReference {...user} />
         <PriceText simpleCoinIcon>{reward}</PriceText>
       </View>
-      <TileButton userName={user.firstName} demandTile icon={'acceptDemand'} onPress={onPressAcceptDemandButton} style={styles.button} />
+      {
+        currentUserUID !== userId ?
+          <TileButton userName={user.firstName} demandTile icon={'acceptDemand'} onPress={onPressAcceptDemandButton} style={styles.button} />
+          : null
+      }
     </Tile>
   );
 };
@@ -57,12 +61,14 @@ DemandTile.propTypes = {
   user: object.isRequired,
   setCurrentDemandDetailUID: func.isRequired,
   acceptDemand: func.isRequired,
+  currentUserUID: string.isRequired,
 };
 
 export default inject(
   ({ store }) => ({
     setCurrentDemandDetailUID: store.setCurrentDemandDetailUID,
     acceptDemand: store.acceptDemand,
+    currentUserUID: store.currentUserUID,
   }),
 )(
   observer(DemandTile),

@@ -33,6 +33,17 @@ import acceptDemand from '../assets/img/accept_demand.png';
 import addThread from '../assets/img/add_thread.png';
 import sendMessage from '../assets/img/send_message.png';
 
+// Chat
+
+import locationInactive from '../assets/img/location.png';
+import location from '../assets/img/location_inactive.png';
+
+import calendarInactive from '../assets/img/calendar_inactive.png';
+import calendar from '../assets/img/calendar.png';
+
+import donateInactive from '../assets/img/donate_coins_inactive.png';
+import donate from '../assets/img/donate_buda_coins.png';
+
 // Tags
 import gezelschap from '../assets/img/tags/gezelschap.png';
 import gezelschapSelected from '../assets/img/tags/gezelschap_selected.png';
@@ -143,6 +154,23 @@ const images = {
   sendMessage: {
     inactive: sendMessage,
     active: sendMessage,
+  },
+
+  // Chat
+
+  calendar: {
+    inactive: calendarInactive,
+    active: calendar,
+  },
+
+  location: {
+    inactive: locationInactive,
+    active: location,
+  },
+
+  donate: {
+    inactive: donateInactive,
+    active: donate,
   },
 
   //

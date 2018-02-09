@@ -8,6 +8,7 @@ import PriceText from '../../components/PriceText';
 import UserReference from '../../components/UserReference';
 import ActivatableImage from '../../components/ActivatableImage';
 import HeaderAndDescriptionDetail from '../../components/HeaderAndDescriptionDetail';
+import OtherUsersSuggestion from './OtherUsersSuggestion';
 
 import Button from '../../components/Button';
 import Tag from '../../components/Tag';
@@ -56,7 +57,7 @@ const styles = StyleSheet.create({
   },
 });
 
-const DemandDetail = ({ currentDemandDetail, navigation, acceptDemand }) => {
+const DemandDetail = ({ currentDemandDetail, navigation, acceptDemand, user }) => {
   const onPressAcceptDemand = () => {
     acceptDemand(currentDemandDetail.uid);
   };
@@ -78,11 +79,19 @@ const DemandDetail = ({ currentDemandDetail, navigation, acceptDemand }) => {
       </View>
       <View style={styles.userContainer}>
         <UserReference {...currentDemandDetail.user} />
-        <ActivatableImage style={styles.chatIcon} icon={'messages'} />
+        {
+          currentDemandDetail.user.uid !== user.uid ? <ActivatableImage style={styles.chatIcon} icon={'messages'} /> : null
+        }
       </View>
-      <Button style={styles.button} mainColor={colors.buttonPurpleStrong} secondaryColor={colors.buttonPurpleSoft} icon={'acceptDemand'} onPress={onPressAcceptDemand}>
-        ik wil helpen
-      </Button>
+
+      {
+        currentDemandDetail.user.uid === user.uid ?
+          <OtherUsersSuggestion />
+          :
+          <Button style={styles.button} mainColor={colors.buttonPurpleStrong} secondaryColor={colors.buttonPurpleSoft} icon={'acceptDemand'} onPress={onPressAcceptDemand}>
+            ik wil helpen
+          </Button>
+      }
     </Screen>
   );
 };
@@ -90,12 +99,14 @@ const DemandDetail = ({ currentDemandDetail, navigation, acceptDemand }) => {
 DemandDetail.propTypes = {
   currentDemandDetail: object.isRequired,
   navigation: object.isRequired,
+  user: object.isRequired,
 };
 
 export default inject(
   ({ store }) => ({
     currentDemandDetail: store.currentDemandDetail,
     acceptDemand: store.acceptDemand,
+    user: store.user,
   }),
 )(
   observer(DemandDetail),

@@ -54,7 +54,7 @@ const colors = {
   searchInputText: '#000',
 
   inboxItemBackground: '#fff',
-  inboxItemBorder: '#A6A6A6',
+  inboxItemBorder: '#eee',
 
   messageBackground: '#BFE8F8',
   // messageBackground: '#36BBEE',
