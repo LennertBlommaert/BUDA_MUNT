@@ -17,6 +17,8 @@ export default class Thread {
     this.demandId = demandId;
     this.projectId = projectId;
     this.lastMessage = lastMessage;
+    this.lastMessage.createdAt = new Date(lastMessage.createdAt);
+    this.lastMessageTime = `${this.lastMessage.createdAt.getHours() < 10 ? '0' : ''}${this.lastMessage.createdAt.getHours()}:${this.lastMessage.createdAt.getMinutes() < 10 ? '0' : ''}${this.lastMessage.createdAt.getMinutes()}`;
     this.lastMessageTruncatedPayLoad = `${this.lastMessage.payLoad.substring(0, 34)}${this.lastMessage.payLoad.length > 34 ? '...' : ''}`;
     this.members = members;
     this.demand = demand;

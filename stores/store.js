@@ -436,8 +436,14 @@ class Store {
 
     if (threadId) {
       this.fb.postDataSingleRef({ data, updateRootRef: `threadMessages/${threadId}` });
+      this.fb.threadsRef.child(`${threadId}`).update({
+        lastMessage: data,
+      });
     } else {
       this.fb.postDataSingleRef({ data, updateRootRef: `threadMessages/${this.currentThreadDetailUID}` });
+      this.fb.threadsRef.child(`${this.currentThreadDetailUID}`).update({
+        lastMessage: data,
+      });
     }
 
     this.clearMessage();

@@ -28,7 +28,7 @@ const styles = StyleSheet.create({
   },
 });
 
-const InboxItem = ({ uid, otherUser, demand, navigation, setCurrentThreadDetailUID, lastMessageTruncatedPayLoad }) => {
+const InboxItem = ({ uid, otherUser, demand, navigation, setCurrentThreadDetailUID, lastMessageTruncatedPayLoad, lastMessageTime }) => {
   const onPressInboxItem = () => {
     setCurrentThreadDetailUID(uid);
     navigation.navigate('ThreadDetail');
@@ -37,7 +37,7 @@ const InboxItem = ({ uid, otherUser, demand, navigation, setCurrentThreadDetailU
   return (
     <TouchableOpacity style={styles.container} onPress={onPressInboxItem}>
       <ItemTop firstName={otherUser.firstName} name={otherUser.name} title={demand.name} photoURL={otherUser.photoURL} />
-      <ItemBot lastMessageTruncatedPayLoad={lastMessageTruncatedPayLoad} time={'22:22'} />
+      <ItemBot lastMessageTruncatedPayLoad={lastMessageTruncatedPayLoad} time={lastMessageTime} />
     </TouchableOpacity>
   );
 };
@@ -48,6 +48,7 @@ InboxItem.propTypes = {
   otherUser: object.isRequired,
   navigation: object.isRequired,
   setCurrentThreadDetailUID: func.isRequired,
+  lastMessageTime: string.isRequired,
 };
 
 export default inject(
