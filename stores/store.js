@@ -136,13 +136,14 @@ class Store {
         );
       });
     });
-
-    this.userThreadMessages = Array.from(new Set(this.userThreadMessages));
   }
-
   @computed
   get currentThreadDetailMessages() {
-    const messages = this.userThreadMessages.filter(m => m.threadUID === this.currentThreadDetailUID);
+    const currentThreadDetailMessagesUIDs = this.userThreadMessages.map(m => m.uid);
+    const currentThreadDetailUniqueMessagesUIDs = [...new Set(currentThreadDetailMessagesUIDs)];
+
+    const messages = currentThreadDetailUniqueMessagesUIDs.map(uid => this.userThreadMessages.find(m => m.uid === uid));
+
     return messages;
   }
 
