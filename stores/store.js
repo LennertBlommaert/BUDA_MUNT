@@ -113,8 +113,8 @@ class Store {
 
   @action
   _addUserThread = (thread) => {
-    const threadCheck = this.userThreads.find(t => t.uid === thread.uid);
-    if (!threadCheck) this.userThreads.push(new Thread(thread));
+    this.userThreads = this.userThreads.filter(t => t.uid !== thread.uid);
+    this.userThreads.push(new Thread(thread));
     // this._addMessagesToUserThreads();
   }
 
@@ -448,7 +448,6 @@ class Store {
     }
 
     this.clearMessage();
-    this.updateUserThreads();
   }
 
   @action
