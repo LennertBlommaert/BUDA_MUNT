@@ -34,6 +34,10 @@ const DemandTile = ({ uid, name, truncatedDesc, reward, userId, user, navigation
     acceptDemand(uid);
   };
 
+  const onUserRefrencePress = () => {
+    navigation.navigate('OtherUserProfile');
+  };
+
   return (
     <Tile>
       <TouchableOpacity style={styles.textContainer} onPress={onPressDemandTileTextContainer}>
@@ -41,7 +45,7 @@ const DemandTile = ({ uid, name, truncatedDesc, reward, userId, user, navigation
         <BodyText>{truncatedDesc}</BodyText>
       </TouchableOpacity>
       <View style={styles.userAndPriceContainer}>
-        <UserReference {...user} />
+        <UserReference onPress={onUserRefrencePress} {...user} />
         <PriceText simpleCoinIcon>{reward}</PriceText>
       </View>
       {

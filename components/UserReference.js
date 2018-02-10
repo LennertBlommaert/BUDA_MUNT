@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, TouchableOpacity, StyleSheet } from 'react-native';
-import { string } from 'prop-types';
+import { string, func } from 'prop-types';
 
 import BodyText from './BodyText';
 import UserImage from './UserImage';
@@ -16,8 +16,8 @@ const styles = StyleSheet.create({
   },
 });
 
-const UserReference = ({ name, firstName, topBucketlistItemName, photoURL }) => (
-  <TouchableOpacity style={styles.container}>
+const UserReference = ({ name, firstName, topBucketlistItemName, photoURL, onPress }) => (
+  <TouchableOpacity onPress={onPress} style={styles.container}>
     <UserImage photoURL={photoURL} />
     <View class={styles.textContainer}>
       <BodyText>
@@ -35,6 +35,7 @@ UserReference.propTypes = {
   firstName: string.isRequired,
   photoURL: string.isRequired,
   topBucketlistItemName: string.isRequired,
+  onPress: func.isRequired,
 };
 
 export default UserReference;

@@ -16,6 +16,7 @@ import PostProject from '../../containers/PostProject/';
 import Neighbourhood from '../../containers/Neighbourhood/';
 import ThreadDetail from '../../containers/ThreadDetail/';
 import Notifications from '../../containers/Notifications/';
+import OtherUserProfile from '../../containers/OtherUserProfile';
 import Pay from '../../containers/Pay/';
 
 import TabBar from './TabBar/';
@@ -76,6 +77,9 @@ const ThreadsStack = StackNavigator({
   Notifications: {
     screen: Notifications,
   },
+  OtherUserProfile: {
+    screen: OtherUserProfile,
+  }
 }, {
   mode: 'card',
   headerMode: 'none',
