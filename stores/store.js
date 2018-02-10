@@ -137,6 +137,7 @@ class Store {
       });
     });
   }
+
   @computed
   get currentThreadDetailMessages() {
     const currentThreadDetailMessagesUIDs = this.userThreadMessages.map(m => m.uid);
@@ -447,6 +448,7 @@ class Store {
     }
 
     this.clearMessage();
+    this.updateUserThreads();
   }
 
   @action
