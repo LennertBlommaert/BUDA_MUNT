@@ -7,6 +7,7 @@ export default class Project {
   uid = ''
   stage = ''
   userId = ''
+  createdAt = ''
   type = 1
 
   @observable
@@ -15,12 +16,13 @@ export default class Project {
   @observable
   user = new User({});
 
-  constructor({ name, desc, stage, userId }, uid = '') {
+  constructor({ name, desc, stage, userId, createdAt }, uid = '') {
     this.name = name;
     this.desc = desc;
     this.stage = stage;
     this.truncatedDesc = `${desc.substring(0, 240)}${desc.length > 240 ? '...' : ''}`;
     this.uid = uid;
+    this.createdAt = new Date(createdAt);
     this.userId = userId;
     this.voterUIDs = [];
     this.type = 1;

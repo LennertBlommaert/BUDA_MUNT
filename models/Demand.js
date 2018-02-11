@@ -11,6 +11,7 @@ export default class Demand {
   desc = ''
   userId = ''
   uid = ''
+  createdAt = ''
   coins = 0
   type = '0'
 
@@ -20,14 +21,15 @@ export default class Demand {
   @observable
   capacities = []
 
-  constructor({ name = '', desc = '', userId = '', reward = 0, uid = '' }) {
+  constructor({ name = '', desc = '', userId = '', reward = 0, uid = '', createdAt = '' }) {
     this.name = name;
     this.desc = desc;
     this.truncatedDesc = `${desc.substring(0, 240)}${desc.length > 240 ? '...' : ''}`;
     this.userId = userId;
     this.uid = uid;
     this.reward = reward;
-    this.type =  0;
+    this.createdAt = new Date(createdAt);
+    this.type = 0;
   }
 
   @action

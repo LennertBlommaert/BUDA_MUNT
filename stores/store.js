@@ -64,12 +64,12 @@ class Store {
 
   // LogIn
   // NOTE: currently bypassing loginflow, strings should be empty
-  // @observable
-  // email = 'annette.vandevelde@test.be'
-
   @observable
-  email = 'test@test.be'
-  //
+  email = 'annette.vandevelde@test.be'
+
+  // @observable
+  // email = 'test@test.be'
+
   // @observable
   // email = 'zorggroep@test.be'
 
@@ -211,7 +211,7 @@ class Store {
   }
 
   _postProjectData = () => {
-    const data = { name: this.titlePostProject, desc: this.descPostProject, userId: `${this.user.uid}`, stage: 'voorstel' };
+    const data = { name: this.titlePostProject, desc: this.descPostProject, userId: `${this.user.uid}`, stage: 'voorstel', createdAt: this.fb.serverTime };
     return this.fb.postDataSingleRef({ data, updateRootRef: 'projectProposals' });
   }
 
@@ -268,6 +268,7 @@ class Store {
       reward: this.reward,
       isBucketListItem: this.isBucketListItem ? 1 : 0,
       isBucketListItem_userId: `${this.isBucketListItem ? 1 : 0}_${this.user.uid}`,
+      createdAt: this.fb.serverTime,
     };
     return this.fb.postDataSingleRef({ data, updateRootRef: 'demands' });
   }
@@ -683,9 +684,9 @@ class Store {
     const demands = this.demands.filter(d => d.userId !== this.user.uid);
     const projects = this.projects.filter(p => p.userId !== this.user.uid);
 
-    if (this.currentSegmentedControlItemIndex === 1) return [...demands].sort((a, b) => a.name - b.name);
-    if (this.currentSegmentedControlItemIndex === 2) return [...projects].sort((a, b) => a.name - b.name);
-    return [...demands, ...projects].sort((a, b) => a.name - b.name);
+    if (this.currentSegmentedControlItemIndex === 1) return [...demands].sort((a, b) => b.createdAt - a.createdAt);
+    if (this.currentSegmentedControlItemIndex === 2) return [...projects].sort((a, b) => b.createdAt - a.createdAt);
+    return [...demands, ...projects].sort((a, b) => b.createdAt - a.createdAt);
   }
 
   //  LogIn
