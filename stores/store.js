@@ -65,10 +65,10 @@ class Store {
   // LogIn
   // NOTE: currently bypassing loginflow, strings should be empty
   @observable
-  // email = 'annette.vandevelde@test.be'
+  email = 'annette.vandevelde@test.be'
 
   // @observable
-  email = 'test@test.be'
+  // email = 'test@test.be'
 
   @observable
   password = 'testtest'
@@ -89,10 +89,10 @@ class Store {
   }
 
   updateData = () => {
-    this.updateProjects();
     this.updateDemands();
     this.updateCapacities();
     this.updateUserThreads();
+    this.updateProjects();
     this.updateThreadMessages();
   }
 
@@ -175,6 +175,20 @@ class Store {
     // Firebase db works with objects
     this.projects = Object.keys(projects).map(key => new Project(projects[key], key));
     this._addVoterUIDsToProjects();
+    this._addUserToProjects();
+  }
+
+  @action
+  _addUserToProjects = () => {
+    this.projects.forEach((d) => {
+      this.fb.usersRef.child(d.userId).once('value', (snapshot) => {
+        d.user.setProps(snapshot.val());
+        d.user.setProps({ uid: snapshot.key });
+        this.fb.demandsRef.orderByChild('isBucketListItem_userId').equalTo(`1_${d.userId}`).on('child_added', (snap) => {
+          d.user.setTopBucketListItemName(snap.val());
+        });
+      });
+    });
   }
 
   @action

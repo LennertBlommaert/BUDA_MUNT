@@ -5,7 +5,7 @@ import { inject, observer } from 'mobx-react/native';
 import BodyText from '../../../components/BodyText';
 import HeaderText from '../../../components/HeaderText';
 import Tile from '../../../components/Tile';
-import VotesIndicator from './VotesIndicator';
+import VotesIndicator from '../../../components/VotesIndicator';
 import TileButton from './TileButton';
 import Stage from './Stage.js';
 
@@ -34,8 +34,6 @@ const ProjectTile = ({ uid, name, truncatedDesc, stage, navigation, setCurrentPr
 
   return (
     <Tile>
-      {
-      }
       <TouchableOpacity style={styles.textContainer} onPress={onPressProjectTileTextContainer}>
         <Stage />
         <HeaderText style={styles.headerText}>{name}</HeaderText>

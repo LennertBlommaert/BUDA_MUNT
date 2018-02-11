@@ -1,6 +1,6 @@
 import React from 'react';
 import { inject, observer } from 'mobx-react/native';
-import BodyText from '../../../../components/BodyText';
+import BodyText from '../BodyText';
 
 const TextualIndicator = ({ votes, maxProjectVotes }) => (
   <BodyText>

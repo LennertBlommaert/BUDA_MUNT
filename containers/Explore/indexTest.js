@@ -137,7 +137,7 @@ class Explore extends Component {
             feedItems.length > 0 ?
 
               feedItems.map((item, index) => {
-                if (item.userId) {
+                if (item.type === 0) {
                   return <DemandTile key={item.uid} navigation={navigation} {...item} />;
                 }
                 return (

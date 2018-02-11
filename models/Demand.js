@@ -12,6 +12,7 @@ export default class Demand {
   userId = ''
   uid = ''
   coins = 0
+  type = '0'
 
   @observable
   user = new User({});
@@ -26,6 +27,7 @@ export default class Demand {
     this.userId = userId;
     this.uid = uid;
     this.reward = reward;
+    this.type =  0;
   }
 
   @action

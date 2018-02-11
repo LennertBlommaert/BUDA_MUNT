@@ -35,7 +35,11 @@ UserReference.propTypes = {
   firstName: string.isRequired,
   photoURL: string.isRequired,
   topBucketlistItemName: string.isRequired,
-  onPress: func.isRequired,
+  onPress: func,
+};
+
+UserReference.defaultProps = {
+  onPress: () => {},
 };
 
 export default UserReference;
