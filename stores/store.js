@@ -64,11 +64,14 @@ class Store {
 
   // LogIn
   // NOTE: currently bypassing loginflow, strings should be empty
-  @observable
-  email = 'annette.vandevelde@test.be'
-
   // @observable
-  // email = 'test@test.be'
+  // email = 'annette.vandevelde@test.be'
+
+  @observable
+  email = 'test@test.be'
+  //
+  // @observable
+  // email = 'zorggroep@test.be'
 
   @observable
   password = 'testtest'

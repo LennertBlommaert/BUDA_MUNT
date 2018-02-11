@@ -1,5 +1,7 @@
 import React from 'react';
 import { Image, View, StyleSheet } from 'react-native';
+import { number } from 'prop-types';
+import { inject, observer } from 'mobx-react/native';
 
 import projectOpenVacancy from '../../assets/img/project_open_vacancy.png';
 import projectAttendance from '../../assets/img/project_attendance.png';
@@ -34,27 +36,41 @@ const styles = StyleSheet.create({
   },
 });
 
-const FeedListFill = () => (
+const FeedListFill = ({ currentSegmentedControlItemIndex }) => (
   <View style={styles.container}>
-    <View style={styles.imageContainer}>
-      <Image
-        style={styles.openVacancyImage}
-        source={projectOpenVacancy}
-      />
-    </View>
+    {
+      currentSegmentedControlItemIndex !== 1 ?
+        <View style={styles.imageContainer}>
+          <Image
+            style={styles.openVacancyImage}
+            source={projectOpenVacancy}
+          />
+        </View>
+        : null
+    }
     <Image
       style={styles.statsImage}
       source={stats}
     />
-    <View style={styles.imageContainer}>
-      <Image
-        style={styles.projectAttendanceImage}
-        source={projectAttendance}
-      />
-    </View>
+    {
+      currentSegmentedControlItemIndex !== 1 ?
+        <View style={styles.imageContainer}>
+          <Image
+            style={styles.projectAttendanceImage}
+            source={projectAttendance}
+          />
+        </View>
+        : null
+    }
   </View>
 );
 
-FeedListFill.propTypes = {};
+FeedListFill.propTypes = {
+  currentSegmentedControlItemIndex: number.isRequired,
+};
 
-export default FeedListFill;
+export default inject(
+  ({ store }) => ({ currentSegmentedControlItemIndex: store.currentSegmentedControlItemIndex }),
+)(
+  observer(FeedListFill),
+);
