@@ -9,6 +9,8 @@ const styles = StyleSheet.create({
     flex: 0.8,
     minWidth: 140,
     marginLeft: 4,
+    marginRight: 20,
+    marginTop: 50,
     justifyContent: 'center',
     backgroundColor: colors.addProjectButtonBackground,
   },

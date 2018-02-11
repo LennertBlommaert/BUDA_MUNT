@@ -62,6 +62,10 @@ const colors = {
 
   messageOtherUserBackground: '#fff',
   messageOtherUserText: '#000',
+
+  // exploreInputButtonBackground: '#D4DCFF',
+  exploreInputButtonText: '#6480FF',
+  exploreInputButtonBackground: '#F4F4F4',
 };
 
 export default colors;

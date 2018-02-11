@@ -16,7 +16,7 @@ const BodyText = ({ children, italic, invertedColor, fontSize, opacity, style })
     },
   });
 
-  return <Text style={[styles.bodyText, ...style]}>{children}</Text>;
+  return <Text style={[styles.bodyText, style]}>{children}</Text>;
 };
 
 BodyText.propTypes = {
