@@ -1,5 +1,8 @@
 import React from 'react';
 import { Text, TouchableOpacity, StyleSheet } from 'react-native';
+import { inject, observer } from 'mobx-react/native';
+import { bool } from 'prop-types';
+
 import ActivatableImage from '../../ActivatableImage';
 
 const styles = StyleSheet.create({
@@ -16,7 +19,7 @@ const styles = StyleSheet.create({
   },
 });
 
-const Tab = ({ children, routeName, navigation, active }) => {
+const Tab = ({ children, routeName, navigation, active, anyUnreadMessages }) => {
   const onTabPress = () => {
     if (!active) navigation.navigate(routeName);
   };
@@ -27,7 +30,7 @@ const Tab = ({ children, routeName, navigation, active }) => {
         routeName === 'Explore' ? <ActivatableImage style={styles.image} icon={'explore'} active={active} /> : null
       }
       {
-        routeName === 'Threads' ? <ActivatableImage style={styles.image} icon={'messages'} active={active} /> : null
+        routeName === 'Threads' ? <ActivatableImage style={styles.image} icon={!anyUnreadMessages ? 'messages' : 'messagesUnread'} active={active} /> : null
       }
       {
         routeName === 'Neighbourhood' ? <ActivatableImage style={styles.image} icon={'neighbourhood'} active={active} /> : null
@@ -45,6 +48,12 @@ const Tab = ({ children, routeName, navigation, active }) => {
   );
 };
 
-Tab.propTypes = {};
+Tab.propTypes = {
+  anyUnreadMessages: bool.isRequired,
+};
 
-export default Tab;
+export default inject(
+  ({ store }) => ({ anyUnreadMessages: store.anyUnreadMessages }),
+)(
+  observer(Tab),
+);

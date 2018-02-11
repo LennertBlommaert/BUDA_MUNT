@@ -86,6 +86,7 @@ import ontspanning from '../assets/img/tags/ontspanning.png';
 // Tab bar
 import messagesInactive from '../assets/img/messages_tab_inactive.png';
 import messages from '../assets/img/messages_tab.png';
+import messagesUnreadInactive from '../assets/img/messages_unread_tab_inactive.png';
 
 import exploreInactive from '../assets/img/explore_tab_inactive.png';
 import explore from '../assets/img/explore_tab.png';
@@ -187,6 +188,10 @@ const images = {
   // Tab bar
   messages: {
     inactive: messagesInactive,
+    active: messages,
+  },
+  messagesUnread: {
+    inactive: messagesUnreadInactive,
     active: messages,
   },
   explore: {

@@ -65,10 +65,10 @@ class Store {
   // LogIn
   // NOTE: currently bypassing loginflow, strings should be empty
   @observable
-  email = 'annette.vandevelde@test.be'
+  // email = 'annette.vandevelde@test.be'
 
   // @observable
-  // email = 'test@test.be'
+  email = 'test@test.be'
 
   // @observable
   // email = 'zorggroep@test.be'
@@ -442,8 +442,8 @@ class Store {
 
   @computed
   get anyUnreadMessages() {
-    const unReadThread = this.userThreads.find(t => t.lastOpenedByUserId !== this.user.uid);
-    return unReadThread;
+    const unreadThreads = this.userThreads.filter(t => t.containsUnreadMessages);
+    return unreadThreads.length > 0;
   }
 
   @computed
