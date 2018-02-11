@@ -5,9 +5,8 @@ import { View, StyleSheet } from 'react-native';
 
 import Screen from '../../components/Screen';
 import PriceText from '../../components/PriceText';
-import UserReference from '../../components/UserReference';
-import ActivatableImage from '../../components/ActivatableImage';
 import HeaderAndDescriptionDetail from '../../components/HeaderAndDescriptionDetail';
+import PostDetailUserInfo from '../../components/PostDetailUserInfo';
 import OtherUsersSuggestion from '../../components/OtherUsersSuggestion';
 
 import Button from '../../components/Button';
@@ -31,17 +30,6 @@ const styles = StyleSheet.create({
     width: 335,
     padding: 20,
     marginBottom: 30,
-  },
-  userContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    alignSelf: 'stretch',
-    paddingLeft: 50,
-    paddingRight: 50,
-    justifyContent: 'space-between',
-  },
-  chatIcon: {
-    alignSelf: 'center',
   },
   tag: {
     backgroundColor: 'transparent',
@@ -77,13 +65,7 @@ const DemandDetail = ({ currentDemandDetail, navigation, acceptDemand, user }) =
         </View>
         <PriceText style={styles.priceText}>{currentDemandDetail.reward}</PriceText>
       </View>
-      <View style={styles.userContainer}>
-        <UserReference {...currentDemandDetail.user} />
-        {
-          currentDemandDetail.user.uid !== user.uid ? <ActivatableImage style={styles.chatIcon} icon={'messages'} /> : null
-        }
-      </View>
-
+      <PostDetailUserInfo currentPostDetail={currentDemandDetail}/>
       {
         currentDemandDetail.user.uid === user.uid ?
           <OtherUsersSuggestion />

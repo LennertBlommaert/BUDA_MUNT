@@ -1,5 +1,4 @@
 import addDream from '../assets/img/add_dream.png';
-import addDreamInactive from '../assets/img/add_dream_inactive.png';
 import addDreamInactiveInverted from '../assets/img/add_dream_inactive_inverted.png';
 
 import addProject from '../assets/img/add_project.png';

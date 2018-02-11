@@ -1,6 +1,6 @@
 import React from 'react';
 import { TouchableOpacity, StyleSheet } from 'react-native';
-import { object, func, string } from 'prop-types';
+import { object, func, string, bool } from 'prop-types';
 import { inject, observer } from 'mobx-react/native';
 import ItemTop from './ItemTop';
 import ItemBot from './ItemBot';
@@ -28,16 +28,21 @@ const styles = StyleSheet.create({
   },
 });
 
-const InboxItem = ({ uid, otherUser, demand, navigation, setCurrentThreadDetailUID, lastMessageTruncatedPayLoad, lastMessageTime }) => {
+const InboxItem = ({ uid, otherUser, demand, navigation, setCurrentThreadDetailUID, lastMessageTruncatedPayLoad, lastMessageTime, lastMessage, containsUnreadMessages, updateThreadLastOpened }) => {
   const onPressInboxItem = () => {
     setCurrentThreadDetailUID(uid);
+    updateThreadLastOpened();
     navigation.navigate('ThreadDetail');
   };
 
   return (
     <TouchableOpacity style={styles.container} onPress={onPressInboxItem}>
       <ItemTop firstName={otherUser.firstName} name={otherUser.name} title={demand.name} photoURL={otherUser.photoURL} />
-      <ItemBot lastMessageTruncatedPayLoad={lastMessageTruncatedPayLoad} time={lastMessageTime} />
+      <ItemBot
+        containsUnreadMessages={containsUnreadMessages}
+        lastMessageTruncatedPayLoad={lastMessageTruncatedPayLoad}
+        time={lastMessageTime}
+      />
     </TouchableOpacity>
   );
 };
@@ -49,10 +54,16 @@ InboxItem.propTypes = {
   navigation: object.isRequired,
   setCurrentThreadDetailUID: func.isRequired,
   lastMessageTime: string.isRequired,
+  lastMessage: object.isRequired,
+  containsUnreadMessages: bool.isRequired,
+  updateThreadLastOpened: func.isRequired,
 };
 
 export default inject(
-  ({ store }) => ({ setCurrentThreadDetailUID: store.setCurrentThreadDetailUID }),
+  ({ store }) => ({
+    setCurrentThreadDetailUID: store.setCurrentThreadDetailUID,
+    updateThreadLastOpened: store.updateThreadLastOpened,
+  }),
 )(
   observer(InboxItem),
 );

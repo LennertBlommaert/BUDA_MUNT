@@ -5,7 +5,7 @@ import colors from '../../objects/colors';
 
 // import Header from './HeaderRouter';
 
-import Explore from '../../containers/Explore/indexTest';
+import Explore from '../../containers/Explore/';
 import Threads from '../../containers/Threads/';
 // import Neighbourhood from '../../containers/Neighbourhood/';
 import Profile from '../../containers/Profile/';
@@ -123,7 +123,7 @@ const TabBarStack = TabNavigator({
   },
 }, {
   tabBarComponent: TabBar,
-  initialRouteName: 'Explore',
+  initialRouteName: 'Threads',
   animationEnabled: true,
   swipeEnabled: false,
   tabBarOptions: {

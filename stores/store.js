@@ -363,6 +363,12 @@ class Store {
     Object.keys(members).map(key => this.fb.postDataSingleRef({ updateRootRef: `users/${key}/threads`, data: name, key: `${threadUID}` }));
   };
 
+  updateThreadLastOpened = () => {
+    this.fb.threadsRef.child(this.currentThreadDetailUID).child('members').child(`${this.currentUserUID}`).update({
+      lastOpenedAt: this.fb.serverTime,
+    });
+  };
+
   // DemandDetail
   @computed
   get currentDemandDetail() {
@@ -435,6 +441,12 @@ class Store {
   currentThreadDetailUID = 'threadId1'
 
   @computed
+  get anyUnreadMessages() {
+    const unReadThread = this.userThreads.find(t => t.lastOpenedByUserId !== this.user.uid);
+    return unReadThread;
+  }
+
+  @computed
   get currentThread() {
     return this.userThreads.find(t => t.uid === this.currentThreadDetailUID);
   }
@@ -466,6 +478,7 @@ class Store {
     }
 
     this.clearMessage();
+    this.updateThreadLastOpened();
   }
 
   @action

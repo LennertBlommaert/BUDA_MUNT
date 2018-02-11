@@ -3,6 +3,7 @@ import { observable, action } from 'mobx';
 export default class Thread {
   demandId = ''
   projectId = ''
+  lastOpenedByUserId = ''
   uid = ''
   lastMessage = {}
   members = {}
@@ -12,7 +13,7 @@ export default class Thread {
   @observable
   messages = []
 
-  constructor({ uid, demandId = '', projectId = '', lastMessage = {}, members, otherUser, demand = {} }) {
+  constructor({ uid, demandId = '', projectId = '', lastMessage = {}, members, otherUser, demand = {}, lastOpenedByUserId }) {
     this.uid = uid;
     this.demandId = demandId;
     this.projectId = projectId;
@@ -24,6 +25,15 @@ export default class Thread {
     this.demand = demand;
     this.otherUser = otherUser;
     this.messages = [];
+    this.containsUnreadMessages = this.getContainsUnreadMessages(this.members, this.lastMessage.createdAt, this.lastMessage.senderId);
+  }
+
+  getContainsUnreadMessages(members, lastMessageCreatedAt, lastMessageSenderId) {
+    const currentUserUID = Object.keys(members).find(k => k !== this.otherUser.uid);
+    const currentUser = members[`${currentUserUID}`];
+    if (!currentUser.lastOpenedAt && (lastMessageSenderId !== currentUser.uid)) return true;
+    if (!currentUser.lastOpenedAt && (lastMessageSenderId === currentUser.uid)) return false;
+    return new Date(currentUser.lastOpenedAt) < lastMessageCreatedAt;
   }
 
   @action
