@@ -123,7 +123,7 @@ const TabBarStack = TabNavigator({
   },
 }, {
   tabBarComponent: TabBar,
-  initialRouteName: 'Threads',
+  initialRouteName: 'Pay',
   animationEnabled: true,
   swipeEnabled: false,
   tabBarOptions: {

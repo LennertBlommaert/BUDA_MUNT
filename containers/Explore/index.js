@@ -17,8 +17,6 @@ const Feed = Animated.createAnimatedComponent(ScrollView);
 const styles = StyleSheet.create({
   feed: {
     alignSelf: 'stretch',
-    // paddingLeft: 20,
-    // paddingRight: 20,
   },
   otherUsersSuggestion: {
     position: 'relative',
