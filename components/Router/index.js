@@ -89,14 +89,14 @@ const TabBarStack = TabNavigator({
   Explore: {
     screen: ExploreStack,
     navigationOptions: {
-      tabBarLabel: 'Buren',
+      tabBarLabel: 'Start',
       tabBarIcon: ({ focused }) => <ActivatableImage icon={'explore'} active={focused} />,
     },
   },
   Neighbourhood: {
     screen: Neighbourhood,
     navigationOptions: {
-      tabBarLabel: 'Buurt',
+      tabBarLabel: 'Verken',
       tabBarIcon: ({ focused }) => <ActivatableImage icon={'neighbourhood'} active={focused} />,
     },
   },

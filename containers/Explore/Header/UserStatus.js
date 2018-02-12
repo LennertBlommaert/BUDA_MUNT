@@ -3,6 +3,7 @@ import { TouchableOpacity, Image, StyleSheet } from 'react-native';
 import { number, string } from 'prop-types';
 import HeaderText from '../../../components/HeaderText';
 import UserImage from '../../../components/UserImage';
+import ActivatableImage from '../../../components/ActivatableImage';
 import coin from '../../../assets/img/coin_black.png';
 
 const styles = StyleSheet.create({
@@ -13,6 +14,14 @@ const styles = StyleSheet.create({
   coinImage: {
     width: 11,
     height: 16,
+    marginLeft: 3,
+    marginTop: 4,
+    alignSelf: 'center',
+  },
+  openParentAccountsArrowImage: {
+    marginLeft: 10,
+    marginTop: 4,
+    alignSelf: 'center',
   },
 });
 
@@ -23,6 +32,11 @@ const UserStatus = ({ balance, photoURL }) => (
     <Image
       style={styles.coinImage}
       source={coin}
+    />
+    <ActivatableImage
+      style={styles.openParentAccountsArrowImage}
+      icon={'openParentAccountsArrow'}
+      size={12}
     />
   </TouchableOpacity>
 );

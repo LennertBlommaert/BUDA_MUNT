@@ -20,8 +20,8 @@ const SegmentedControl = ({ currentSegmentedControlItemIndex }) => (
   <View>
     <View style={styles.container}>
       <SegmentedControlItem id={0}>Alles</SegmentedControlItem>
-      <SegmentedControlItem id={1}>Dromen</SegmentedControlItem>
-      <SegmentedControlItem id={2}>Buurtwensen</SegmentedControlItem>
+      <SegmentedControlItem id={1}>Buren</SegmentedControlItem>
+      <SegmentedControlItem id={2}>Buurt</SegmentedControlItem>
     </View>
     <ActiveSegmentIndicator />
   </View>

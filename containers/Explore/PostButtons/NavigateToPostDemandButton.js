@@ -25,7 +25,7 @@ const NavigateToPostDemandButton = ({ navigation }) => {
 
   return (
     <Button color={colors.buttonText} style={styles.button} onPress={onPressNavigateToPostDemand}>
-      droom
+      eigen wens
     </Button>
   );
 };
