@@ -30,10 +30,10 @@ class Button extends Component {
         height: 50,
         width: 335,
 
-        borderBottomLeftRadius: 5,
-        borderBottomRightRadius: 5,
-        borderTopLeftRadius: tileButton ? 0 : 5,
-        borderTopRightRadius: tileButton ? 0 : 5,
+        borderBottomLeftRadius: 2,
+        borderBottomRightRadius: 2,
+        borderTopLeftRadius: tileButton ? 0 : 2,
+        borderTopRightRadius: tileButton ? 0 : 2,
         shadowColor: tileButton ? 'transparent' : colors.shadowColor,
         shadowOffset: {
           width: 0,

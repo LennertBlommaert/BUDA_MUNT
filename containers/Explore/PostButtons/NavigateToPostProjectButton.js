@@ -11,6 +11,7 @@ const styles = StyleSheet.create({
     marginLeft: 4,
     marginRight: 20,
     marginTop: 50,
+    borderRadius: 1,
     justifyContent: 'center',
     backgroundColor: colors.addProjectButtonBackground,
   },

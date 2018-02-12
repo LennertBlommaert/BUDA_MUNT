@@ -3,7 +3,7 @@
 import React, { Component } from 'react';
 
 import { TouchableOpacity, StyleSheet, View } from 'react-native';
-import { any, bool, func, string } from 'prop-types';
+import { any, bool, func, string, number } from 'prop-types';
 
 import colors from '../objects/colors';
 import ButtonText from './ButtonText';
@@ -16,7 +16,6 @@ class Button extends Component {
 
   componentWillMount() {
     const { tileButton, mainColor, secondaryColor } = this.props;
-
     this.styles = StyleSheet.create({
       textContainer: {
         flexDirection: 'row',
@@ -47,7 +46,6 @@ class Button extends Component {
         top: 0,
         bottom: 0,
         borderRadius: 3,
-        transform: [{ translateY: 3 }],
 
         borderBottomLeftRadius: 5,
         borderBottomRightRadius: 5,
@@ -59,7 +57,7 @@ class Button extends Component {
           height: 3,
         },
         shadowRadius: 3,
-        shadowOpacity: 0.10,
+        shadowOpacity: 0.05,
       },
     });
   }
@@ -72,14 +70,14 @@ class Button extends Component {
   }
 
   render() {
-    const { icon, children, style, mainColor } = this.props;
+    const { icon, iconSize, children, style, mainColor } = this.props;
     const { active } = this.state;
 
     return (
       <TouchableOpacity onPress={() => this.onPress()} style={[this.styles.button, style]}>
-        <View style={this.styles.offSetBackground}></View>
+        <View style={[this.styles.offSetBackground, { transform: [{ translateY: active ? 0 : 3 }] }]}></View>
         <View style={this.styles.textContainer}>
-          <ActivatableImage size={35} style={this.styles.icon} icon={icon} active={active} />
+          <ActivatableImage size={iconSize} style={this.styles.icon} icon={icon} active={active} />
           <ButtonText color={mainColor}>{children}</ButtonText>
         </View>
       </TouchableOpacity>
@@ -95,6 +93,7 @@ Button.propTypes = {
   style: any.isRequired,
   mainColor: string,
   secondaryColor: string,
+  iconSize: number,
 };
 
 Button.defaultProps = {
@@ -103,6 +102,7 @@ Button.defaultProps = {
   style: {},
   mainColor: colors.buttonBlueStrong,
   secondaryColor: colors.buttonBlueSoft,
+  iconSize: 30,
 };
 
 export default Button;

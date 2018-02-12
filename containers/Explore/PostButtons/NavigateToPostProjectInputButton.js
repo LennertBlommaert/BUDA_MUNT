@@ -3,7 +3,6 @@ import { object } from 'prop-types';
 import { TouchableOpacity, StyleSheet, View } from 'react-native';
 import colors from '../../../objects/colors';
 import HeaderText from '../../../components/HeaderText';
-import BodyText from '../../../components/BodyText';
 
 const styles = StyleSheet.create({
   container: {
@@ -38,7 +37,7 @@ const styles = StyleSheet.create({
 
 const NavigateToPostDemandInputButton = ({ navigation }) => {
   const onPressNavigateToPostDemand = () => {
-    navigation.navigate('PostDemand');
+    navigation.navigate('PostProject');
     // navigation.navigate('Profiled', { name: 'Jane' });
   };
 
@@ -51,9 +50,9 @@ const NavigateToPostDemandInputButton = ({ navigation }) => {
         Wat is jouw droom?
       </HeaderText> */}
       <View style={styles.inputContainer}>
-        <BodyText style={styles.inputText} italic>
-          Ik wens voor de buurt...
-        </BodyText>
+        <HeaderText fontSize={17} style={styles.inputText} italic>
+          Ik droom ervan om...
+        </HeaderText>
         {/* <BodyText italic>
           Ik heb hulp nodig met...
         </BodyText> */}

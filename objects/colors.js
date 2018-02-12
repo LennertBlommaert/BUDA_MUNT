@@ -14,10 +14,13 @@ const colors = {
   buttonGreenStrong: '#66D19C',
   buttonGreenSoft: '#A9E5CD',
 
-  buttonBlueStrong: '#37BBEB',
+  buttonBlueStrong: '#00A5E1',
   buttonBlueSoft: '#AFE0F2',
 
-  buttonPurpleStrong: '#7188FE',
+  buttonYellowStrong: '#E8C611',
+  buttonYellowSoft: '#FCEE92',
+
+  buttonPurpleStrong: '#4260F9',
   buttonPurpleSoft: '#C8D7FE',
 
   unselectedTagBackground: '#fff',
@@ -27,8 +30,8 @@ const colors = {
   // selectedTagBackground: '#DEFBBE',
   selectedTagText: '#6BCC00',
 
-  // background: '#eee',
-  background: '#EEFAFF',
+  background: '#F3FCFF',
+  // background: '#EEFAFF',
   headerBackground: '#fff',
   postDemandBackground: '#EEFAFF',
   textInputBackground: '#fff',
@@ -47,6 +50,7 @@ const colors = {
   tabBarInactiveTintColor: '#A6A6A6',
 
   demandTileAccent: '#6480FF',
+
   projectProposalAccent: '#64B2FF',
   projectVacantPositionAccent: '#FF8864',
 
@@ -54,17 +58,17 @@ const colors = {
   searchInputText: '#000',
 
   inboxItemBackground: '#fff',
-  inboxItemBorder: '#eee',
+  inboxItemBorder: '#ffe',
 
-  messageBackground: '#BFE8F8',
-  // messageBackground: '#36BBEE',
+  // messageBackground: '#6480FF',
+  messageBackground: '#36BBEE',
   messageText: '#fff',
 
   messageOtherUserBackground: '#fff',
   messageOtherUserText: '#000',
 
   // exploreInputButtonBackground: '#D4DCFF',
-  exploreInputButtonText: '#6480FF',
+  exploreInputButtonText: '#000',
   exploreInputButtonBackground: '#F4F4F4',
 };
 

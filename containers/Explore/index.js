@@ -25,6 +25,9 @@ const styles = StyleSheet.create({
     bottom: 0,
     paddingBottom: 150,
   },
+  recommandationLabel: {
+    marginBottom: 10,
+  },
 });
 
 class Explore extends Component {
@@ -131,7 +134,7 @@ class Explore extends Component {
           contentContainerStyle={{ alignItems: 'center' }} //eslint-disable-line
         >
           <PostButtons navigation={navigation} />
-          {/* <BodyText style={styles.recommandationLabel} italic opacity={0.7}>Dit lijkt ons helemaal iets voor jou...</BodyText> */}
+          <BodyText style={styles.recommandationLabel} italic opacity={0.7}>Dit lijkt ons helemaal iets voor jou...</BodyText>
           {
 
             feedItems.length > 0 ?

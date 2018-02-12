@@ -47,7 +47,13 @@ const Summary = ({ postDemand, navigation }) => {
       </View>
 
       <View style={styles.buttonContainer}>
-        <Button style={styles.button} icon={'addDream'} onPress={onPressButton}>
+        <Button
+          style={styles.button}
+          icon={'addDreamDetail'}
+          onPress={onPressButton}
+          mainColor={colors.buttonPurpleStrong}
+          secondaryColor={colors.buttonPurpleSoft}
+        >
           Plaats mijn droom
         </Button>
         <BodyText opacity={0.7} style={styles.bodyText} italic>Je kan hem steeds aanpassen bij je profiel</BodyText>

@@ -68,10 +68,10 @@ class Store {
   // email = 'annette.vandevelde@test.be'
 
   // @observable
-  email = 'test@test.be'
+  // email = 'test@test.be'
 
   // @observable
-  // email = 'zorggroep@test.be'
+  email = 'zorggroep@test.be'
 
   @observable
   password = 'testtest'

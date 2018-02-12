@@ -28,7 +28,7 @@ const Threads = ({ userThreads, navigation }) => {
   return (
     <Screen navigation={navigation}>
       <ScrollView style={styles.container}>
-        <Button onPress={onPress} icon={'addThread'} style={styles.button}>stuur een bericht</Button>
+        <Button onPress={onPress} iconSize={25} icon={'addThread'} style={styles.button}>stuur een bericht</Button>
         {
           userThreads.length > 0 ? <Inbox navigation={navigation} /> : <NoContacts />
         }

@@ -11,7 +11,7 @@ const styles = StyleSheet.create({
   line: {
     width: 111,
     height: 3,
-    borderRadius: 3,
+    // borderRadius: 3,
     backgroundColor: colors.addDemandButtonBackground,
     transform: [{ translateY: 7 }, { translateX: -7 }],
   },

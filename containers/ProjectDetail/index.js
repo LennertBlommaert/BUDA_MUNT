@@ -9,6 +9,7 @@ import HeaderAndDescriptionDetail from '../../components/HeaderAndDescriptionDet
 import VotesIndicator from '../../components/VotesIndicator/';
 import PostDetailUserInfo from '../../components/PostDetailUserInfo';
 import stagesProgressImage from '../../assets/img/project_stages_progress_proposal.png';
+import colors from '../../objects/colors';
 
 const styles = StyleSheet.create({
   container: {
@@ -19,18 +20,16 @@ const styles = StyleSheet.create({
     bottom: 30,
   },
   stagesProgressImage: {
-    width: 336,
-    height: 68,
+    width: 330,
+    height: 58,
     marginTop: 26,
   },
   votesIndicator: {
-    paddingLeft: 30,
-    paddingRight: 30,
-    marginTop: 50,
-  },
-  postDetailUserInfo: {
-    paddingLeft: 30,
-    paddingRight: 30,
+    position: 'absolute',
+    alignSelf: 'center',
+    justifyContent: 'space-between',
+    width: 330,
+    bottom: 120,
   },
 });
 
@@ -49,13 +48,20 @@ const ProjectDetail = ({ currentProjectDetail, navigation, voteProjectProposal }
         desc={currentProjectDetail.desc}
         name={currentProjectDetail.name}
       />
-      <PostDetailUserInfo style={styles.postDetailUserInfo} currentPostDetail={currentProjectDetail} />
+      <PostDetailUserInfo currentPostDetail={currentProjectDetail} />
       <VotesIndicator
         style={styles.votesIndicator}
         votes={currentProjectDetail.voterUIDs.length}
         coinIconSize={35}
       />
-      <Button style={styles.button} icon={'voteProject'} onPress={onPressVote}>
+      <Button
+        style={styles.button}
+        iconSize={27}
+        icon={'voteProjectDetail'}
+        onPress={onPressVote}
+        mainColor={colors.buttonYellowStrong}
+        secondaryColor={colors.buttonYellowSoft}
+      >
         ik ben voor
       </Button>
     </Screen>

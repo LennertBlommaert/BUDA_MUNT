@@ -1,6 +1,8 @@
 import addDream from '../assets/img/add_dream.png';
 import addDreamInactiveInverted from '../assets/img/add_dream_inactive_inverted.png';
 
+import addDreamDetail from '../assets/img/add_dream_detail.png';
+
 import addProject from '../assets/img/add_project.png';
 import addProjectInactive from '../assets/img/add_project_inactive.png';
 
@@ -10,6 +12,9 @@ import checkboxInactive from '../assets/img/checkbox_inactive.png';
 import backButton from '../assets/img/back_button.png';
 
 import topBucketListItem from '../assets/img/top_bucketlist_item.png';
+
+import openParentAccountsArrow from '../assets/img/open_parent_accounts_arrow.png';
+import openParentAccountsArrowInactive from '../assets/img/open_parent_accounts_arrow.png';
 
 import voorstel from '../assets/img/proposal.png';
 
@@ -21,6 +26,9 @@ import search from '../assets/img/search.png';
 import voteProjectInactive from '../assets/img/vote_project_inactive.png';
 import voteProject from '../assets/img/vote_project.png';
 
+import voteProjectDetailInactive from '../assets/img/vote_project_detail_inactive.png';
+import voteProjectDetail from '../assets/img/vote_project_detail.png';
+
 import projectVoteIndicatorInactive from '../assets/img/project_vote_indicator_inactive.png';
 import projectVoteIndicator from '../assets/img/project_vote_indicator.png';
 
@@ -28,6 +36,9 @@ import projectVoteIndicator from '../assets/img/project_vote_indicator.png';
 
 import acceptDemandInactive from '../assets/img/accept_demand_inactive.png';
 import acceptDemand from '../assets/img/accept_demand.png';
+
+import acceptDemandDetailInactive from '../assets/img/accept_demand_detail_inactive.png';
+import acceptDemandDetail from '../assets/img/accept_demand_detail.png';
 
 import addThread from '../assets/img/add_thread.png';
 import sendMessage from '../assets/img/send_message.png';
@@ -108,6 +119,11 @@ const images = {
     inactiveInverted: addDreamInactiveInverted,
   },
 
+  addDreamDetail: {
+    inactive: addDreamDetail,
+    active: addDreamDetail,
+  },
+
   addProject: {
     inactive: addProjectInactive,
     active: addProject,
@@ -133,6 +149,11 @@ const images = {
     active: voorstel,
   },
 
+  openParentAccountsArrow: {
+    inactive: openParentAccountsArrowInactive,
+    active: openParentAccountsArrow,
+  },
+
   //
 
   search: {
@@ -145,6 +166,11 @@ const images = {
   acceptDemand: {
     inactive: acceptDemandInactive,
     active: acceptDemand,
+  },
+
+  acceptDemandDetail: {
+    inactive: acceptDemandDetailInactive,
+    active: acceptDemandDetail,
   },
 
   addThread: {
@@ -180,6 +206,12 @@ const images = {
     inactive: voteProjectInactive,
     active: voteProject,
   },
+
+  voteProjectDetail: {
+    inactive: voteProjectDetailInactive,
+    active: voteProjectDetail,
+  },
+
   projectVoteIndicator: {
     inactive: projectVoteIndicatorInactive,
     active: projectVoteIndicator,

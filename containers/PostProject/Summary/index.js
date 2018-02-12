@@ -45,10 +45,22 @@ const Summary = ({ postProject, navigation }) => {
       </View>
 
       <View style={styles.buttonContainer}>
-        <Button style={styles.button} icon={'addDream'} onPress={onPressButton}>
+        <Button
+          style={styles.button}
+          icon={'addDream'}
+          onPress={onPressButton}
+          mainColor={colors.buttonPurpleHard}
+          secondaryColor={colors.buttonPurpleSoft}
+        >
           Plaats buurtwens
         </Button>
-        <BodyText opacity={0.7} style={styles.bodyText} italic>Laten we jouw wens voor de buurt samen realiseren</BodyText>
+        <BodyText
+          opacity={0.7}
+          style={styles.bodyText}
+          italic
+        >
+          Laten we jouw wens voor de buurt samen realiseren
+        </BodyText>
       </View>
     </View>
   );

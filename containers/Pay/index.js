@@ -31,7 +31,11 @@ export default Pay;
 //     } else {
 //       return (
 //         <View style={{ flex: 1 }}>
-//           <Camera style={{ flex: 1 }} type={this.state.type}>
+//           <Camera
+//             style={{ flex: 1 }}
+//             type={this.state.type}
+//             ref={ref => { this.camera = ref; }}
+//             >
 //             <View
 //               style={{
 //                 flex: 1,

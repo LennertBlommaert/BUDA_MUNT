@@ -65,12 +65,19 @@ const DemandDetail = ({ currentDemandDetail, navigation, acceptDemand, user }) =
         </View>
         <PriceText style={styles.priceText}>{currentDemandDetail.reward}</PriceText>
       </View>
-      <PostDetailUserInfo currentPostDetail={currentDemandDetail}/>
+      <PostDetailUserInfo currentPostDetail={currentDemandDetail} />
       {
         currentDemandDetail.user.uid === user.uid ?
           <OtherUsersSuggestion />
           :
-          <Button style={styles.button} mainColor={colors.buttonPurpleStrong} secondaryColor={colors.buttonPurpleSoft} icon={'acceptDemand'} onPress={onPressAcceptDemand}>
+          <Button
+            icon={'acceptDemandDetail'}
+            iconSize={18}
+            style={styles.button}
+            mainColor={colors.buttonPurpleStrong}
+            secondaryColor={colors.buttonPurpleSoft}
+            onPress={onPressAcceptDemand}
+          >
             ik wil helpen
           </Button>
       }
