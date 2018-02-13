@@ -769,7 +769,8 @@ class Store {
 
   @computed
   get numberOfNotifications() {
-    return 1;
+    if (this.anyUnreadMessages) return 1;
+    return 0;
   }
 
   // NOTE: Check if user is already logged in
