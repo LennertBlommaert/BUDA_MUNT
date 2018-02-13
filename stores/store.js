@@ -394,6 +394,12 @@ class Store {
     this.fb.signOut();
   }
 
+  signInOutTest = () => {
+    this.signOut();
+    this.email !== 'test@test.be' ? this.email = 'test@test.be' : this.email = 'zorggroep@test.be';
+    this.signIn();
+  }
+
   createUser = () => {
     this.fb.createUser({ email: this.email, password: this.password })
       .then((user) => {
