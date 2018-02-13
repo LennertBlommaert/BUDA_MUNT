@@ -270,11 +270,12 @@ class Store {
   @action
   _addCapacities = (capacities) => {
     // Firebase db works with objects
-    Object.keys(capacities).forEach((key) => {
-      this.capacities.push(
-        new Capacity({ name: capacities[key].name, uid: key }),
-      );
-    });
+    this.capacities = Object.keys(capacities).map(key => new Capacity({ name: capacities[key].name, uid: key }));
+    // Object.keys(capacities).map((key) => {
+    //   this.capacities.push(
+    //     new Capacity({ name: capacities[key].name, uid: key }),
+    //   );
+    // });
   }
 
   postDemand = () => {

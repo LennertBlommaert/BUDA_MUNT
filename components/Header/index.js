@@ -14,12 +14,17 @@ import sharedStyles from '../../objects/sharedStyles';
 const styles = StyleSheet.create({
   headerContainer: {
     alignSelf: 'stretch',
+    zIndex: 1000,
   },
   userPicker: {
     padding: 20,
     paddingTop: 10,
     paddingBottom: 10,
     zIndex: -10,
+    position: 'absolute',
+    left: 0,
+    right: 0,
+    top: 60,
   },
 });
 

@@ -1,7 +1,8 @@
 import React from 'react';
 import { object } from 'prop-types';
 import { StyleSheet } from 'react-native';
-import Button from '../../../components/ButtonUnshifted';
+import Button from '../../../components/Button';
+// import Button from '../../../components/ButtonUnshifted';
 import colors from '../../../objects/colors';
 
 const styles = StyleSheet.create({
@@ -13,7 +14,6 @@ const styles = StyleSheet.create({
     marginTop: 50,
     borderRadius: 1,
     justifyContent: 'center',
-    backgroundColor: colors.addProjectButtonBackground,
   },
 });
 
@@ -24,8 +24,8 @@ const NavigateToPostProjectButton = ({ navigation }) => {
   };
 
   return (
-    <Button icon={'addProject'} color={colors.addProjectButtonText} style={styles.button} onPress={onPressNavigateToPostProject}>
-      buurtwens
+    <Button secondaryColor={colors.buttonPurpleSoft} mainColor={colors.buttonPurpleStrong} small icon={'addProject'} color={colors.addProjectButtonText} style={styles.button} onPress={onPressNavigateToPostProject}>
+      Buurtwens
     </Button>
   );
 };

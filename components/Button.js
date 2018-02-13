@@ -15,7 +15,7 @@ class Button extends Component {
   }
 
   componentWillMount() {
-    const { tileButton, mainColor, secondaryColor } = this.props;
+    const { tileButton, mainColor, secondaryColor, small } = this.props;
     this.styles = StyleSheet.create({
       textContainer: {
         flexDirection: 'row',
@@ -30,8 +30,10 @@ class Button extends Component {
         paddingBottom: 15,
 
         height: 50,
-        width: 335,
+        width: small ? 164 : 335,
         borderRadius: 3,
+
+        alignSelf: 'stretch',
 
       },
       icon: {
@@ -47,10 +49,10 @@ class Button extends Component {
         bottom: 0,
         borderRadius: 3,
 
-        borderBottomLeftRadius: 5,
-        borderBottomRightRadius: 5,
-        borderTopLeftRadius: tileButton ? 0 : 5,
-        borderTopRightRadius: tileButton ? 0 : 5,
+        borderBottomLeftRadius: 3,
+        borderBottomRightRadius: 3,
+        borderTopLeftRadius: tileButton ? 0 : 3,
+        borderTopRightRadius: tileButton ? 0 : 3,
         shadowColor: tileButton ? 'transparent' : colors.shadowColor,
         shadowOffset: {
           width: 0,
@@ -91,6 +93,7 @@ Button.propTypes = {
   tileButton: bool.isRequired,
   icon: string.isRequired,
   style: any.isRequired,
+  small: bool,
   mainColor: string,
   secondaryColor: string,
   iconSize: number,
@@ -103,6 +106,7 @@ Button.defaultProps = {
   mainColor: colors.buttonBlueStrong,
   secondaryColor: colors.buttonBlueSoft,
   iconSize: 30,
+  small: false,
 };
 
 export default Button;
