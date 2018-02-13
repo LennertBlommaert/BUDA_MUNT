@@ -21,6 +21,8 @@ import voorstel from '../assets/img/proposal.png';
 import searchInactive from '../assets/img/search_inactive.png';
 import search from '../assets/img/search.png';
 
+import addProfile from '../assets/img/add_profile.png';
+
 //
 
 import voteProjectInactive from '../assets/img/vote_project_inactive.png';
@@ -152,6 +154,11 @@ const images = {
   openParentAccountsArrow: {
     inactive: openParentAccountsArrowInactive,
     active: openParentAccountsArrow,
+  },
+
+  addProfile: {
+    inactive: addProfile,
+    active: addProfile,
   },
 
   //

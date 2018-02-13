@@ -11,13 +11,14 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     paddingTop: 10,
     paddingBottom: 10,
+    alignSelf: 'stretch',
     // borderWidth: 1,
   },
 });
 
 const UserReference = ({ name, firstName, photoURL, onPress, active }) => (
   <TouchableOpacity onPress={onPress} style={styles.container}>
-    <UserImage size={36} photoURL={photoURL} />
+    <UserImage size={45} photoURL={photoURL} />
     {
       !active ? <BodyText>{firstName} {name}</BodyText> : <HeaderText fontSize={20}>{firstName} {name}</HeaderText>
     }

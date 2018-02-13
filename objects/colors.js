@@ -11,7 +11,7 @@ const colors = {
 
   shadowColor: '#000',
 
-  buttonGreenStrong: '#66D19C',
+  buttonGreenStrong: '#57A980',
   buttonGreenSoft: '#A9E5CD',
 
   buttonBlueStrong: '#00A5E1',

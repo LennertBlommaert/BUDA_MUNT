@@ -16,16 +16,6 @@ const styles = StyleSheet.create({
     alignSelf: 'stretch',
     zIndex: 1000,
   },
-  userPicker: {
-    padding: 20,
-    paddingTop: 10,
-    paddingBottom: 10,
-    zIndex: -10,
-    position: 'absolute',
-    left: 0,
-    right: 0,
-    top: 60,
-  },
 });
 
 class Header extends Component {
