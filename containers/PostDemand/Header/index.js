@@ -26,7 +26,7 @@ const Header = ({ navigation }) => (
       style={styles.dreamImage}
       source={dream}
     />
-    <HeaderText>Plaats je droom</HeaderText>
+    <HeaderText>Plaats je wens</HeaderText>
     <CloseButton navigation={navigation} />
   </View>
 );

@@ -47,9 +47,9 @@ const Summary = ({ postProject, navigation }) => {
       <View style={styles.buttonContainer}>
         <Button
           style={styles.button}
-          icon={'addDream'}
+          icon={'addProject'}
           onPress={onPressButton}
-          mainColor={colors.buttonPurpleHard}
+          mainColor={colors.buttonPurpleStrong}
           secondaryColor={colors.buttonPurpleSoft}
         >
           Plaats buurtwens
