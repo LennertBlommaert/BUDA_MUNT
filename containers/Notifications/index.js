@@ -1,8 +1,11 @@
 import React from 'react';
+import Screen from '../../components/Screen';
 import InvisionWebView from '../../components/InvisionWebView';
 
-const Notifications = () => (
-  <InvisionWebView screen={'S4FSG6NZ2KA#/276971500_Notifications'} />
+const Notifications = ({ navigation }) => (
+  <Screen>
+    <InvisionWebView screen={'R8FTYQ7VYHT'} />
+  </Screen>
 );
 
 export default Notifications;

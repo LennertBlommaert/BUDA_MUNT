@@ -420,7 +420,21 @@ class Store {
     this.fb.signOut();
   }
 
-  signInOutTest = (email) => {
+  signInOutTest = () => {
+    this.signOut();
+    this.email === 'test@test.be' ? this.email = 'dirk.paenhout@test.be' : this.email = 'test@test.be';
+    this.signIn();
+  }
+
+  createUser = () => {
+    this.fb.createUser({ email: this.email, password: this.password })
+      .then((user) => {
+        this._signIn(user);
+      })
+      .catch(err => console.warn(err));
+  }
+
+  signInOut = (email) => {
     this.signOut();
     this.email = email;
     this.signIn();

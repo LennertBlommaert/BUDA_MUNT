@@ -2,7 +2,7 @@ import React from 'react';
 import InvisionWebView from '../../components/InvisionWebView';
 
 const Pay = () => (
-  <InvisionWebView screen={'FYFN7H0TDA5#/276971527_POI_-_Scrolling_Map'} />
+  <InvisionWebView screen={'SQFTXXX3WDY#/279033318_POI_-_Collapsed'} />
 );
 
 export default Pay;

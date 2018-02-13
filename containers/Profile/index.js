@@ -2,7 +2,7 @@ import React from 'react';
 import InvisionWebView from '../../components/InvisionWebView';
 
 const Profile = () => (
-  <InvisionWebView screen={'S4FSG6NZ2KA#/276971509_Personal_Profile'} />
+  <InvisionWebView screen={'SQFTXXX3WDY#/279033320_Personal_Profile'} />
 );
 
 export default Profile;
