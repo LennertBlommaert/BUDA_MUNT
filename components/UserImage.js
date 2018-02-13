@@ -4,6 +4,7 @@ import { string, number } from 'prop-types';
 import defaultUser from '../assets/img/default_user_image_small.png';
 import annette from '../assets/img/annette.png';
 import lisa from '../assets/img/lisa.png';
+import charles from '../assets/img/charles.png';
 import zorggroep from '../assets/img/zorggroep.png';
 
 const images = {
@@ -11,6 +12,7 @@ const images = {
   annette,
   lisa,
   zorggroep,
+  charles,
 };
 
 const UserImage = ({ photoURL, size }) => {

@@ -34,7 +34,6 @@ UserReference.propTypes = {
   name: string.isRequired,
   firstName: string.isRequired,
   photoURL: string.isRequired,
-  topBucketlistItemName: string.isRequired,
   onPress: func,
 };
 

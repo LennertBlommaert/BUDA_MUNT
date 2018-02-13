@@ -27,6 +27,32 @@ class Store {
     return this.user.uid;
   }
 
+  @computed
+  get userChildAccounts() {
+    if (this.currentUserUID === 's7CVMe57o2QsHZDRv1gZNOyqdLD2') {
+      return [{
+        uid: 'WCfkzRyAV9UkIs4HfVFFJGxR4Z63',
+        email: 'dirk.paenhout@test.be',
+        name: 'Paenhout',
+        firstName: 'Charles',
+        photoURL: 'charles',
+        threads: {},
+        balance: 20,
+      }];
+    }
+    if (this.currentUserUID === 'WCfkzRyAV9UkIs4HfVFFJGxR4Z63') {
+      return [{
+        uid: 's7CVMe57o2QsHZDRv1gZNOyqdLD2',
+        email: 'test@test.be',
+        name: 'Paenhout',
+        firstName: 'Lisa',
+        photoURL: 'lisa',
+      }];
+    }
+
+    return [];
+  }
+
   @observable
   projects = []
 
@@ -68,10 +94,10 @@ class Store {
   // email = 'annette.vandevelde@test.be'
 
   // @observable
-  // email = 'test@test.be'
+  email = 'test@test.be'
 
   // @observable
-  email = 'zorggroep@test.be'
+  // email = 'zorggroep@test.be'
 
   @observable
   password = 'testtest'
@@ -394,9 +420,9 @@ class Store {
     this.fb.signOut();
   }
 
-  signInOutTest = () => {
+  signInOutTest = (email) => {
     this.signOut();
-    this.email !== 'test@test.be' ? this.email = 'test@test.be' : this.email = 'zorggroep@test.be';
+    this.email = email;
     this.signIn();
   }
 

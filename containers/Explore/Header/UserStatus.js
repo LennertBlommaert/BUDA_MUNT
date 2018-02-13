@@ -1,11 +1,11 @@
 import React from 'react';
+import { inject, observer } from 'mobx-react/native';
 import { TouchableOpacity, Image, StyleSheet } from 'react-native';
 import { number, string, func } from 'prop-types';
 import HeaderText from '../../../components/HeaderText';
 import UserImage from '../../../components/UserImage';
 import ActivatableImage from '../../../components/ActivatableImage';
 import coin from '../../../assets/img/coin_black.png';
-import { inject, observer } from 'mobx-react/native';
 
 const styles = StyleSheet.create({
   headerRight: {

@@ -1,5 +1,6 @@
 import React from 'react';
-import { TouchableOpacity, Image, StyleSheet } from 'react-native';
+import { inject, observer } from 'mobx-react/native';
+import { View, Image, StyleSheet } from 'react-native';
 import { number, string } from 'prop-types';
 import HeaderText from '../HeaderText';
 import UserImage from '../UserImage';
@@ -25,8 +26,8 @@ const styles = StyleSheet.create({
   },
 });
 
-const UserStatus = ({ balance, photoURL }) => (
-  <TouchableOpacity style={styles.headerRight}>
+const UserStatus = ({ balance, photoURL, signInOutTest, userPickerActive }) => (
+  <View style={styles.headerRight}>
     <UserImage size={36} photoURL={photoURL} />
     <HeaderText>{balance}</HeaderText>
     <Image
@@ -35,10 +36,11 @@ const UserStatus = ({ balance, photoURL }) => (
     />
     <ActivatableImage
       style={styles.openParentAccountsArrowImage}
+      active={userPickerActive}
       icon={'openParentAccountsArrow'}
       size={12}
     />
-  </TouchableOpacity>
+  </View>
 );
 
 UserStatus.propTypes = {
@@ -46,4 +48,8 @@ UserStatus.propTypes = {
   photoURL: string.isRequired,
 };
 
-export default UserStatus;
+export default inject(
+  ({ store }) => ({ signInOutTest: store.signInOutTest }),
+)(
+  observer(UserStatus),
+);

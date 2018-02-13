@@ -14,7 +14,7 @@ import backButton from '../assets/img/back_button.png';
 import topBucketListItem from '../assets/img/top_bucketlist_item.png';
 
 import openParentAccountsArrow from '../assets/img/open_parent_accounts_arrow.png';
-import openParentAccountsArrowInactive from '../assets/img/open_parent_accounts_arrow.png';
+import openParentAccountsArrowInactive from '../assets/img/close_parent_accounts_arrow.png';
 
 import voorstel from '../assets/img/proposal.png';
 

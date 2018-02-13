@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, ScrollView, Animated } from 'react-native';
+import { StyleSheet, ScrollView, Animated, Picker } from 'react-native';
 import { inject, observer, PropTypes } from 'mobx-react/native';
 import { object } from 'prop-types';
 import DemandTile from './DemandTile/';
@@ -117,7 +117,6 @@ class Explore extends Component {
     return (
       <Screen noHeader>
         <Header searchInputOpacity={searchInputOpacity} searchInputOffset={searchInputOffset} navigation={navigation} />
-
         <Feed
           scrollEventThrottle={1}
           onMomentumScrollBegin={this._onMomentumScrollBegin}

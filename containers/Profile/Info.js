@@ -22,7 +22,7 @@ const Info = ({ user, signOut }) => {
       <Text>{user.email}</Text>
       <View>
         {
-          user.capacities.map(c => <Tag onPress={() => onPressTag(c.name)} key={c.uid}>{c.name}</Tag>)
+          user.capacities.map(c => <Tag onPress={() => onPressTag(c.name)} key={`${c.uid}-${user.uid}`}>{c.name}</Tag>)
         }
       </View>
       <Button onPress={signOut}>Uitloggen</Button>
