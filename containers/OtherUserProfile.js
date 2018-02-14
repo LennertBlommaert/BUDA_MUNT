@@ -1,8 +1,12 @@
 import React from 'react';
-import InvisionWebView from '../components/InvisionWebView';
+import { View } from 'react-native';
+// import InvisionWebView from '../../components/InvisionWebView';
+import Screen from '../components/Screen';
 
 const OtherUserProfile = () => (
-  <InvisionWebView screen={'S4FSG6NZ2KA#/276971505_Profile_Page'} />
+  <Screen>
+    <View />
+  </Screen>
 );
 
 export default OtherUserProfile;

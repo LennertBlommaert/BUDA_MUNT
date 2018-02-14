@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import { StyleSheet } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import { Permissions } from 'expo';
 import { object } from 'prop-types';
 import Screen from '../../components/Screen';
-import InvisionWebView from '../../components/InvisionWebView';
+// import InvisionWebView from '../../components/InvisionWebView';
 import CameraFeed from './CameraFeed';
 import Instructions from './Instructions';
 import SegmentendControl from './SegmentendControl/';
@@ -28,7 +28,7 @@ export default class Pay extends Component {
   render() {
     const { navigation } = this.props;
     const { hasCameraPermission } = this.state;
-    if (!hasCameraPermission) return <InvisionWebView screen={'SQFTXXX3WDY#/279033298_Betaal_Handelaar'} />;
+    if (!hasCameraPermission) return <View />;
     return (
       <Screen style={styles.container} navigation={navigation}>
         <SegmentendControl />

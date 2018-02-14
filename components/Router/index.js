@@ -152,6 +152,7 @@ const TabBarStack = TabNavigator({
 }, {
   tabBarComponent: TabBar,
   initialRouteName: 'Explore',
+  // initialRouteName: 'Threads',
   animationEnabled: true,
   swipeEnabled: false,
   tabBarOptions: {

@@ -1,8 +1,12 @@
 import React from 'react';
-import InvisionWebView from '../../components/InvisionWebView';
+import { View } from 'react-native';
+// import InvisionWebView from '../../components/InvisionWebView';
+import Screen from '../../components/Screen';
 
 const Profile = () => (
-  <InvisionWebView screen={'SQFTXXX3WDY#/279033320_Personal_Profile'} />
+  <Screen>
+    <View />
+  </Screen>
 );
 
 export default Profile;

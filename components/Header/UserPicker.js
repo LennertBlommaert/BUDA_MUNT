@@ -1,10 +1,11 @@
 import React from 'react';
 import { inject, observer, PropTypes } from 'mobx-react/native';
-import { View, StyleSheet } from 'react-native';
+import { View, StyleSheet, TouchableOpacity, Image } from 'react-native';
 import { any, func } from 'prop-types';
 import UserReference from './UserReference';
 import colors from '../../objects/colors';
-import Button from '../../components/Button';
+import HeaderText from '../../components/HeaderText';
+import addProfile from '../../assets/img/add_profile.png';
 
 const styles = StyleSheet.create({
   container: {
@@ -34,6 +35,13 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     marginTop: 10,
     width: 335,
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  addProfileImage: {
+    width: 45,
+    height: 45,
+    marginRight: 10,
   },
 });
 
@@ -50,9 +58,13 @@ const UserPicker = ({ user, style, signInOutTest, userChildAccounts, onSelectUse
         userChildAccounts
           .map(userChild => <UserReference key={`${userChild.uid}-picker`} {...userChild} onPress={() => onPressUserReference(userChild.email)} />)
       }
-      <Button onPress={() => console.warn('Voeg profiel toe')} style={styles.button} icon={'addProfile'} mainColor={colors.buttonGreenStrong} secondaryColor={colors.buttonGreenSoft}>
-        Voeg een profiel toe
-      </Button>
+      <TouchableOpacity onPress={() => console.warn('Voeg profiel toe')} style={styles.button}>
+        <Image
+          style={styles.addProfileImage}
+          source={addProfile}
+        />
+        <HeaderText fontSize={18} color={'#9A9A9A'}>Voeg een profiel toe</HeaderText>
+      </TouchableOpacity>
     </View>
   );
 };
