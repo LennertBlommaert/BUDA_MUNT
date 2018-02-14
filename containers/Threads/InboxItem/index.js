@@ -1,5 +1,5 @@
 import React from 'react';
-import { TouchableOpacity, StyleSheet } from 'react-native';
+import { TouchableWithoutFeedback, StyleSheet, View } from 'react-native';
 import { object, func, string, bool } from 'prop-types';
 import { inject, observer } from 'mobx-react/native';
 import ItemTop from './ItemTop';
@@ -36,14 +36,16 @@ const InboxItem = ({ uid, otherUser, demand, navigation, setCurrentThreadDetailU
   };
 
   return (
-    <TouchableOpacity style={styles.container} onPress={onPressInboxItem}>
-      <ItemTop firstName={otherUser.firstName} name={otherUser.name} title={demand.name} photoURL={otherUser.photoURL} />
-      <ItemBot
-        containsUnreadMessages={containsUnreadMessages}
-        lastMessageTruncatedPayLoad={lastMessageTruncatedPayLoad}
-        time={lastMessageTime}
-      />
-    </TouchableOpacity>
+    <TouchableWithoutFeedback onPress={() => onPressInboxItem()}>
+      <View style={styles.container} >
+        <ItemTop firstName={otherUser.firstName} name={otherUser.name} title={demand.name} photoURL={otherUser.photoURL} />
+        <ItemBot
+          containsUnreadMessages={containsUnreadMessages}
+          lastMessageTruncatedPayLoad={lastMessageTruncatedPayLoad}
+          time={lastMessageTime}
+        />
+      </View>
+    </TouchableWithoutFeedback>
   );
 };
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, WebView, Dimensions } from 'react-native';
-import { string } from 'prop-types';
+import { string, any } from 'prop-types';
 
 import colors from '../objects/colors';
 
@@ -15,19 +15,21 @@ const styles = StyleSheet.create({
   },
 });
 
-const Pay = ({ screen }) => (
+const InvisionWebView = ({ screen, style }) => (
   <WebView
     source={{ uri: `https://invis.io/${screen}` }}
-    style={styles.webView}
+    style={[styles.webView, style]}
   />
 );
 
-Pay.propTypes = {
+InvisionWebView.propTypes = {
   screen: string,
+  style: any,
 };
 
-Pay.defaultProps = {
-  screen: '5QFRDNYXKWD',
+InvisionWebView.defaultProps = {
+  screen: 'SQFTXXX3WDY',
+  style: {},
 };
 
-export default Pay;
+export default InvisionWebView;

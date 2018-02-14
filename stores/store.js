@@ -92,11 +92,13 @@ class Store {
   // NOTE: currently bypassing loginflow, strings should be empty
   @observable
   // email = 'annette.vandevelde@test.be'
-
-  // @observable
-  email = 'test@test.be'
-
-  // @observable
+  // email = 'test@test.be'
+  // email = 'dirk.paenhout@test.be'
+  // email = 'fabienne.deleersnyder@test.be'
+  email = 'lars.decoster@test.be'
+  // email = 'tim.langereat@test.be'
+  // email = 'de.klein.keuken@test.be'
+  // email = 'budascoop@test.be'
   // email = 'zorggroep@test.be'
 
   @observable
@@ -169,10 +171,13 @@ class Store {
 
   @computed
   get currentThreadDetailMessages() {
-    const currentThreadDetailMessagesUIDs = this.userThreadMessages.map(m => m.uid);
+    const currentThreadDetailMessagesUIDs = this.userThreadMessages.filter(m => m.threadUID === this.currentThreadDetailUID).map(m => m.uid);
     const currentThreadDetailUniqueMessagesUIDs = [...new Set(currentThreadDetailMessagesUIDs)];
 
     const messages = currentThreadDetailUniqueMessagesUIDs.map(uid => this.userThreadMessages.find(m => m.uid === uid));
+
+    console.log(this.currentThreadDetailUID);
+    console.log(messages);
 
     return messages;
   }
@@ -485,7 +490,7 @@ class Store {
   userThreads = []
 
   @observable
-  currentThreadDetailUID = 'threadId1'
+  currentThreadDetailUID = ''
 
   @computed
   get anyUnreadMessages() {

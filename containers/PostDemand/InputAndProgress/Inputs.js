@@ -15,7 +15,6 @@ const styles = StyleSheet.create({
 
 const Inputs = ({ currentInputIndex }) => (
   <View style={styles.container}>
-    {/* <View> */}
     {
       currentInputIndex === 0 ? <TitleInput /> : null
     }

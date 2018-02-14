@@ -26,7 +26,7 @@ export default class Pay extends Component {
 
   render() {
     const { hasCameraPermission } = this.state;
-    if (!hasCameraPermission) return <InvisionWebView screen={'FYFN7H0TDA5#/276971539_Betaal_Handelaar'} />;
+    if (!hasCameraPermission) return <InvisionWebView screen={'SQFTXXX3WDY#/279033298_Betaal_Handelaar'} />;
     return (
       <Screen style={styles.container}>
         <SegmentendControl />

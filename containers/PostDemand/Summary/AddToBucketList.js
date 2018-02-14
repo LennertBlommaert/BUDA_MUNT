@@ -38,8 +38,8 @@ const styles = StyleSheet.create({
 
 const AddToBucketList = ({ toggleIsBucketListItem, isBucketListItem }) => (
   <TouchableOpacity style={styles.checkbox} onPress={toggleIsBucketListItem}>
-    <HeaderText fontSize={17}>Voeg toe aan mijn bucketlist</HeaderText>
-    <ActivatableImage icon={'checkbox'} active={isBucketListItem} style={styles.image} />
+    <HeaderText fontSize={20}>Voeg toe aan mijn bucketlist</HeaderText>
+    <ActivatableImage iconSize={50} icon={'checkbox'} active={isBucketListItem} style={styles.image} />
   </TouchableOpacity>
 );
 

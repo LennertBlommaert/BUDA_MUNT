@@ -155,7 +155,7 @@ class Explore extends Component {
               <BodyText style={styles.noItemsText} italic> Geen items om weer te geven</BodyText>
 
           }
-          <FeedListFill />
+          <FeedListFill navigation={navigation} />
           <OtherUsersSuggestion style={styles.otherUsersSuggestion} />
         </Feed>
       </Screen>

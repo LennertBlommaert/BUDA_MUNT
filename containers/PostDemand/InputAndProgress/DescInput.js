@@ -36,7 +36,7 @@ const DescInput = ({ setDesc, desc }) => {
 
   return (
     <View>
-      <HeaderText fontSize={22}>Omschrijf je droom</HeaderText>
+      <HeaderText fontSize={22}>Omschrijf je wens</HeaderText>
 
       <TextInput
         style={styles.textInput}

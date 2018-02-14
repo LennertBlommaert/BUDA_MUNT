@@ -8,6 +8,7 @@ import Button from '../../../components/Button';
 import SummaryTile from './SummaryTile/';
 import AddToBucketList from './AddToBucketList';
 import colors from '../../../objects/colors';
+// import PreviousInputButton from '../InputAndProgress/InputsNavigator/PreviousInputButton';
 
 const styles = StyleSheet.create({
   container: {
@@ -56,6 +57,7 @@ const Summary = ({ postDemand, navigation }) => {
         >
           Plaats mijn droom
         </Button>
+        {/* <PreviousInputButton /> */}
         <BodyText opacity={0.7} style={styles.bodyText} italic>Je kan hem steeds aanpassen bij je profiel</BodyText>
       </View>
     </View>

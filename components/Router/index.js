@@ -17,6 +17,7 @@ import Neighbourhood from '../../containers/Neighbourhood/';
 import ThreadDetail from '../../containers/ThreadDetail/';
 import Notifications from '../../containers/Notifications/';
 import OtherUserProfile from '../../containers/OtherUserProfile';
+import ProjectInAttendanceDetail from '../../containers/ProjectInAttendanceDetail';
 import Pay from '../../containers/Pay/';
 
 import TabBar from './TabBar/';
@@ -49,6 +50,9 @@ const ExploreStack = StackNavigator({
   },
   Notifications: {
     screen: Notifications,
+  },
+  ProjectInAttendanceDetail: {
+    screen: ProjectInAttendanceDetail,
   },
 }, {
   mode: 'modal',
