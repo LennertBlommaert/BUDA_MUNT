@@ -6,6 +6,7 @@ import UserReference from './UserReference';
 import colors from '../../objects/colors';
 import HeaderText from '../../components/HeaderText';
 import addProfile from '../../assets/img/add_profile.png';
+import currentProfileIndicatorImage from '../../assets/img/current_profile_indicator.png';
 
 const styles = StyleSheet.create({
   container: {
@@ -43,6 +44,17 @@ const styles = StyleSheet.create({
     height: 45,
     marginRight: 10,
   },
+  currentProfileIndicatorImage: {
+    width: 21,
+    height: 24,
+    transform: [{ translateY: 4 }],
+  },
+  currentProfileIndicator: {
+    flexDirection: 'row',
+    alignSelf: 'stretch',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+  },
 });
 
 const UserPicker = ({ user, style, signInOutTest, userChildAccounts, onSelectUser }) => {
@@ -53,7 +65,13 @@ const UserPicker = ({ user, style, signInOutTest, userChildAccounts, onSelectUse
 
   return (
     <View style={[styles.container, style]}>
-      <UserReference {...user} active onPress={() => onPressUserReference(user.email)} />
+      <View style={styles.currentProfileIndicator}>
+        <UserReference {...user} active onPress={() => onPressUserReference(user.email)} />
+        <Image
+          style={styles.currentProfileIndicatorImage}
+          source={currentProfileIndicatorImage}
+        />
+      </View>
       {
         userChildAccounts
           .map(userChild => <UserReference key={`${userChild.uid}-picker`} {...userChild} onPress={() => onPressUserReference(userChild.email)} />)
