@@ -176,9 +176,6 @@ class Store {
 
     const messages = currentThreadDetailUniqueMessagesUIDs.map(uid => this.userThreadMessages.find(m => m.uid === uid));
 
-    console.log(this.currentThreadDetailUID);
-    console.log(messages);
-
     return messages;
   }
 

@@ -89,6 +89,30 @@ const ThreadsStack = StackNavigator({
   headerMode: 'none',
 });
 
+const NeighbourhoodStack = StackNavigator({
+  Neighbourhood: {
+    screen: Neighbourhood,
+  },
+  Notifications: {
+    screen: Notifications,
+  },
+}, {
+  mode: 'modal',
+  headerMode: 'none',
+});
+
+const PayStack = StackNavigator({
+  Pay: {
+    screen: Pay,
+  },
+  Notifications: {
+    screen: Notifications,
+  },
+}, {
+  mode: 'modal',
+  headerMode: 'none',
+});
+
 const TabBarStack = TabNavigator({
   Explore: {
     screen: ExploreStack,
@@ -98,7 +122,7 @@ const TabBarStack = TabNavigator({
     },
   },
   Neighbourhood: {
-    screen: Neighbourhood,
+    screen: NeighbourhoodStack,
     navigationOptions: {
       tabBarLabel: 'Verken',
       tabBarIcon: ({ focused }) => <ActivatableImage icon={'neighbourhood'} active={focused} />,
@@ -112,7 +136,7 @@ const TabBarStack = TabNavigator({
     },
   },
   Pay: {
-    screen: Pay,
+    screen: PayStack,
     navigationOptions: {
       tabBarLabel: 'Betaal',
       tabBarIcon: ({ focused }) => <ActivatableImage icon={'pay'} active={focused} />,

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { StyleSheet } from 'react-native';
 import { Permissions } from 'expo';
+import { object } from 'prop-types';
 import Screen from '../../components/Screen';
 import InvisionWebView from '../../components/InvisionWebView';
 import CameraFeed from './CameraFeed';
@@ -25,10 +26,11 @@ export default class Pay extends Component {
   }
 
   render() {
+    const { navigation } = this.props;
     const { hasCameraPermission } = this.state;
     if (!hasCameraPermission) return <InvisionWebView screen={'SQFTXXX3WDY#/279033298_Betaal_Handelaar'} />;
     return (
-      <Screen style={styles.container}>
+      <Screen style={styles.container} navigation={navigation}>
         <SegmentendControl />
         <CameraFeed />
         <Instructions />
@@ -36,3 +38,7 @@ export default class Pay extends Component {
     );
   }
 }
+
+Pay.propTypes = {
+  navigation: object.isRequired,
+};
