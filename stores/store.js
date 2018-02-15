@@ -34,7 +34,7 @@ class Store {
         uid: 'WCfkzRyAV9UkIs4HfVFFJGxR4Z63',
         email: 'dirk.paenhout@test.be',
         name: 'Paenhout',
-        firstName: 'Charles',
+        firstName: 'Dirk',
         photoURL: 'charles',
         threads: {},
         balance: 20,
@@ -92,10 +92,10 @@ class Store {
   // NOTE: currently bypassing loginflow, strings should be empty
   @observable
   // email = 'annette.vandevelde@test.be'
-  email = 'test@test.be'
+  // email = 'test@test.be'
   // email = 'dirk.paenhout@test.be'
   // email = 'fabienne.deleersnyder@test.be'
-  // email = 'lars.decoster@test.be'
+  email = 'lars.decoster@test.be'
   // email = 'tim.langereat@test.be'
   // email = 'de.klein.keuken@test.be'
   // email = 'budascoop@test.be'

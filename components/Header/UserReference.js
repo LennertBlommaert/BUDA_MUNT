@@ -1,5 +1,5 @@
 import React from 'react';
-import { TouchableOpacity, StyleSheet } from 'react-native';
+import { TouchableOpacity, StyleSheet, View } from 'react-native';
 import { string, func, bool } from 'prop-types';
 import BodyText from '../BodyText';
 import HeaderText from '../HeaderText';
@@ -14,14 +14,22 @@ const styles = StyleSheet.create({
     alignSelf: 'stretch',
     // borderWidth: 1,
   },
+  dadContainer: {
+    flexDirection: 'column',
+  },
 });
 
 const UserReference = ({ name, firstName, photoURL, onPress, active }) => (
   <TouchableOpacity onPress={onPress} style={styles.container}>
     <UserImage size={45} photoURL={photoURL} />
-    {
-      !active ? <BodyText>{firstName} {name}</BodyText> : <HeaderText fontSize={20}>{firstName} {name}</HeaderText>
-    }
+    <View style={photoURL === 'charles' ? styles.dadContainer : {}}>
+      {
+        !active ? <BodyText>{firstName} {name}</BodyText> : <HeaderText fontSize={20}>{firstName} {name}</HeaderText>
+      }
+      {
+        photoURL === 'charles' ? <BodyText italic opacity={0.7}>Papa</BodyText> : null
+      }
+    </View>
   </TouchableOpacity>
 );
 
