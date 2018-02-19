@@ -1,6 +1,11 @@
 {
   "expo": {
+  	"name": "Beetjes",
     "sdkVersion": "25.0.0",
-    "slug": "buda-munt-app"
+    "slug": "buda-munt-app",
+    "platforms": ["ios"],
+    "githubUrl": "https://github.com/LennertBlommaert/BUDA_MUNT",
+    "primaryColor": "#000000",
+    "description": "De test applicatie voor de conceptuele gemeenschapsmunt op het Buda eiland (Kortrijk): de Beetjes.",
   }
 }
